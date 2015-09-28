@@ -1,0 +1,61 @@
+#sidebar{
+	position:absolute;
+	height:540px;
+	width:29%;
+	/*font-family: arial, inherit !important;*/
+}
+
+#map{
+	border: 1px solid #a7a5a6;
+	float: right;
+}
+#officials{
+	margin-left: 0;
+	/*font-family: arial, inherit;*/
+
+}
+
+ul{
+	list-style-type: none;	
+}
+
+#officials > li {
+	height:86px;
+	background-color: #e6e6e6;
+	font-family: arial !important;
+	border-top: 1px solid #a7a5a6;
+	border-right: 1px solid #a7a5a6;
+	border-bottom: 1px solid #a7a5a6;
+	border-left: 3px solid #a7a5a6;
+
+}
+#officials > li.mnhouse:hover, #officials > li.mnsenate:hover, #officials > li.ushouse:hover, #officials > li.ussenate1:hover, #officials > li.ussenate2:hover{
+
+	background-color: rgba(153,51,51,.41);
+	border-left: 3px solid #991a36;
+
+}
+
+.mnhouse, .mnsenate,.ushouse, .ussenate1, .ussenate2{
+	margin-top:3px;
+}
+
+.membersublist li{
+	/*height:1em;*/
+}
+.lcc_gis_member{
+    /*height:10px !important;*/
+	font-family: arial;
+	font-weight: bold;
+	margin-top: -65px;
+	margin-left: 65px;
+}
+.lcc_gis_memberdistrict{
+	/*height:10px !important;*/
+	font-family: arial;
+	margin-left: 65px;
+}
+.search label{
+	font-family: arial;
+	font-weight: bold;
+}
