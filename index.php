@@ -25,17 +25,19 @@
 <div class='leg_Col4of4-First'> <!-- Closes in footer - so leave this openended -->
 	<h2 id='map_title'>Who Represents Me?</h2>
 	<div id='map_reset'><a href='#'>Reset Map <i class="fa fa-refresh"></i></a></div>
-    
+    <div id="triangle-topright"><i class="fa fa-map fa-lg"></i></div>
 	<div id="sidebar">
 		<div id="officials">
 			<ul >
 				<div class='search'>
 					<li >
-						<form action="javascript:submitQuery()">
-			                <label for="geocode">Enter Address, City State, and Zipcode</label>
-			                <input type="text" name="geocode"></input><button id="searchButton">Search</button>
+						<div class='form-group'>
+							<form action="javascript:submitQuery()">
+				                <label for="geocode">Enter Address, City State, and Zipcode</label>
+				                <input type="text" name="geocode"></input><button id="searchButton">Search</button>
 
-			            </form>
+				            </form>
+				        </div>
 			        </li>	
 		        </div> 
 		        <div class='mnhouse'>        	
@@ -87,7 +89,9 @@
 		</div>
 	</div>
 
-	<div id="map"></div>
+	<div id="map">
+		
+	</div>
 	<div id='map_help'>
 		<a href="#"><i class="fa fa-info-circle"></i> Help</a>
 	</div>
