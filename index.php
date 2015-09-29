@@ -11,64 +11,91 @@
 
 	?>
 	<script src="js/app.js"></script>
-	<!-- Bring over teh core js from top.inc -->
+	<script src="js/helper.js"></script>
+	<!-- Bring over the core js from top.inc -->
 	<script type="text/javascript" src="http://www.gis.leg.mn/css/leg_core_20.js"></script>
 	<script type="text/javascript"  src="http://www.gis.leg.mn/css/leg_mobile_20.js"></script>
 	<script type="text/javascript" src="http://www.gis.leg.mn/css/js/hideshow2.js"></script>
 	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.5/leaflet.css" />
+	<link rel="stylesheet" href="css/plugins/css/font-awesome.min.css" />
 	<link rel="stylesheet" href="css/app.css" />
 	<script src="http://cdn.leafletjs.com/leaflet-0.7.5/leaflet.js"></script>
 
 
 <div class='leg_Col4of4-First'> <!-- Closes in footer - so leave this openended -->
-	<h2>Who Represents Me</h2>
+	<h2 id='map_title'>Who Represents Me?</h2>
+	<div id='map_reset'><a href='#'>Reset Map <i class="fa fa-refresh"></i></a></div>
+    
 	<div id="sidebar">
-		<ul id="officials">
-			<li class='search'>
-				<form action="javascript:submitQuery()">
-	                <label for="geocode">Enter Address, City State, and Zipcode</label>
-	                <input type="text" name="geocode"></input><button id="searchButton">Search</button>
+		<div id="officials">
+			<ul >
+				<div class='search'>
+					<li >
+						<form action="javascript:submitQuery()">
+			                <label for="geocode">Enter Address, City State, and Zipcode</label>
+			                <input type="text" name="geocode"></input><button id="searchButton">Search</button>
 
-	            </form>
-	        </li>	        	
-	        <li class='mnhouse'>
-	        	<img class='mnhouse_img'/ src='images/MNhouse53A.jpg' height='84px'>
-	        	<ul class="membersublist">
-	        		<li class='lcc_gis_member'>JoAnn Ward</li>
-	        		<li class='lcc_gis_memberdistrict'>MN House - 53A</li>
-	        	</ul>
-	        </li>
-	        <li class='mnsenate'>
-	        	<img class='mnsenate_img' src='images/MNsenate53.jpg' height='84px'/>
-	        	<ul class="membersublist">
-	        		<li class='lcc_gis_member'>Susan Kent</li>
-	        		<li class='lcc_gis_memberdistrict'>MN Senate - 53</li>
-	        	</ul>
-	        </li>
-	        <li class='ushouse'>
-	        	<img class='ushouse_img' src='images/UShouse4.jpg' height='84px'/>
-	        	<ul class="membersublist">
-	        		<li class='lcc_gis_member'>Betty McCollum</li>
-	        		<li class='lcc_gis_memberdistrict'>U.S. House - 4</li>
-	        	</ul>
-	        </li>
-	        <li class='ussenate1'>
-	        	<img class='ussenate1_img' src='images/USsenate1.jpg' height='84px'/>
-	        	<ul class="membersublist">
-	        		<li class='lcc_gis_member'>Amy Klobuchar</li>
-	        		<li class='lcc_gis_memberdistrict'>U.S. Senate</li>
-	        	</ul>
-	        </li>
-	        <li class='ussenate2'>
-	        	<img class='ussenate2_img' src='images/USsenate2.jpg' height='84px'/>
-	        	<ul class="membersublist">
-	        		<li class='lcc_gis_member'>Al Franken</li>
-	        		<li class='lcc_gis_memberdistrict'>U.S. Senate</li>
-	        	</ul>
-	        </li>
-	    </ul>
+			            </form>
+			        </li>	
+		        </div> 
+		        <div class='mnhouse'>        	
+			        <li >
+			        	<img class='mnhouse_img'/ src='images/MNhouse53A.jpg' height='84px'>
+			        	<ul class="membersublist">
+			        		<li class='lcc_gis_member'>JoAnn Ward</li>
+			        		<li class='lcc_gis_memberdistrict'>MN House - 53A</li>
+			        	</ul>
+			        </li>
+			    </div>
+			    <div class='mnsenate'>
+			        <li >
+			        	<img class='mnsenate_img' src='images/MNsenate53.jpg' height='84px'/>
+			        	<ul class="membersublist">
+			        		<li class='lcc_gis_member'>Susan Kent</li>
+			        		<li class='lcc_gis_memberdistrict'>MN Senate - 53</li>
+			        	</ul>
+			        </li>
+			    </div>
+			    <div class='ushouse'>
+			        <li >
+			        	<img class='ushouse_img' src='images/UShouse4.jpg' height='84px'/>
+			        	<ul class="membersublist">
+			        		<li class='lcc_gis_member'>Betty McCollum</li>
+			        		<li class='lcc_gis_memberdistrict'>U.S. House - 4</li>
+			        	</ul>
+			        </li>
+			    </div>
+			    <div class='ussenate1'>
+			        <li >
+			        	<img class='ussenate1_img' src='images/USsenate1.jpg' height='84px'/>
+			        	<ul >
+			        		<li class='lcc_gis_member'>Amy Klobuchar</li>
+			        		<li class='lcc_gis_memberdistrict'>U.S. Senate</li>
+			        	</ul>
+			        </li>
+			    </div>
+			    <div class='ussenate2'>
+			        <li >
+			        	<img class='ussenate2_img' src='images/USsenate2.jpg' height='84px'/>
+			        	<ul class="membersublist">
+			        		<li class='lcc_gis_member'>Al Franken</li>
+			        		<li class='lcc_gis_memberdistrict'>U.S. Senate</li>
+			        	</ul>
+			        </li>
+			    </div>
+		    </ul>
+		</div>
 	</div>
+
 	<div id="map"></div>
+	<div id='map_help'>
+		<a href="#"><i class="fa fa-info-circle"></i> Help</a>
+	</div>
+	<div id='map_search_results_metadata'>
+		Search Results for Latitude: 44.9374, Longitude: -92.9778
+	</div>
+
+
 <!-- End leg_PageContent from top.inc -->
 
 <?

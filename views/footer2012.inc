@@ -17,6 +17,7 @@
 <div class="leg_Col1of4-Last leg_HiddenMobile">  <!-- begin column -->        
 
 </div>
+<!-- End page specific content (leg_PageContent-First)-->
 </div>
 <!-- begin: footer section -->
 <div class="leg_PageFooter" id="leg_PageFooter" tabindex="0" >
@@ -81,7 +82,7 @@
 <!-- end: footer section -->
 
 </div>
-<!-- end: shell -->
+<!-- end: leg_shell -->
 
 <!--[if lt IE 8 ]> </div> <![endif]-->
 </body>
