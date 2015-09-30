@@ -37,6 +37,8 @@
     				<li><input type="checkbox" name="ushousegeom" value="Bike"> Congressional Boundaries <br></li>
     			</ul>
     		</div>
+    		<div id="map_layers_basemap_title">Basemap Layers</div>
+    		<button id = "switchBasemap">Switch</button>
     	</div>
     </div>
 	<div id="sidebar">

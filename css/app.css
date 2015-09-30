@@ -159,7 +159,13 @@ ul{
 	top:8px;
 }
 
-
+#map_layers_basemap_title{
+	position:relative;
+	left:23%;
+	top:100px;
+	font-size: 15px;
+	font-weight: bold;
+}
 
 #triangle-topright .fa-map{
 	color:#8d8d8d;
@@ -204,3 +210,18 @@ ul{
 	background-color: #919191;
 	cursor: pointer;
 }
+#switchBasemap{
+	position:relative;
+	left:36%;
+	top:125px;
+	background-color: #606060;
+	border: 1px solid #3b3b3b;
+	border-radius: 3px;
+	padding: 1px;
+	color: white;
+}
+#switchBasemap:hover{
+	background-color: #919191;
+	cursor: pointer;
+}
+
