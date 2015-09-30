@@ -28,7 +28,7 @@
     <a href="#"><div id="triangle-topright"><i class="fa fa-map fa-lg"></i></div></a>
     <div id="map_layers">
     	<div id="map_layers_content">
-    		<div id="map_layers_toggle"> <a href="#">Hide Layers <i class="fa fa-map fa-sm"></i> <i class="fa fa-chevron-right fa-sm"></i></a></div>
+    		<div id="map_layers_toggle"> <a href="#" class="linkstyle">Hide Layers <i class="fa fa-map fa-sm"></i> <i class="fa fa-chevron-right fa-sm"></i></a></div>
     		<div id="map_layers_content_title">Layers</div>
     		<div id="map_layers_content_list">
     			<ul>
