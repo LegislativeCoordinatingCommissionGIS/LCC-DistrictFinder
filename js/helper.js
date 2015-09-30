@@ -20,14 +20,16 @@ $( document ).ready(function() {
 	//sat/vector toggle button callback
 	var toggle = false;
 	
-	function togglePoints() {
-	  if(!toggle) {
-	    map.removeLayer(data1);
-	  } else {
-	    map.addLayer(data1);
-	  }
-	  toggle = !toggle;
-	}
+	$('#switchBasemap').click(function(){
+		console.log('selected switch');
+		if (map.hasLayer(tileLayer1)){
+			map.removeLayer(tileLayer1);
+			map.addLayer(tileLayer2);
+		} else {
+			map.removeLayer(tileLayer2);
+			map.addLayer(tileLayer1);
+		}
+	})
 
 });//end ready()
 
