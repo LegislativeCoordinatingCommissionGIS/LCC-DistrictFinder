@@ -22,7 +22,7 @@ function initialize(){
 		}).addTo(map);
 
 	//next: add features to map
-	//getData();
+	getData();
 };
 
 function getData(){
