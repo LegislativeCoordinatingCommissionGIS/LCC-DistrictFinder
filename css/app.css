@@ -20,7 +20,7 @@
 #map{
 	border: 1px solid #a7a5a6;
 	float: right;
-	z-index: 100;
+	z-index: 0;
 }
 
 #officials ul{
@@ -117,29 +117,41 @@ ul{
 	position:absolute;
 	top:73px;
 	right:0;
+	/*right:150px;*/
 	width:0;
 	height:0;
 	border-top:100px solid #3b3b3b;
 	border-left: 100px solid transparent;
 	z-index: 101;
 }
-/*#triangle-topright:hover{
+#map_layers{
 	position:absolute;
 	top:73px;
-	left:92%;
-	width:0;
-	height:0;
-	border-top:300px solid #3b3b3b;
-	border-left: 300px solid #3b3b3b;
+	right:-225px;
+	width:225px;
+	height: 528px;
+	background-color: #3b3b3b;
+	color:#e6e6e6;
+
 	z-index: 101;
+}
+#map_layers_content{
+	/*padding:5px;*/
+}
+#map_layers_content_title{
+	position:relative;
+	left:38%;
+	top:25px;
+	font-size: 15px;
+	font-weight: bold;
+}
+#map_layers_content_list{
+	position: relative;
+	left:-13px;
+	top:50px;
+}
 
-	-webkit-transition: border-left 1s ease;
-    -moz-transition: border-left 1s ease;
-    -o-transition: border-left 1s ease;
-    transition: border-left 1s ease;
-}*/
-
-.fa-map{
+#triangle-topright .fa-map{
 	color:white;
 	position: absolute;
 	right:36px;

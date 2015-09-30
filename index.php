@@ -26,6 +26,19 @@
 	<h2 id='map_title'>Who Represents Me?</h2>
 	<div id='map_reset'><a href='#'>Reset Map <i class="fa fa-refresh"></i></a></div>
     <a href="#"><div id="triangle-topright"><i class="fa fa-map fa-lg"></i></div></a>
+    <div id="map_layers">
+    	<div id="map_layers_content">
+    		<div id="map_layers_toggle"> <a href="#">Hide Layers <i class="fa fa-map fa-sm"></i> <i class="fa fa-chevron-right fa-sm"></i></a></div>
+    		<div id="map_layers_content_title">Layers</div>
+    		<div id="map_layers_content_list">
+    			<ul>
+    				<li><input type="checkbox" name="mnhousegeom" value="Bike"> State House Boundaries <br></li>
+    				<li><input type="checkbox" name="mnsenategeom" value="Bike"> State Senate Boundaries <br></li>
+    				<li><input type="checkbox" name="ushousegeom" value="Bike"> Congressional Boundaries <br></li>
+    			</ul>
+    		</div>
+    	</div>
+    </div>
 	<div id="sidebar">
 		<div id="officials">
 			<ul >
