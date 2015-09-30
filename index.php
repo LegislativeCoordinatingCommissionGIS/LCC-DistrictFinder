@@ -25,7 +25,7 @@
 <div class='leg_Col4of4-First'> <!-- Closes in footer - so leave this openended -->
 	<h2 id='map_title'>Who Represents Me?</h2>
 	<div id='map_reset'><a href='#'>Reset Map <i class="fa fa-refresh"></i></a></div>
-    <div id="triangle-topright"><i class="fa fa-map fa-lg"></i></div>
+    <a href="#"><div id="triangle-topright"><i class="fa fa-map fa-lg"></i></div></a>
 	<div id="sidebar">
 		<div id="officials">
 			<ul >
@@ -97,6 +97,9 @@
 	</div>
 	<div id='map_search_results_metadata'>
 		Search Results for Latitude: 44.9374, Longitude: -92.9778
+	</div>
+	<div id='map_disclaimer'>
+		<a href="#">Disclaimer <i class="fa fa-exclamation-triangle"></i> </a>
 	</div>
 
 

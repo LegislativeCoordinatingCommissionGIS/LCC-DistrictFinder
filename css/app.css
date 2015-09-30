@@ -20,7 +20,7 @@
 #map{
 	border: 1px solid #a7a5a6;
 	float: right;
-	z-index: -1;
+	z-index: 100;
 }
 
 #officials ul{
@@ -86,10 +86,10 @@ ul{
 	top:56px;
 	right:0;
 }
-#map_reset a, #map_help a{
-	color:#3b3b3b;
+#map_reset a, #map_help a, #map_disclaimer a{
+	 color:#3b3b3b;
 }
-#map_reset a:hover, #map_help a:hover{
+#map_reset a:hover, #map_help a:hover, #map_disclaimer a:hover{
 	color:#337ab7;
 }
 
@@ -103,18 +103,41 @@ ul{
 	font-size: 11px;
 	position: absolute;
 	top:620px;
+	right:20%;
+}
+
+#map_disclaimer{
+	font-size: 11px;
+	position: absolute;
+	top:620px;
 	right:0;
 }
 
 #triangle-topright{
 	position:absolute;
 	top:73px;
-	left:92%;
+	right:0;
 	width:0;
 	height:0;
 	border-top:100px solid #3b3b3b;
 	border-left: 100px solid transparent;
+	z-index: 101;
 }
+/*#triangle-topright:hover{
+	position:absolute;
+	top:73px;
+	left:92%;
+	width:0;
+	height:0;
+	border-top:300px solid #3b3b3b;
+	border-left: 300px solid #3b3b3b;
+	z-index: 101;
+
+	-webkit-transition: border-left 1s ease;
+    -moz-transition: border-left 1s ease;
+    -o-transition: border-left 1s ease;
+    transition: border-left 1s ease;
+}*/
 
 .fa-map{
 	color:white;
