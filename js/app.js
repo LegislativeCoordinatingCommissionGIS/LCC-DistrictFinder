@@ -13,6 +13,8 @@ function initialize(){
 		zoom: 6
 	});
 
+
+    
 	tileLayer1 = L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoiY2NhbnRleSIsImEiOiJjaWVsdDNubmEwMGU3czNtNDRyNjRpdTVqIn0.yFaW4Ty6VE3GHkrDvdbW6g', {
 					maxZoom: 18,
 					minZoom: 6,
@@ -29,10 +31,22 @@ function initialize(){
 					attribution: 'Imagery &copy; <a href="http://www.arcgis.com/home/item.html?id=10df2279f9684e4a9f6a7f08febac2a9">Esri</a>, ' +
 					       'Legislative data &copy; <a href="http://www.gis.leg.mn/">LCC-GIS</a>'
 					})
+
+	toggleLayers($('#satellitonoffswitch'),tileLayer1,tileLayer2);
     
 	//next: add features to map
 	//getData();
 };
+
+function toggleLayers(el, layer1, layer2){
+	if (el.is(':checked')){
+		map.removeLayer(layer2);
+		map.addLayer(layer1);
+	} else {
+		map.removeLayer(layer1);
+		map.addLayer(layer2);
+	}
+}
 
 function getData(){
 	$.ajax("php/getData.php", {

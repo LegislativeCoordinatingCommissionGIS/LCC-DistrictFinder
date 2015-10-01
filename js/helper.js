@@ -20,7 +20,7 @@ $( document ).ready(function() {
 	
 	//Toggle basemap
 	$('#satellitonoffswitch').click(function(){
-		console.log('selected switch');
+
 		if (map.hasLayer(tileLayer1)){
 			map.removeLayer(tileLayer1);
 			map.addLayer(tileLayer2);
@@ -29,6 +29,19 @@ $( document ).ready(function() {
 			map.addLayer(tileLayer1);
 		}
 	})
+
+	//map reset
+	$('#map_reset').click(function(){
+		map.setView(L.latLng(46.1706, -93.6678),6);
+		if($('#satellitonoffswitch').is(':checked')){
+			//unchecked -> leave it ... when I copied the switches I had initial states backwards
+		} else {
+			//checked -> toggle map
+			toggleLayers($('#satellitonoffswitch'),tileLayer2,tileLayer1);
+			$('#satellitonoffswitch').prop('checked', false);
+		}
+
+	});
 
 });//end ready()
 
