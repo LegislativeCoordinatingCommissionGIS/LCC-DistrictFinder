@@ -9,21 +9,25 @@ function initialize(){
 	$("#map").width('70%')
 
 	map = L.map("map", {
-		center: L.latLng(44.9444101, -93.09327),
-		zoom: 12
+		center: L.latLng(46.0706, -93.6678),
+		zoom: 6
 	});
 
 	tileLayer1 = L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoiY2NhbnRleSIsImEiOiJjaWVsdDNubmEwMGU3czNtNDRyNjRpdTVqIn0.yFaW4Ty6VE3GHkrDvdbW6g', {
 					maxZoom: 18,
-					attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
-						'<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+					minZoom: 6,
+					attribution: 'Basemap data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a>, ' +
+						'Legislative data &copy; <a href="http://www.gis.leg.mn/">LCC-GIS</a>, ' +
 						'Imagery Â© <a href="http://mapbox.com">Mapbox</a>',
 					id: 'mapbox.streets'
 					}).addTo(map);
 
-	tileLayer2 = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-					maxZoom: 19,
-					attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+	tileLayer2 = L.esri.tiledMapLayer({
+		            url: 'http://services.arcgisonline.com/arcgis/rest/services/World_Imagery/MapServer', 
+					maxZoom: 18,
+					minZoom: 6,
+					attribution: 'Imagery &copy; <a href="http://www.arcgis.com/home/item.html?id=10df2279f9684e4a9f6a7f08febac2a9">Esri</a>, ' +
+					       'Legislative data &copy; <a href="http://www.gis.leg.mn/">LCC-GIS</a>'
 					})
     
 	//next: add features to map

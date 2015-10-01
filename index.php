@@ -20,15 +20,16 @@
 	<link rel="stylesheet" href="css/plugins/css/font-awesome.min.css" />
 	<link rel="stylesheet" href="css/app.css" />
 	<script src="http://cdn.leafletjs.com/leaflet-0.7.5/leaflet.js"></script>
+	<script src="http://cdn.jsdelivr.net/leaflet.esri/1.0.0/esri-leaflet.js"></script>
 
 
 <div class='leg_Col4of4-First'> <!-- Closes in footer - so leave this openended -->
 	<h2 id='map_title'>Who Represents Me?</h2>
 	<div id='map_reset'><a href='#'>Reset Map <i class="fa fa-refresh"></i></a></div>
-    <a href="#"><div id="triangle-topright"><i class="fa fa-map fa-lg"></i></div></a>
+    <a ><div id="triangle-topright"><i class="fa fa-map fa-lg"></i></div></a>
     <div id="map_layers">
     	<div id="map_layers_content">
-    		<div id="map_layers_toggle"> <a href="#" class="linkstyle">Hide Layers <i class="fa fa-map fa-sm"></i> <i class="fa fa-chevron-right fa-sm"></i></a></div>
+    		<div id="map_layers_toggle"> <a class="linkstyle">Hide Layers <i class="fa fa-map fa-sm"></i> <i class="fa fa-chevron-right fa-sm"></i></a></div>
     		<div id="map_layers_content_title">Layers</div>
     		<div id="map_layers_content_list">
     			<ul>
