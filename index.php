@@ -31,19 +31,51 @@
     	<div id="map_layers_content">
     		<div id="map_layers_toggle"> <a class="linkstyle">Hide Layers <i class="fa fa-map fa-sm"></i> <i class="fa fa-chevron-right fa-sm"></i></a></div>
     		<div id="map_layers_content_title">Layers</div>
-    		<div id="map_layers_content_list">
+    		<!-- <div id="map_layers_content_list">
     			<ul>
     				<li><input type="checkbox" name="mnhousegeom" value="Bike"> State House Boundaries <br></li>
     				<li><input type="checkbox" name="mnsenategeom" value="Bike"> State Senate Boundaries <br></li>
     				<li><input type="checkbox" name="ushousegeom" value="Bike"> Congressional Boundaries <br></li>
     			</ul>
-    		</div>
+    		</div> -->
+    		<div id="map_layers_content_list">
+	    		<div id="shdiv"class="onoffswitch">
+	    		    
+	    			<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="shonoffswitch" checked>
+	    				<label class="onoffswitch-label" for="shonoffswitch">
+	        				<span class="onoffswitch-inner"></span>
+	        				<span class="onoffswitch-switch"></span>
+	    				</label>
+	    			
+				</div>
+				<div class='layersswitchLabel'>State House Districts</div>
+				<div id="ssdiv"class="onoffswitch">
+	    		    
+	    			<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="ssonoffswitch" checked>
+	    				<label class="onoffswitch-label" for="ssonoffswitch">
+	        				<span class="onoffswitch-inner"></span>
+	        				<span class="onoffswitch-switch"></span>
+	    				</label>
+	    			
+				</div>
+				<div class='layersswitchLabel'>State Senate Districts</div>
+				<div id="congressdiv"class="onoffswitch">
+	    		    
+	    			<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="cononoffswitch" checked>
+	    				<label class="onoffswitch-label" for="cononoffswitch">
+	        				<span class="onoffswitch-inner"></span>
+	        				<span class="onoffswitch-switch"></span>
+	    				</label>
+	    			
+				</div>
+			</div>
+			<div class='layersswitchLabel'>Congressional Districts</div>
     		<div id="map_layers_basemap_title">Basemap Layers</div>
     		<!-- <button id = "switchBasemap">Switch</button> -->
-    		<div class="onoffswitch">
+    		<div id="satellitediv"class="onoffswitch">
     		    
-    			<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
-    				<label class="onoffswitch-label" for="myonoffswitch">
+    			<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="satellitonoffswitch" checked>
+    				<label class="onoffswitch-label" for="satellitonoffswitch">
         				<span class="onoffswitch-inner"></span>
         				<span class="onoffswitch-switch"></span>
     				</label>

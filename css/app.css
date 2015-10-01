@@ -150,7 +150,7 @@ ul{
 }
 #map_layers_content_list{
 	position: relative;
-	left:-13px;
+	/*left:-13px;*/
 	top:85px;
 }
 #map_layers_toggle{
@@ -228,13 +228,24 @@ ul{
 #switchLabel{
 	position:relative;
 	top: 110px;
-	left:85px;
+	left:77px;
+}
+
+
+.layersswitchLabel{
+	position: 	relative;	
+	left: 77px;
+	top:13px;
+}
+#satellitediv{
+	top:125px;
+    left:25px;
 }
 .onoffswitch {
     position: relative; width: 47px;
     -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
-    top:125px;
-    left:33px;
+    left:25px;
+
 }
 .onoffswitch-checkbox {
     display: none;

@@ -1,5 +1,6 @@
 $( document ).ready(function() {
 
+	//Members UI click turn red with 'active' class
 	$( ".mnhouse, .mnsenate, .ushouse, .ussenate1, .ussenate2" ).click(function() {
 	  $(this).addClass('active').siblings().removeClass('active');
 
@@ -16,11 +17,9 @@ $( document ).ready(function() {
     		$('#triangle-topright').animate({right:0},250);
   		});  
 	});
-
-	//sat/vector toggle button callback
-	var toggle = false;
 	
-	$('#switchBasemap').click(function(){
+	//Toggle basemap
+	$('#satellitonoffswitch').click(function(){
 		console.log('selected switch');
 		if (map.hasLayer(tileLayer1)){
 			map.removeLayer(tileLayer1);
