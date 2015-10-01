@@ -1,7 +1,10 @@
 var map,
 	fields = ["gid", "createdby", "featname", "feattype", "status", "acres"], 
 	autocomplete = [];
+
 var tileLayer1,tileLayer2;
+
+//kickoff
 $( document ).ready(initialize);
 
 function initialize(){
@@ -23,14 +26,21 @@ function initialize(){
 						'Imagery Â© <a href="http://mapbox.com">Mapbox</a>',
 					id: 'mapbox.streets'
 					}).addTo(map);
-
-	tileLayer2 = L.esri.tiledMapLayer({
-		            url: 'http://services.arcgisonline.com/arcgis/rest/services/World_Imagery/MapServer', 
+	tileLayer2 = L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoiY2NhbnRleSIsImEiOiJjaWVsdDNubmEwMGU3czNtNDRyNjRpdTVqIn0.yFaW4Ty6VE3GHkrDvdbW6g', {
 					maxZoom: 18,
 					minZoom: 6,
-					attribution: 'Imagery &copy; <a href="http://www.arcgis.com/home/item.html?id=10df2279f9684e4a9f6a7f08febac2a9">Esri</a>, ' +
-					       'Legislative data &copy; <a href="http://www.gis.leg.mn/">LCC-GIS</a>'
+					attribution: 'Basemap data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a>, ' +
+						'Legislative data &copy; <a href="http://www.gis.leg.mn/">LCC-GIS</a>, ' +
+						'Imagery Â© <a href="http://mapbox.com">Mapbox</a>',
+					id: 'mapbox.streets-satellite'
 					})
+	// tileLayer2 = L.esri.tiledMapLayer({
+	// 	            url: 'http://services.arcgisonline.com/arcgis/rest/services/World_Imagery/MapServer', 
+	// 				maxZoom: 18,
+	// 				minZoom: 6,
+	// 				attribution: 'Imagery &copy; <a href="http://www.arcgis.com/home/item.html?id=10df2279f9684e4a9f6a7f08febac2a9">Esri</a>, ' +
+	// 				       'Legislative data &copy; <a href="http://www.gis.leg.mn/">LCC-GIS</a>'
+	// 				})
 
 	toggleLayers($('#satellitonoffswitch'),tileLayer1,tileLayer2);
     

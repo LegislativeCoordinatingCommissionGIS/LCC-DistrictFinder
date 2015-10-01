@@ -33,6 +33,7 @@ $( document ).ready(function() {
 	//map reset
 	$('#map_reset').click(function(){
 		map.setView(L.latLng(46.1706, -93.6678),6);
+		//LATER SET ALL CHECKBOXES THIS WAY!!!
 		if($('#satellitonoffswitch').is(':checked')){
 			//:checked = true -> leave it ... when I copied the switches I had initial states backwards
 		} else {
