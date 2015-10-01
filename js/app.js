@@ -9,7 +9,7 @@ function initialize(){
 	$("#map").width('70%')
 
 	map = L.map("map", {
-		center: L.latLng(46.0706, -93.6678),
+		center: L.latLng(46.1706, -93.6678),
 		zoom: 6
 	});
 

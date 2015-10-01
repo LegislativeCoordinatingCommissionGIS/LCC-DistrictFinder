@@ -39,7 +39,17 @@
     			</ul>
     		</div>
     		<div id="map_layers_basemap_title">Basemap Layers</div>
-    		<button id = "switchBasemap">Switch</button>
+    		<!-- <button id = "switchBasemap">Switch</button> -->
+    		<div class="onoffswitch">
+    		    
+    			<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
+    				<label class="onoffswitch-label" for="myonoffswitch">
+        				<span class="onoffswitch-inner"></span>
+        				<span class="onoffswitch-switch"></span>
+    				</label>
+    			
+			</div>
+			<div id='switchLabel'>Satelite Imagery</div>
     	</div>
     </div>
 	<div id="sidebar">
