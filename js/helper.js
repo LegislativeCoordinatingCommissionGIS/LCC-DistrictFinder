@@ -34,11 +34,11 @@ $( document ).ready(function() {
 	$('#map_reset').click(function(){
 		map.setView(L.latLng(46.1706, -93.6678),6);
 		if($('#satellitonoffswitch').is(':checked')){
-			//unchecked -> leave it ... when I copied the switches I had initial states backwards
+			//:checked = true -> leave it ... when I copied the switches I had initial states backwards
 		} else {
-			//checked -> toggle map
+			//:checked = false -> toggle map
 			toggleLayers($('#satellitonoffswitch'),tileLayer2,tileLayer1);
-			$('#satellitonoffswitch').prop('checked', false);
+			$('#satellitonoffswitch').prop('checked', true);
 		}
 
 	});
