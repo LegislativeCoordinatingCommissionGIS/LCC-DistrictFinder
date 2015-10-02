@@ -25,11 +25,11 @@
 
 <div class='leg_Col4of4-First'> <!-- Closes in footer - so leave this openended -->
 	<h2 id='map_title'>Who Represents Me?</h2>
-	<div id='map_reset'><a href='#'>Reset Map <i class="fa fa-refresh"></i></a></div>
+	<div id='map_reset'><a class='noref'>Reset Map <i class="fa fa-refresh"></i></a></div>
     <a ><div id="triangle-topright"><i class="fa fa-map fa-lg"></i></div></a>
     <div id="map_layers">
     	<div id="map_layers_content">
-    		<div id="map_layers_toggle"> <a class="linkstyle">Hide Layers <i class="fa fa-map fa-sm"></i> <i class="fa fa-chevron-right fa-sm"></i></a></div>
+    		<div id="map_layers_toggle"> <a class='noref'>Hide Layers <i class="fa fa-map fa-sm"></i> <i class="fa fa-chevron-right fa-sm"></i></a></div>
     		<div id="map_layers_content_title">Layers</div>
     		<!-- <div id="map_layers_content_list">
     			<ul>
@@ -100,7 +100,7 @@
 		        </div> 
 		        <div class='mnhouse'>        	
 			        <li >
-			        	<img class='mnhouse_img'/ src='images/MNhouse53A.jpg' height='84px'>
+			        	<img class='mnhouse_img'/ src='images/MNhouse53A.jpg' />
 			        	<ul class="membersublist">
 			        		<li class='lcc_gis_member'>JoAnn Ward</li>
 			        		<li class='lcc_gis_memberdistrict'>MN House - 53A</li>
@@ -109,7 +109,7 @@
 			    </div>
 			    <div class='mnsenate'>
 			        <li >
-			        	<img class='mnsenate_img' src='images/MNsenate53.jpg' height='84px'/>
+			        	<img class='mnsenate_img' src='images/MNsenate53.jpg'/>
 			        	<ul class="membersublist">
 			        		<li class='lcc_gis_member'>Susan Kent</li>
 			        		<li class='lcc_gis_memberdistrict'>MN Senate - 53</li>
@@ -118,7 +118,7 @@
 			    </div>
 			    <div class='ushouse'>
 			        <li >
-			        	<img class='ushouse_img' src='images/UShouse4.jpg' height='84px'/>
+			        	<img class='ushouse_img' src='images/UShouse4.jpg' />
 			        	<ul class="membersublist">
 			        		<li class='lcc_gis_member'>Betty McCollum</li>
 			        		<li class='lcc_gis_memberdistrict'>U.S. House - 4</li>
@@ -127,7 +127,7 @@
 			    </div>
 			    <div class='ussenate1'>
 			        <li >
-			        	<img class='ussenate1_img' src='images/USsenate1.jpg' height='84px'/>
+			        	<img class='ussenate1_img' src='images/USsenate1.jpg'/>
 			        	<ul >
 			        		<li class='lcc_gis_member'>Amy Klobuchar</li>
 			        		<li class='lcc_gis_memberdistrict'>U.S. Senate</li>
@@ -136,7 +136,7 @@
 			    </div>
 			    <div class='ussenate2'>
 			        <li >
-			        	<img class='ussenate2_img' src='images/USsenate2.jpg' height='84px'/>
+			        	<img class='ussenate2_img' src='images/USsenate2.jpg'/>
 			        	<ul class="membersublist">
 			        		<li class='lcc_gis_member'>Al Franken</li>
 			        		<li class='lcc_gis_memberdistrict'>U.S. Senate</li>
@@ -151,13 +151,13 @@
 		
 	</div>
 	<div id='map_help'>
-		<a href="#" id='modal' data-popup-open="popup-1"><i class="fa fa-info-circle"></i> Help</a>
+		<a class='noref' id='modal' data-popup-open="popup-1"><i class="fa fa-info-circle"></i> Help</a>
 	</div>
 	<div id='map_search_results_metadata'>
 		Search Results for Latitude: 44.9374, Longitude: -92.9778
 	</div>
 	<div id='map_disclaimer'>
-		<a href="#" data-popup-open="popup-2">Disclaimer <i class="fa fa-exclamation-triangle"></i> </a>
+		<a class='noref' data-popup-open="popup-2">Disclaimer <i class="fa fa-exclamation-triangle"></i> </a>
 	</div>
 
     <!-- help modal -->
@@ -167,7 +167,8 @@
 	        <ul style="list-style-type:disc">
         		<li>Use the zoom control (+ -) in upper left or use your mouse wheel to zoom-in and zoom-out of the map. </li>
         		<li> Click and drag the map to pan around the map. </li>
-        		<li> Click the map icon in upper right to turn map layers on and off. </li>
+        		<li> Click the map icon in upper right to view available layers. </li>
+        		<li> Click on individual switches to turn on/off layers. </li>
         		<li> Click once on the map to find representatives</li>
 
 	        </ul>

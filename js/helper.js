@@ -6,12 +6,14 @@ $( document ).ready(function() {
 
 	});
 
+	//Open layers tab
 	$('#triangle-topright').click(function(){
   		$(this).animate({right:'-100px'},250, function(){
     		$('#map_layers').animate({right:0},250);
   		});  
 	});
 
+    //Close layers tab
 	$('#map_layers_toggle').click(function(){
   		$('#map_layers').animate({right:'-225px'},250, function(){
     		$('#triangle-topright').animate({right:0},250);
@@ -41,7 +43,6 @@ $( document ).ready(function() {
 			toggleLayers($('#satellitonoffswitch'),tileLayer2,tileLayer1);
 			$('#satellitonoffswitch').prop('checked', true);
 		}
-
 	});
 
 	//----- OPEN Modal
@@ -60,6 +61,15 @@ $( document ).ready(function() {
         $('[data-popup="' + targeted_popup_class + '"]').fadeOut(350);
  
         e.preventDefault();
+    });
+
+    //attach a hover method to layers ribbon
+    $('#triangle-topright').on('mouseenter', function(){
+    	console.log('hovering enter');
+    	$('.fa-map').css('color', '#346f9a'); 
+    }).on('mouseleave', function(){
+    	console.log('hovering exit');
+    	$('.fa-map').css('color', '#8d8d8d');
     });
 
 });//end ready()
