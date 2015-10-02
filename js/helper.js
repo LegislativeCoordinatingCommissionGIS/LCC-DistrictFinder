@@ -53,7 +53,7 @@ $( document ).ready(function() {
     });
  
     //----- CLOSE Modal
-    $('[data-popup-close]',document).on('click', function(e)  {
+    $('[data-popup-close]').on('click', function(e)  {
     	console.log('clicked');
     	console.log(this);
         var targeted_popup_class = $(this).attr('data-popup-close');
