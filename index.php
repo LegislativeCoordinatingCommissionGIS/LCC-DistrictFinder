@@ -151,15 +151,43 @@
 		
 	</div>
 	<div id='map_help'>
-		<a href="#"><i class="fa fa-info-circle"></i> Help</a>
+		<a href="#" id='modal' data-popup-open="popup-1"><i class="fa fa-info-circle"></i> Help</a>
 	</div>
 	<div id='map_search_results_metadata'>
 		Search Results for Latitude: 44.9374, Longitude: -92.9778
 	</div>
 	<div id='map_disclaimer'>
-		<a href="#">Disclaimer <i class="fa fa-exclamation-triangle"></i> </a>
+		<a href="#" data-popup-open="popup-2">Disclaimer <i class="fa fa-exclamation-triangle"></i> </a>
 	</div>
 
+    <!-- help modal -->
+    <div class="popup" data-popup="popup-1">
+	    <div class="popup-inner">
+	        <h2>Help Section</h2>
+	        <ul style="list-style-type:disc">
+        		<li>Use the zoom control (+ -) in upper left or use your mouse wheel to zoom-in and zoom-out of the map. </li>
+        		<li> Click and drag the map to pan around the map. </li>
+        		<li> Click the map icon in upper right to turn map layers on and off. </li>
+        		<li> Click once on the map to find representatives</li>
+
+	        </ul>
+	        <p><a data-popup-close="popup-1" href="#">Close Help</a></p>
+	        <a class="popup-close" data-popup-close="popup-1" href="#">x</a>
+	    </div>
+	</div>
+
+	<!-- dislaimer modal -->
+    <div class="popup" data-popup="popup-2">
+	    <div class="popup-inner">
+	        <h2>Disclaimer</h2>
+	        <p>
+        		PLEASE NOTE: This Web application is intended to provide general information only.  Due to limitations in the data, the District Finder may incorrectly identify which district you live in, especially if the address is near the boundary of the district (where errors are more likely to occur).  Please examine the map to determine whether your address is near the boundary.  If it is, we recommend that you contact your county elections office.
+
+	        </p>
+	        <p><a data-popup-close="popup-2" href="#">Close Help</a></p>
+	        <a class="popup-close" data-popup-close="popup-2" href="#">x</a>
+	    </div>
+	</div>
 
 <!-- End leg_PageContent from top.inc -->
 

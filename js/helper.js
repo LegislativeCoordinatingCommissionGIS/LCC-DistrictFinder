@@ -44,6 +44,24 @@ $( document ).ready(function() {
 
 	});
 
+	//----- OPEN Modal
+    $('[data-popup-open]').on('click', function(e)  {
+        var targeted_popup_class = $(this).attr('data-popup-open');
+        $('[data-popup="' + targeted_popup_class + '"]').fadeIn(350);
+ 
+        e.preventDefault();
+    });
+ 
+    //----- CLOSE Modal
+    $('[data-popup-close]',document).on('click', function(e)  {
+    	console.log('clicked');
+    	console.log(this);
+        var targeted_popup_class = $(this).attr('data-popup-close');
+        $('[data-popup="' + targeted_popup_class + '"]').fadeOut(350);
+ 
+        e.preventDefault();
+    });
+
 });//end ready()
 
 
