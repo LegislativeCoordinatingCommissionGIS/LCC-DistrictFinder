@@ -102,6 +102,7 @@
 			        <li >
 			        	<img class='mnhouse_img'/ src='images/MNhouse53A.jpg' />
 			        	<ul class="membersublist">
+			        		 <li class="memberLink"><a href="#" target='_blank' ><i class="fa fa-external-link"></i></a>   	
 			        		<li class='lcc_gis_member'>JoAnn Ward</li>
 			        		<li class='lcc_gis_memberdistrict'>MN House - 53A</li>
 			        	</ul>
@@ -111,6 +112,7 @@
 			        <li >
 			        	<img class='mnsenate_img' src='images/MNsenate53.jpg'/>
 			        	<ul class="membersublist">
+			        		<li class="memberLink"><a href="#" target='_blank' ><i class="fa fa-external-link"></i></a>
 			        		<li class='lcc_gis_member'>Susan Kent</li>
 			        		<li class='lcc_gis_memberdistrict'>MN Senate - 53</li>
 			        	</ul>
@@ -120,6 +122,7 @@
 			        <li >
 			        	<img class='ushouse_img' src='images/UShouse4.jpg' />
 			        	<ul class="membersublist">
+			        		<li class="memberLink"><a href="#" target='_blank' ><i class="fa fa-external-link"></i></a>
 			        		<li class='lcc_gis_member'>Betty McCollum</li>
 			        		<li class='lcc_gis_memberdistrict'>U.S. House - 4</li>
 			        	</ul>
@@ -129,6 +132,7 @@
 			        <li >
 			        	<img class='ussenate1_img' src='images/USsenate1.jpg'/>
 			        	<ul >
+			        		<li class="memberLink"><a href="#" target='_blank' ><i class="fa fa-external-link"></i></a>
 			        		<li class='lcc_gis_member'>Amy Klobuchar</li>
 			        		<li class='lcc_gis_memberdistrict'>U.S. Senate</li>
 			        	</ul>
@@ -138,6 +142,7 @@
 			        <li >
 			        	<img class='ussenate2_img' src='images/USsenate2.jpg'/>
 			        	<ul class="membersublist">
+			        		<li class="memberLink"><a href="#" target='_blank' ><i class="fa fa-external-link"></i></a>
 			        		<li class='lcc_gis_member'>Al Franken</li>
 			        		<li class='lcc_gis_memberdistrict'>U.S. Senate</li>
 			        	</ul>

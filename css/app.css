@@ -63,16 +63,30 @@ ul{
 }
 
 .lcc_gis_member{
+	position:relative;
 	font-weight: bold;
-	margin-top: -65px;
-	margin-left: 100px;
+	bottom: 80px;
+	left:25px;
+	text-align: center;
 }
 .lcc_gis_memberdistrict{
-	margin-left: 100px;
+	position: relative;
+	left: 25px;
+	bottom:75px;
+	text-align: center;
 }
 #officials img{
 	max-height: 84px;
 	max-width: 65%;
+}
+.memberLink{
+	position: relative;
+	right: 10px;
+	bottom:80px;
+	text-align: right;
+}
+.memberLink:hover{
+	/*background-color: red;*/
 }
 
 .search label{
