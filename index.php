@@ -84,6 +84,7 @@
 			<div id='switchLabel'>Satelite Imagery</div>
     	</div>
     </div>
+
 	<div id="sidebar">
 		<div id="officials">
 			<ul >
@@ -92,7 +93,7 @@
 						<div class='form-group'>
 							<form action="javascript:submitQuery()">
 				                <label for="geocode">Enter Address, City State, and Zipcode</label>
-				                <input type="text" name="geocode"></input><button id="searchButton">Search</button>
+				                <input type="text" name="geocode"></input><button class="searchButton">Search</button>
 
 				            </form>
 				        </div>
@@ -163,6 +164,13 @@
 	</div>
 	<div id='map_disclaimer'>
 		<a class='noref' data-popup-open="popup-2">Disclaimer <i class="fa fa-exclamation-triangle"></i> </a>
+	</div>
+    <div class='form-group smallscreen'>
+		<form action="javascript:submitQuery()">
+		    <label for="geocode">Enter Address, City State, and Zipcode</label>
+		    <input type="text" name="geocode"></input><button class="searchButton">Search</button>
+
+		</form>
 	</div>
 
     <!-- help modal -->

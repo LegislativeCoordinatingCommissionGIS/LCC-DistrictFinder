@@ -1,4 +1,11 @@
 $( document ).ready(function() {
+    
+    //mobile search form
+    if ($(window).width() < 417){
+    	$('.smallscreen').show();
+    } else {
+		$('.smallscreen').hide();
+    }
 
 	//Members UI click turn red with 'active' class
 	$( ".mnhouse, .mnsenate, .ushouse, .ussenate1, .ussenate2" ).click(function() {
@@ -55,8 +62,6 @@ $( document ).ready(function() {
  
     //----- CLOSE Modal
     $('[data-popup-close]').on('click', function(e)  {
-    	console.log('clicked');
-    	console.log(this);
         var targeted_popup_class = $(this).attr('data-popup-close');
         $('[data-popup="' + targeted_popup_class + '"]').fadeOut(350);
  
@@ -65,7 +70,6 @@ $( document ).ready(function() {
 
     //attach a hover method to layers ribbon
     $('#triangle-topright').on('mouseenter', function(){
-    	console.log('hovering enter');
     	$('.fa-map').css('color', '#346f9a'); 
     }).on('mouseleave', function(){
     	console.log('hovering exit');
