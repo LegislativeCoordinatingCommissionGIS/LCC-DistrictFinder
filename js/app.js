@@ -1,5 +1,5 @@
 var map,
-	fields = ["gid", "createdby", "featname", "feattype", "status", "acres"], 
+	fields = ["gid", "district", "name"], 
 	autocomplete = [];
 
 var tileLayer1,tileLayer2;
@@ -45,7 +45,7 @@ function initialize(){
 	toggleLayers($('#satellitonoffswitch'),tileLayer1,tileLayer2);
     
 	//next: add features to map
-	//getData();
+	getData();
 };
 
 function toggleLayers(el, layer1, layer2){
@@ -151,7 +151,7 @@ function submitQuery(){
 
 	//add to data request object
 	var data = {
-		table: "fracsandsites",
+		table: "hse2012",
 		fields: fields
 	};
 	formdata.forEach(function(dataobj){
