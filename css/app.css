@@ -32,6 +32,9 @@
 	z-index: 0;
 }
 
+.leaflet-container{
+    cursor: crosshair;
+}
 #officials ul{
 	margin-left: 0;
 }
@@ -270,7 +273,7 @@ li .memberLink:hover{
 .layersswitchLabel{
 	position: 	relative;	
 	left: 77px;
-	top:13px;
+	top:-15px;
 }
 #satellitediv{
 	top:125px;
@@ -280,6 +283,7 @@ li .memberLink:hover{
     position: relative; width: 47px;
     -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
     left:25px;
+    top:0;
 
 }
 .onoffswitch-checkbox {

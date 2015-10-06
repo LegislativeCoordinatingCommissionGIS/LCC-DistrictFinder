@@ -81,9 +81,11 @@ $( document ).ready(function() {
     	$('.fa-map').css('color', '#8d8d8d');
     });
 
-
+    //map navigation, this could become aswitch
     map.on('click', function(e){
+    	addMarker(e);
 		identifyDistrict(e);
+		
 	});
 
 

@@ -72,15 +72,16 @@ function getGeoData(){
 };
 
 function mapData(data){	
-	//console.log(typeof(data));
+	//console.log(data);
 	//remove existing map layers
 	map.eachLayer(function(layer){
 		//Remove old layer
-		if (typeof layer._url === "undefined"){
+		console.log(layer);
+		if (typeof layer._url === "undefined" ){
 			map.removeLayer(layer);
 		}
 	});
-
+   
 	//create geojson container object
 	var geojson = {
 		"type": "FeatureCollection",
@@ -139,9 +140,15 @@ var myStyle = {
 	        layer.bindPopup(html);
 	    }
 	});
-
 	mapDataLayer.addTo(map);
-	//console.log(mapDataLayer);
+    
+	//zoom to bounds
+	console.log(mapDataLayer.getBounds().getCenter())
+	//USE THIS FOR SEARCH
+	//map.fitBounds(mapDataLayer.getBounds());
+	//addMarker();
+	//map.setView(L.latLng(mapDataLayer.getBounds().getCenter())).setZoom(10);
+
 };
 
 function submitQuery(){
@@ -167,7 +174,8 @@ function submitQuery(){
 };
 
 function identifyDistrict(d){
-	console.log(d.latlng.lat, d.latlng.lng);
+	console.log(d.latlng);
+    
 
 	var data = {
 		table: "hse2012",
@@ -184,6 +192,7 @@ function identifyDistrict(d){
 		success: function(result){
 			
 			mapData(result);
+
 		}, 
 		error: function(){
 			console.log('error');
@@ -195,5 +204,8 @@ function addMemberData(memberData){
 	console.log(memberData[1]);
 	$('#housemember').html(memberData[1]);
 	$('#housedistrict').html('MN House - ' + memberData[0])
+}
+function addMarker(e){
+	var newMarker = new L.marker(e.latlng).addTo(map);
 }
 

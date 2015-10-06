@@ -68,8 +68,33 @@
 	    				</label>
 	    			
 				</div>
+                <div class='layersswitchLabel'>Congressional Districts</div>
+                <!-- boudaries -->
+                <div id="citydiv"class="onoffswitch">
+	    		    
+	    			<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="cityonoffswitch" checked>
+	    				<label class="onoffswitch-label" for="cityonoffswitch">
+	        				<span class="onoffswitch-inner"></span>
+	        				<span class="onoffswitch-switch"></span>
+	    				</label>
+	    			
+				</div>
+				<div class='layersswitchLabel'>Municipal Boundaries</div>
+
+				<div id="countydiv"class="onoffswitch">
+	    		    
+	    			<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="countyonoffswitch" checked>
+	    				<label class="onoffswitch-label" for="countyonoffswitch">
+	        				<span class="onoffswitch-inner"></span>
+	        				<span class="onoffswitch-switch"></span>
+	    				</label>
+	    			
+				</div>
+                <div class='layersswitchLabel'>County Boundaries</div>
 			</div>
-			<div class='layersswitchLabel'>Congressional Districts</div>
+			
+
+
     		<div id="map_layers_basemap_title">Basemap Layers</div>
     		<!-- <button id = "switchBasemap">Switch</button> -->
     		<div id="satellitediv"class="onoffswitch">
