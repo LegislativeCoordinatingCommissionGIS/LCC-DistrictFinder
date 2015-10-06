@@ -42,6 +42,12 @@ $( document ).ready(function() {
 	//map reset
 	$('#map_reset').click(function(){
 		map.setView(L.latLng(46.1706, -93.6678),6);
+		map.eachLayer(function(layer){
+		//Remove old layer
+		if (typeof layer._url === "undefined"){
+			map.removeLayer(layer);
+		}
+	});
 		//LATER SET ALL CHECKBOXES THIS WAY!!!
 		if($('#satellitonoffswitch').is(':checked')){
 			//:checked = true -> leave it ... when I copied the switches I had initial states backwards
@@ -74,6 +80,12 @@ $( document ).ready(function() {
     }).on('mouseleave', function(){
     	$('.fa-map').css('color', '#8d8d8d');
     });
+
+
+    map.on('click', function(e){
+		identifyDistrict(e);
+	});
+
 
 });//end ready()
 

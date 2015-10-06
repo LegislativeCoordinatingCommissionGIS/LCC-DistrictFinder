@@ -104,8 +104,8 @@
 			        	<img class='mnhouse_img'/ src='images/MNhouse53A.jpg' />
 			        	<ul class="membersublist">
 			        		 <li class="memberLink"><a href="#" target='_blank' ><i class="fa fa-external-link"></i></a>   	
-			        		<li class='lcc_gis_member'>JoAnn Ward</li>
-			        		<li class='lcc_gis_memberdistrict'>MN House - 53A</li>
+			        		<li id='housemember'class='lcc_gis_member'></li>
+			        		<li id='housedistrict' class='lcc_gis_memberdistrict'></li>
 			        	</ul>
 			        </li>
 			    </div>

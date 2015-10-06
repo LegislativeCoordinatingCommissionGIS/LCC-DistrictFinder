@@ -45,7 +45,7 @@ function initialize(){
 	toggleLayers($('#satellitonoffswitch'),tileLayer1,tileLayer2);
     
 	//next: add features to map
-	getGeoData();
+	//getGeoData();
 };
 
 function toggleLayers(el, layer1, layer2){
@@ -58,27 +58,27 @@ function toggleLayers(el, layer1, layer2){
 	}
 }
 
+//perhaps use this to get initial layers
 function getGeoData(){
-	$.ajax("php/getGeoData.php", {
-		data: {
-			table: "hse2012",
-			fields: "fields"
-		},
-		success: function(data){
-			mapData(data);
-		}
-	})
+	// $.ajax("php/getBaseData.php", {
+	// 	data: {
+	// 		table: "hse2012",
+	// 		fields: "fields"
+	// 	},
+	// 	success: function(data){
+	// 		mapData(data);
+	// 	}
+	// })
 };
 
-function mapData(data){
-	//console.log('data: ', data)
+function mapData(data){	
+	//console.log(typeof(data));
 	//remove existing map layers
 	map.eachLayer(function(layer){
-
-		//if not the tile layer
-		// if (typeof layer._url === "undefined"){
-		// 	map.removeLayer(layer);
-		// }
+		//Remove old layer
+		if (typeof layer._url === "undefined"){
+			map.removeLayer(layer);
+		}
 	});
 
 	//create geojson container object
@@ -89,14 +89,15 @@ function mapData(data){
 
 	//split data into features
 	var dataArray = data.split(", ;");
+	
 	dataArray.pop();
     
-    //console.log(dataArray);
+    
 	
 	//build geojson features
 	dataArray.forEach(function(d){
 		d = d.split(", "); //split the data up into individual attribute values and the geometry
-
+        addMemberData(d);
 		//feature object container
 		var feature = {
 			"type": "Feature",
@@ -109,9 +110,9 @@ function mapData(data){
 		};
 
 		//add feature names to autocomplete list
-		if ($.inArray(feature.properties.featname, autocomplete) == -1){
-			autocomplete.push(feature.properties.featname);
-		};
+		// if ($.inArray(feature.properties.featname, autocomplete) == -1){
+		// 	autocomplete.push(feature.properties.featname);
+		// };
 
 		geojson.features.push(feature);
 	});
@@ -146,7 +147,7 @@ var myStyle = {
 function submitQuery(){
 	//get the form data
 	var formdata = $("#mainsearchform").serializeArray();
-
+    console.log(formdata);
 	//add to data request object
 	var data = {
 		table: "hse2012",
@@ -155,12 +156,44 @@ function submitQuery(){
 	formdata.forEach(function(dataobj){
 		data[dataobj.name] = dataobj.value;
 	});
-
+    console.log(formdata);
 	//call the php script
-	$.ajax("php/getGeoData.php", {
+	$.ajax("php/getSearchData.php", {
 		data: data,
-		success: function(data){
-			mapData(data);
+		success: function(result){
+			mapData(result);
 		}
 	})
 };
+
+function identifyDistrict(d){
+	console.log(d.latlng.lat, d.latlng.lng);
+
+	var data = {
+		table: "hse2012",
+		fields: fields,
+		//geom: d.latlng,
+		lat: d.latlng.lat,
+		lng: d.latlng.lng
+	};
+
+	//console.log(data);
+
+	$.ajax("php/getPointData.php", {
+		 data: data,
+		success: function(result){
+			
+			mapData(result);
+		}, 
+		error: function(){
+			console.log('error');
+		}
+	});
+}
+function addMemberData(memberData){
+	console.log(memberData[0]);
+	console.log(memberData[1]);
+	$('#housemember').html(memberData[1]);
+	$('#housedistrict').html('MN House - ' + memberData[0])
+}
+
