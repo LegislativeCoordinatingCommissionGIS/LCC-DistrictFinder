@@ -91,7 +91,7 @@
 				<div class='search'>
 					<li >
 						<div class='form-group'>
-							<form action="javascript:submitQuery()">
+							<form id='mainsearchform'action="javascript:submitQuery()">
 				                <label for="geocode">Enter Address, City State, and Zipcode</label>
 				                <input type="text" name="geocode"></input><button class="searchButton">Search</button>
 

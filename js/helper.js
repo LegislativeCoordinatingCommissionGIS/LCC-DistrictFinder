@@ -72,7 +72,6 @@ $( document ).ready(function() {
     $('#triangle-topright').on('mouseenter', function(){
     	$('.fa-map').css('color', '#346f9a'); 
     }).on('mouseleave', function(){
-    	console.log('hovering exit');
     	$('.fa-map').css('color', '#8d8d8d');
     });
 

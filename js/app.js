@@ -1,5 +1,5 @@
 var map,
-	fields = ["gid", "district", "name"], 
+	fields = ["district", "name"], 
 	autocomplete = [];
 
 var tileLayer1,tileLayer2;
@@ -45,7 +45,7 @@ function initialize(){
 	toggleLayers($('#satellitonoffswitch'),tileLayer1,tileLayer2);
     
 	//next: add features to map
-	getData();
+	getGeoData();
 };
 
 function toggleLayers(el, layer1, layer2){
@@ -58,11 +58,11 @@ function toggleLayers(el, layer1, layer2){
 	}
 }
 
-function getData(){
-	$.ajax("php/getData.php", {
+function getGeoData(){
+	$.ajax("php/getGeoData.php", {
 		data: {
-			table: "fracsandsites",
-			fields: fields
+			table: "hse2012",
+			fields: "fields"
 		},
 		success: function(data){
 			mapData(data);
@@ -71,12 +71,14 @@ function getData(){
 };
 
 function mapData(data){
+	//console.log('data: ', data)
 	//remove existing map layers
 	map.eachLayer(function(layer){
+
 		//if not the tile layer
-		if (typeof layer._url === "undefined"){
-			map.removeLayer(layer);
-		}
+		// if (typeof layer._url === "undefined"){
+		// 	map.removeLayer(layer);
+		// }
 	});
 
 	//create geojson container object
@@ -117,23 +119,17 @@ function mapData(data){
     console.log(geojson);
     
     //activate autocomplete on featname input
-    $("input[name=featname]").autocomplete({
-        source: autocomplete
-    });
+    // $("input[name=featname]").autocomplete({
+    //     source: autocomplete
+    // });
+var myStyle = {
+    "color": "#231f20",
+    "weight": 2,
+    "opacity": 0.65
+};
 
 	var mapDataLayer = L.geoJson(geojson, {
-		pointToLayer: function (feature, latlng) {
-			var markerStyle = { 
-				fillColor: "#CC9900",
-				color: "#FFF",
-				fillOpacity: 0.5,
-				opacity: 0.8,
-				weight: 1,
-				radius: 8
-			};
-
-			return L.circleMarker(latlng, markerStyle);
-		},
+		style:myStyle,
 		onEachFeature: function (feature, layer) {
 			var html = "";
 			for (prop in feature.properties){
@@ -141,13 +137,15 @@ function mapData(data){
 			};
 	        layer.bindPopup(html);
 	    }
-	}).addTo(map);
+	});
+
+	mapDataLayer.addTo(map);
 	//console.log(mapDataLayer);
 };
 
 function submitQuery(){
 	//get the form data
-	var formdata = $("form").serializeArray();
+	var formdata = $("#mainsearchform").serializeArray();
 
 	//add to data request object
 	var data = {
@@ -159,7 +157,7 @@ function submitQuery(){
 	});
 
 	//call the php script
-	$.ajax("php/getData.php", {
+	$.ajax("php/getGeoData.php", {
 		data: data,
 		success: function(data){
 			mapData(data);
