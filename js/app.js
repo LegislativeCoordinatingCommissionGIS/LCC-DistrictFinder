@@ -200,10 +200,11 @@ function identifyDistrict(d){
 	});
 }
 function addMemberData(memberData){
-	console.log(memberData[0]);
-	console.log(memberData[1]);
+	// console.log(memberData[0]);
+	// console.log(memberData[1]);
 	$('#housemember').html(memberData[1]);
-	$('#housedistrict').html('MN House - ' + memberData[0])
+	$('#housedistrict').html('MN House - ' + memberData[0]);
+	$('#housephoto').attr('src', 'images/House/tn_'+memberData[0]+'.jpg')
 }
 function addMarker(e){
 	var newMarker = new L.marker(e.latlng).addTo(map);

@@ -126,7 +126,7 @@
 		        </div> 
 		        <div class='mnhouse'>        	
 			        <li >
-			        	<img class='mnhouse_img'/ src='images/MNhouse53A.jpg' />
+			        	<img id='housephoto' class='mnhouse_img' />
 			        	<ul class="membersublist">
 			        		 <li class="memberLink"><a href="#" target='_blank' ><i class="fa fa-external-link"></i></a>   	
 			        		<li id='housemember'class='lcc_gis_member'></li>
