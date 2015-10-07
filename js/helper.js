@@ -7,6 +7,9 @@ $( document ).ready(function() {
 		$('.smallscreen').hide();
     }
 
+    //hide links - format is off until results come back
+    $('.memberLink').hide();
+
 	//Members UI click turn red with 'active' class
 	$( ".mnhouse, .mnsenate, .ushouse, .ussenate1, .ussenate2" ).click(function() {
 	  $(this).addClass('active').siblings().removeClass('active');

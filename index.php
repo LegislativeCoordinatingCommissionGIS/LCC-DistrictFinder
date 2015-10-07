@@ -129,48 +129,48 @@
 			        	<img id='housephoto' class='mnhouse_img' />
 			        	<ul class="membersublist">
 			        		 <li class="memberLink"><a href="#" target='_blank' ><i class="fa fa-external-link"></i></a>   	
-			        		<li id='housemember'class='lcc_gis_member'></li>
+			        		<li id='housemember' class='lcc_gis_member'></li>
 			        		<li id='housedistrict' class='lcc_gis_memberdistrict'></li>
 			        	</ul>
 			        </li>
 			    </div>
 			    <div class='mnsenate'>
 			        <li >
-			        	<img class='mnsenate_img' src='images/MNsenate53.jpg'/>
+			        	<img id='senatephoto' class='mnsenate_img'/>
 			        	<ul class="membersublist">
 			        		<li class="memberLink"><a href="#" target='_blank' ><i class="fa fa-external-link"></i></a>
-			        		<li class='lcc_gis_member'>Susan Kent</li>
-			        		<li class='lcc_gis_memberdistrict'>MN Senate - 53</li>
+			        		<li id='senatemember' class='lcc_gis_member'></li>
+			        		<li id='senatedistrict' class='lcc_gis_memberdistrict'></li>
 			        	</ul>
 			        </li>
 			    </div>
 			    <div class='ushouse'>
 			        <li >
-			        	<img class='ushouse_img' src='images/UShouse4.jpg' />
+			        	<img id='ushousephoto' class='ushouse_img'  />
 			        	<ul class="membersublist">
 			        		<li class="memberLink"><a href="#" target='_blank' ><i class="fa fa-external-link"></i></a>
-			        		<li class='lcc_gis_member'>Betty McCollum</li>
-			        		<li class='lcc_gis_memberdistrict'>U.S. House - 4</li>
+			        		<li id='ushousemember'  class='lcc_gis_member'></li>
+			        		<li id='ushousedistrict' class='lcc_gis_memberdistrict'></li>
 			        	</ul>
 			        </li>
 			    </div>
 			    <div class='ussenate1'>
 			        <li >
-			        	<img class='ussenate1_img' src='images/USsenate1.jpg'/>
+			        	<img id='ussenatephoto' class='ussenate1_img' />
 			        	<ul >
 			        		<li class="memberLink"><a href="#" target='_blank' ><i class="fa fa-external-link"></i></a>
-			        		<li class='lcc_gis_member'>Amy Klobuchar</li>
-			        		<li class='lcc_gis_memberdistrict'>U.S. Senate</li>
+			        		<li id='ussenatemember' class='lcc_gis_member'></li>
+			        		<li id='ussenatedistrict' class='lcc_gis_memberdistrict'></li>
 			        	</ul>
 			        </li>
 			    </div>
 			    <div class='ussenate2'>
 			        <li >
-			        	<img class='ussenate2_img' src='images/USsenate2.jpg'/>
+			        	<img id='ussenatephoto2' class='ussenate2_img' />
 			        	<ul class="membersublist">
 			        		<li class="memberLink"><a href="#" target='_blank' ><i class="fa fa-external-link"></i></a>
-			        		<li class='lcc_gis_member'>Al Franken</li>
-			        		<li class='lcc_gis_memberdistrict'>U.S. Senate</li>
+			        		<li id='ussenatemember2' class='lcc_gis_member'></li>
+			        		<li id='ussenatedistrict2' class='lcc_gis_memberdistrict'></li>
 			        	</ul>
 			        </li>
 			    </div>

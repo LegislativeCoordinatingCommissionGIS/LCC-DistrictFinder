@@ -76,7 +76,7 @@ function mapData(data){
 	//remove existing map layers
 	map.eachLayer(function(layer){
 		//Remove old layer
-		console.log(layer);
+		// console.log(layer);
 		if (typeof layer._url === "undefined" ){
 			map.removeLayer(layer);
 		}
@@ -98,7 +98,7 @@ function mapData(data){
 	//build geojson features
 	dataArray.forEach(function(d){
 		d = d.split(", "); //split the data up into individual attribute values and the geometry
-        addMemberData(d);
+        
 		//feature object container
 		var feature = {
 			"type": "Feature",
@@ -116,9 +116,10 @@ function mapData(data){
 		// };
 
 		geojson.features.push(feature);
+
 	});
-	
-    console.log(geojson);
+	addMemberData(geojson);
+    // console.log(geojson);
     
     //activate autocomplete on featname input
     // $("input[name=featname]").autocomplete({
@@ -143,7 +144,7 @@ var myStyle = {
 	mapDataLayer.addTo(map);
     
 	//zoom to bounds
-	console.log(mapDataLayer.getBounds().getCenter())
+	// console.log(mapDataLayer.getBounds().getCenter())
 	//USE THIS FOR SEARCH
 	//map.fitBounds(mapDataLayer.getBounds());
 	//addMarker();
@@ -154,7 +155,7 @@ var myStyle = {
 function submitQuery(){
 	//get the form data
 	var formdata = $("#mainsearchform").serializeArray();
-    console.log(formdata);
+    // console.log(formdata);
 	//add to data request object
 	var data = {
 		table: "hse2012",
@@ -163,7 +164,7 @@ function submitQuery(){
 	formdata.forEach(function(dataobj){
 		data[dataobj.name] = dataobj.value;
 	});
-    console.log(formdata);
+    // console.log(formdata);
 	//call the php script
 	$.ajax("php/getSearchData.php", {
 		data: data,
@@ -174,7 +175,7 @@ function submitQuery(){
 };
 
 function identifyDistrict(d){
-	console.log(d.latlng);
+	// console.log(d.latlng);
     
 
 	var data = {
@@ -200,11 +201,35 @@ function identifyDistrict(d){
 	});
 }
 function addMemberData(memberData){
-	// console.log(memberData[0]);
-	// console.log(memberData[1]);
-	$('#housemember').html(memberData[1]);
-	$('#housedistrict').html('MN House - ' + memberData[0]);
-	$('#housephoto').attr('src', 'images/House/tn_'+memberData[0]+'.jpg')
+	console.log(memberData.features[0].properties.district);
+	// memberData.features[0] = MN House
+	// memberData.features[1] = MN Senate
+	// memberData.features[2] = US House
+
+	//also show hyperlinks here
+    $('.memberLink').show();
+    
+	$('#housemember').html(memberData.features[0].properties.name);
+	$('#housedistrict').html('MN House - ' + memberData.features[0].properties.district);
+	$('#housephoto').attr('src', 'images/House/tn_'+memberData.features[0].properties.district+'.jpg')
+
+	$('#senatemember').html(memberData.features[1].properties.name);
+	$('#senatedistrict').html('MN Senate - ' + memberData.features[1].properties.district);
+	$('#senatephoto').attr('src', 'images/Senate/'+memberData.features[1].properties.district+'.jpg')
+
+	$('#ushousemember').html(memberData.features[2].properties.name);
+	$('#ushousedistrict').html('U.S. House - ' + memberData.features[2].properties.district);
+	$('#ushousephoto').attr('src', 'images/USHouse/US'+memberData.features[2].properties.district+'.jpg')
+
+	$('#ussenatemember').html('Amy Klobuchar');
+	$('#ussenatedistrict').html('U.S. Senate' );
+	$('#ussenatephoto').attr('src', 'images/USSenate/USsenate1.jpg')
+
+	$('#ussenatemember2').html('Al Franken');
+	$('#ussenatedistrict2').html('U.S. Senate');
+	$('#ussenatephoto2').attr('src', 'images/USSenate/USsenate2.jpg')
+
+
 }
 function addMarker(e){
 	var newMarker = new L.marker(e.latlng).addTo(map);
