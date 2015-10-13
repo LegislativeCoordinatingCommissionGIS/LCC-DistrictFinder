@@ -1,11 +1,11 @@
-var map,
+var map, geojson, mapDataLayer,
 	fields = ["district", "name"], 
 	autocomplete = [];
 
 var tileLayer1,tileLayer2;
 
 //kickoff
-$( document ).ready(initialize);
+//$( document ).ready(initialize);
 
 function initialize(){
 	$("#map").height('542px');
@@ -74,16 +74,10 @@ function getGeoData(){
 function mapData(data){	
 	//console.log(data);
 	//remove existing map layers
-	map.eachLayer(function(layer){
-		//Remove old layer
-		// console.log(layer);
-		if (typeof layer._url === "undefined" ){
-			map.removeLayer(layer);
-		}
-	});
+
    
 	//create geojson container object
-	var geojson = {
+	geojson = {
 		"type": "FeatureCollection",
 		"features": []
 	};
@@ -125,23 +119,23 @@ function mapData(data){
     // $("input[name=featname]").autocomplete({
     //     source: autocomplete
     // });
-var myStyle = {
-    "color": "#231f20",
-    "weight": 2,
-    "opacity": 0.65
-};
+// var myStyle = {
+//     "color": "#231f20",
+//     "weight": 2,
+//     "opacity": 0.65
+// };
 
-	var mapDataLayer = L.geoJson(geojson, {
-		style:myStyle,
-		onEachFeature: function (feature, layer) {
-			var html = "";
-			for (prop in feature.properties){
-				html += prop+": "+feature.properties[prop]+"<br>";
-			};
-	        layer.bindPopup(html);
-	    }
-	});
-	mapDataLayer.addTo(map);
+	// mapDataLayer = L.geoJson(geojson, {
+	// 	style:myStyle,
+	// 	onEachFeature: function (feature, layer) {
+	// 		var html = "";
+	// 		for (prop in feature.properties){
+	// 			html += prop+": "+feature.properties[prop]+"<br>";
+	// 		};
+	//         layer.bindPopup(html);
+	//     }
+	// });
+	// mapDataLayer.addTo(map);
     
 	//zoom to bounds
 	// console.log(mapDataLayer.getBounds().getCenter())
@@ -232,6 +226,72 @@ function addMemberData(memberData){
 
 }
 function addMarker(e){
+	$( ".mnhouse, .mnsenate, .ushouse, .ussenate1, .ussenate2" ).removeClass('active');
+	map.eachLayer(function(layer){
+	//Remove old layer
+		if (typeof layer._url === "undefined" ){ //not the tile layer
+            //console.log(layer);
+			map.removeLayer(layer);
+		}
+	});
 	var newMarker = new L.marker(e.latlng).addTo(map);
+}
+
+function showDistrict(div){
+	console.log(div);
+
+	divmap = {"mnhouse active":0, "mnsenate active":1, "ushouse active":2, "ussenate1 active":3 , "ussenate2 active":3};
+
+    console.log(divmap[div]);
+    var myStyle = {
+    "color": "#231f20",
+    "weight": 2,
+    "opacity": 0.65
+	};
+	//remove preveious layers... will come later i think.. gotto go
+	map.eachLayer(function(layer){
+		//Remove old layer
+		 
+		if (typeof layer._url === "undefined" ){ //not the tile layer
+			if (typeof layer._icon === "undefined" ){//not the map marker icon
+				map.removeLayer(layer);
+			}
+            //console.log(layer);
+			//map.removeLayer(layer);
+		}
+	});
+
+    
+
+    mapDataLayer = L.geoJson(geojson.features[divmap[div]], {
+		style:myStyle,
+		onEachFeature: function (feature, layer) {
+			var html = "";
+			for (prop in feature.properties){
+				html += prop+": "+feature.properties[prop]+"<br>";
+			};
+	        layer.bindPopup(html);
+	    }
+	}).addTo(map);
+	map.fitBounds(mapDataLayer.getBounds())
+	//remove preveious layers... will come later i think.. gotto go
+	// map.eachLayer(function(layer){
+	// 	//Remove old layer
+	// 	// console.log(layer);
+	// 	if (typeof layer._url === "undefined" ){
+	// 		map.removeLayer(layer);
+	// 	}
+	// });
+	//this will show layer number 48, need to pass in relavent parameter
+	//mapDataLayer._layers[48].addTo(map);
+    //reveals name
+	//mapDataLayer._layers[48].feature.properties.name
+    
+    //loop through maplayers
+	// mapDataLayer.eachLayer(function(layer){
+ //        console.log(layer.feature.properties.name);
+ //        //if ayer.feature.properties.name = $('dom.li.nameofdude') addthistomap
+ //    });
+
 }
 

@@ -1,5 +1,13 @@
 $( document ).ready(function() {
-    
+	//kickoff map logic
+    initialize();
+
+    //map navigation, this could become aswitch
+    map.on('click', function(e){
+    	addMarker(e);
+		identifyDistrict(e);		
+	});
+
     //mobile search form
     if ($(window).width() < 417){
     	$('.smallscreen').show();
@@ -13,6 +21,8 @@ $( document ).ready(function() {
 	//Members UI click turn red with 'active' class
 	$( ".mnhouse, .mnsenate, .ushouse, .ussenate1, .ussenate2" ).click(function() {
 	  $(this).addClass('active').siblings().removeClass('active');
+	  //console.log($(this).attr('class'));
+	  showDistrict($(this).attr('class'));
 
 	});
 
@@ -46,13 +56,20 @@ $( document ).ready(function() {
 	$('#map_reset').click(function(){
 		map.setView(L.latLng(46.1706, -93.6678),6);
 		map.eachLayer(function(layer){
-		//Remove old layer
+		//Remove map layers
 		if (typeof layer._url === "undefined"){
 			map.removeLayer(layer);
 		}
+		//remove sidebar formatting
+		$( ".mnhouse, .mnsenate, .ushouse, .ussenate1, .ussenate2" ).removeClass('active');
+		$('.memberLink').hide();
+		$('#housemember, #senatemember, #ushousemember, #ussenatemember, #ussenatemember2').html('');
+	    $('#housedistrict, #senatedistrict, #ushousedistrict, #ussenatedistrict, #ussenatedistrict2').html('');
+	    $('#housephoto, #senatephoto, #ushousephoto, #ussenatephoto, #ussenatephoto2').removeAttr('src')
 	});
-		//LATER SET ALL CHECKBOXES THIS WAY!!!
-		if($('#satellitonoffswitch').is(':checked')){
+
+	//LATER SET ALL CHECKBOXES THIS WAY!!!
+	if($('#satellitonoffswitch').is(':checked')){
 			//:checked = true -> leave it ... when I copied the switches I had initial states backwards
 		} else {
 			//:checked = false -> toggle map
@@ -84,12 +101,7 @@ $( document ).ready(function() {
     	$('.fa-map').css('color', '#8d8d8d');
     });
 
-    //map navigation, this could become aswitch
-    map.on('click', function(e){
-    	addMarker(e);
-		identifyDistrict(e);
-		
-	});
+    
 
 
 });//end ready()
