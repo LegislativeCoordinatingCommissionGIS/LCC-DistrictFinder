@@ -1,12 +1,10 @@
-var map, geojson, mapDataLayer,
+var map, geojson, mapDistrictsLayer,
 	fields = ["district", "name"], 
 	autocomplete = [];
 
 var tileLayer1,tileLayer2;
 
-//kickoff
-//$( document ).ready(initialize);
-
+//Set initial basemap with initialize() - called in helper.js
 function initialize(){
 	$("#map").height('542px');
 	$("#map").width('70%')
@@ -45,10 +43,12 @@ function initialize(){
 	toggleLayers($('#satellitonoffswitch'),tileLayer1,tileLayer2);
     
 	//next: add features to map
-	//getGeoData();
+
 };
 
+//toggle basemap layers
 function toggleLayers(el, layer1, layer2){
+	console.log(el, 'has been toggled');
 	if (el.is(':checked')){
 		map.removeLayer(layer2);
 		map.addLayer(layer1);
@@ -58,25 +58,29 @@ function toggleLayers(el, layer1, layer2){
 	}
 }
 
-//perhaps use this to get initial layers
-function getGeoData(){
-	// $.ajax("php/getBaseData.php", {
-	// 	data: {
-	// 		table: "hse2012",
-	// 		fields: "fields"
-	// 	},
-	// 	success: function(data){
-	// 		mapData(data);
-	// 	}
-	// })
-};
+function toggleOverlayLayers(el, switchId){
+	console.log(switchId, 'has been toggled');
+	//layerIdMap = {'countyonoffswitch':CountyLayer,'cityonoffswitch': CityLayer,'cononoffswitch': CongressionalLayer, 'ssonoffswitch': StateSenateLayer,'shonoffswitch': StateHouseLayer };
+	// reset additional layers too
+	
+
+	if(el.is(':checked')){
+			//:checked = true -> leave it ... when I copied the switches I had initial states backwards
+			//Turn ON this layer
+			console.log(el, "is Checked");
+		} else {
+			//:checked = false -> toggle map
+			//Turn OFF this layer
+			console.log(el, "is NOT Checked");
+			//toggleLayers($('#satellitonoffswitch'),tileLayer2,tileLayer1);
+			//$('#satellitonoffswitch').prop('checked', true);
+		}
+}
 
 function mapData(data){	
 	//console.log(data);
-	//remove existing map layers
-
    
-	//create geojson container object
+	//global geojson container object
 	geojson = {
 		"type": "FeatureCollection",
 		"features": []
@@ -85,9 +89,7 @@ function mapData(data){
 	//split data into features
 	var dataArray = data.split(", ;");
 	
-	dataArray.pop();
-    
-    
+	dataArray.pop();    
 	
 	//build geojson features
 	dataArray.forEach(function(d){
@@ -104,45 +106,19 @@ function mapData(data){
 			feature.properties[fields[i]] = d[i];
 		};
 
-		//add feature names to autocomplete list
-		// if ($.inArray(feature.properties.featname, autocomplete) == -1){
-		// 	autocomplete.push(feature.properties.featname);
-		// };
-
 		geojson.features.push(feature);
 
 	});
+
 	addMemberData(geojson);
     // console.log(geojson);
     
-    //activate autocomplete on featname input
-    // $("input[name=featname]").autocomplete({
-    //     source: autocomplete
-    // });
-// var myStyle = {
-//     "color": "#231f20",
-//     "weight": 2,
-//     "opacity": 0.65
-// };
-
-	// mapDataLayer = L.geoJson(geojson, {
-	// 	style:myStyle,
-	// 	onEachFeature: function (feature, layer) {
-	// 		var html = "";
-	// 		for (prop in feature.properties){
-	// 			html += prop+": "+feature.properties[prop]+"<br>";
-	// 		};
-	//         layer.bindPopup(html);
-	//     }
-	// });
-	// mapDataLayer.addTo(map);
-    
 	//zoom to bounds
-	// console.log(mapDataLayer.getBounds().getCenter())
+	// console.log(mapDistrictsLayer.getBounds().getCenter())
 	//USE THIS FOR SEARCH
-	//map.fitBounds(mapDataLayer.getBounds());
+	//map.fitBounds(mapDistrictsLayer.getBounds());
 	//addMarker();
-	//map.setView(L.latLng(mapDataLayer.getBounds().getCenter())).setZoom(10);
+	//map.setView(L.latLng(mapDistrictsLayer.getBounds().getCenter())).setZoom(10);
 
 };
 
@@ -168,9 +144,9 @@ function submitQuery(){
 	})
 };
 
+//I will use this for search as well.. the geocoder should return lat long, just pass it through and add marker
 function identifyDistrict(d){
-	// console.log(d.latlng);
-    
+	// console.log(d.latlng);    
 
 	var data = {
 		table: "hse2012",
@@ -184,16 +160,16 @@ function identifyDistrict(d){
 
 	$.ajax("php/getPointData.php", {
 		 data: data,
-		success: function(result){
-			
+		success: function(result){			
 			mapData(result);
-
 		}, 
 		error: function(){
 			console.log('error');
 		}
 	});
 }
+
+//sidebar list data
 function addMemberData(memberData){
 	console.log(memberData.features[0].properties.district);
 	// memberData.features[0] = MN House
@@ -203,6 +179,7 @@ function addMemberData(memberData){
 	//also show hyperlinks here
     $('.memberLink').show();
     
+    //add memberdata from map selection to member list
 	$('#housemember').html(memberData.features[0].properties.name);
 	$('#housedistrict').html('MN House - ' + memberData.features[0].properties.district);
 	$('#housephoto').attr('src', 'images/House/tn_'+memberData.features[0].properties.district+'.jpg')
@@ -222,48 +199,52 @@ function addMemberData(memberData){
 	$('#ussenatemember2').html('Al Franken');
 	$('#ussenatedistrict2').html('U.S. Senate');
 	$('#ussenatephoto2').attr('src', 'images/USSenate/USsenate2.jpg')
-
-
 }
+
 function addMarker(e){
+	//remove sidebar formatting
 	$( ".mnhouse, .mnsenate, .ushouse, .ussenate1, .ussenate2" ).removeClass('active');
+	$('.memberLink').hide();
+	$('#housemember, #senatemember, #ushousemember, #ussenatemember, #ussenatemember2').html('');
+    $('#housedistrict, #senatedistrict, #ushousedistrict, #ussenatedistrict, #ussenatedistrict2').html('');
+    $('#housephoto, #senatephoto, #ushousephoto, #ussenatephoto, #ussenatephoto2').removeAttr('src');
+
+    //remove previous layers 
 	map.eachLayer(function(layer){
-	//Remove old layer
+		//Remove old layer
 		if (typeof layer._url === "undefined" ){ //not the tile layer
-            //console.log(layer);
+	        //console.log(layer);
 			map.removeLayer(layer);
 		}
 	});
+	//add marker
 	var newMarker = new L.marker(e.latlng).addTo(map);
 }
 
+//Show the district on the map
 function showDistrict(div){
-	console.log(div);
-
+	//div is the class name of the active member
 	divmap = {"mnhouse active":0, "mnsenate active":1, "ushouse active":2, "ussenate1 active":3 , "ussenate2 active":3};
-
     console.log(divmap[div]);
-    var myStyle = {
-    "color": "#231f20",
-    "weight": 2,
-    "opacity": 0.65
-	};
+
 	//remove preveious layers... will come later i think.. gotto go
 	map.eachLayer(function(layer){
-		//Remove old layer
-		 
+		//Remove old layer		 
 		if (typeof layer._url === "undefined" ){ //not the tile layer
 			if (typeof layer._icon === "undefined" ){//not the map marker icon
 				map.removeLayer(layer);
 			}
-            //console.log(layer);
-			//map.removeLayer(layer);
 		}
-	});
-
+	});    
     
+    //polygon overlay styling
+	var myStyle = {
+    	"color": "#231f20",
+    	"weight": 2,
+    	"opacity": 0.65
+	};
 
-    mapDataLayer = L.geoJson(geojson.features[divmap[div]], {
+    mapDistrictsLayer = L.geoJson(geojson.features[divmap[div]], {
 		style:myStyle,
 		onEachFeature: function (feature, layer) {
 			var html = "";
@@ -273,25 +254,9 @@ function showDistrict(div){
 	        layer.bindPopup(html);
 	    }
 	}).addTo(map);
-	map.fitBounds(mapDataLayer.getBounds())
-	//remove preveious layers... will come later i think.. gotto go
-	// map.eachLayer(function(layer){
-	// 	//Remove old layer
-	// 	// console.log(layer);
-	// 	if (typeof layer._url === "undefined" ){
-	// 		map.removeLayer(layer);
-	// 	}
-	// });
-	//this will show layer number 48, need to pass in relavent parameter
-	//mapDataLayer._layers[48].addTo(map);
-    //reveals name
-	//mapDataLayer._layers[48].feature.properties.name
-    
-    //loop through maplayers
-	// mapDataLayer.eachLayer(function(layer){
- //        console.log(layer.feature.properties.name);
- //        //if ayer.feature.properties.name = $('dom.li.nameofdude') addthistomap
- //    });
+	//zoom to selection
+	map.fitBounds(mapDistrictsLayer.getBounds())
+
 
 }
 
