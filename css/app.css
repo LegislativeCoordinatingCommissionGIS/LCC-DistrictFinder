@@ -31,7 +31,13 @@
 	float: right;
 	z-index: 0;
 }
-
+#loading{
+    position: absolute;
+    left: 62%;
+    top: 54%;
+    z-index: 1005;
+    height:23px;
+}
 .leaflet-container{
     cursor: crosshair;
 }

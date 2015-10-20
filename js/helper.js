@@ -154,9 +154,61 @@ $( document ).ready(function() {
 
 $(window).load(function(){
    // code here
-    getCountyLayersGeoJson();
-	getHSELayersGeoJson();
-	getCongLayersGeoJson();
-	getSenLayersGeoJson();
-	getCityLayersGeoJson();
+    //getCountyLayersGeoJson();
+    $.getJSON("./data/County2010.json", function(data) {
+		var countyStyle = {
+		"fill":0,
+    	"color": "#231f20",
+    	"weight": 4,
+    	"opacity": 0.65
+	};
+		CountyBoundaryLayer = L.geoJson(data, {style:countyStyle});
+  });
+
+	//getHSELayersGeoJson();
+	$.getJSON("./data/HSE2012.json", function(data) {
+		var countyStyle = {
+		"fill":0,
+    	"color": "#ff6600",
+    	"dashArray":"7,7",
+    	"weight": 2,
+    	"opacity": 0.65
+	};
+		StateHouseLayer = L.geoJson(data, {style:countyStyle});
+  })
+
+	//getCongLayersGeoJson();
+	$.getJSON("./data/Cong2012.json", function(data) {
+		var countyStyle = {
+		"fill":0,
+    	"color": "#ff3399",
+    	"weight": 2,
+    	"opacity": 0.65
+	};
+		CongressionalLayer = L.geoJson(data, {style:countyStyle});
+  })
+	//getSenLayersGeoJson();
+	$.getJSON("./data/Sen2012.json", function(data) {
+		var countyStyle = {
+		"fill":0,
+    	"color": "#ff6600",
+    	"weight": 3,
+    	"opacity": 0.65
+	};
+		StateSenateLayer = L.geoJson(data, {style:countyStyle});
+  })
+	//getCityLayersGeoJson();
+	$.getJSON("./data/MCD2010.json", function(data) {
+		var countyStyle = {
+		"fill":0,
+    	"color": "#231f20",
+    	"weight": 1,
+    	"opacity": 0.65
+	};
+		CityBoundaryLayer = L.geoJson(data, {style:countyStyle});
+		$('#loading').hide();
+  });
+	
+
+
 });

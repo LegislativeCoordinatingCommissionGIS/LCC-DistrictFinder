@@ -27,6 +27,7 @@
 	<h2 id='map_title'>Who Represents Me?</h2>
 	<div id='map_reset'><a class='noref'>Reset Map <i class="fa fa-refresh"></i></a></div>
     <a ><div id="triangle-topright"><i class="fa fa-map fa-lg"></i></div></a>
+    <img id="loading" src="images/loading.gif"/>
     <div id="map_layers">
     	<div id="map_layers_content">
     		<div id="map_layers_toggle"> <a class='noref'>Hide Layers <i class="fa fa-map fa-sm"></i> <i class="fa fa-chevron-right fa-sm"></i></a></div>
@@ -170,7 +171,7 @@
 		    </ul>
 		</div>
 	</div>
-
+    
 	<div id="map">
 		
 	</div>
