@@ -52,12 +52,38 @@ $( document ).ready(function() {
 		}
 	});
 
-	$('#countyonoffswitch, #cityonoffswitch, #cononoffswitch, #ssonoffswitch, #shonoffswitch').click(function(){
+	$('#countyonoffswitch, #cononoffswitch, #ssonoffswitch, #shonoffswitch').click(function(){
 		//console.log(typeof($(this).attr('id')));
         //toggleOverlayLayers($(this).attr('id'));
         toggleOverlayLayers($(this), $(this).attr('id'));
 
 	});
+
+    //to improve performance, I am not loading municipal boundaries until called upon by user
+    $('#cityonoffswitch').click(function(){
+    	$('#loading').show();
+		//getCityLayersGeoJson();
+		if(typeof CityBoundaryLayer === 'undefined'){
+			$.getJSON("./data/MCD2010.json", function(data) {
+				var countyStyle = {
+					"fill":0,
+    				"color": "#231f20",
+    				"weight": 1,
+    				"pacity": 0.65
+					};
+					CityBoundaryLayer = L.geoJson(data, {style:countyStyle});		
+			 
+				}).done(function(){
+					$('#loading').hide(); 
+					toggleOverlayLayers($('#cityonoffswitch'), $('#cityonoffswitch').attr('id'));
+				});
+		} else {
+			//console.log('here');
+			toggleOverlayLayers($('#cityonoffswitch'), $('#cityonoffswitch').attr('id'));
+			$('#loading').hide();
+		}
+	});
+
 
 	//map reset
 	$('#map_reset').click(function(){
@@ -175,7 +201,7 @@ $(window).load(function(){
     	"opacity": 0.65
 	};
 		StateHouseLayer = L.geoJson(data, {style:countyStyle});
-  })
+  });
 
 	//getCongLayersGeoJson();
 	$.getJSON("./data/Cong2012.json", function(data) {
@@ -196,18 +222,8 @@ $(window).load(function(){
     	"opacity": 0.65
 	};
 		StateSenateLayer = L.geoJson(data, {style:countyStyle});
-  })
-	//getCityLayersGeoJson();
-	$.getJSON("./data/MCD2010.json", function(data) {
-		var countyStyle = {
-		"fill":0,
-    	"color": "#231f20",
-    	"weight": 1,
-    	"opacity": 0.65
-	};
-		CityBoundaryLayer = L.geoJson(data, {style:countyStyle});
-		$('#loading').hide();
   });
+  $('#loading').hide();
 	
 
 
