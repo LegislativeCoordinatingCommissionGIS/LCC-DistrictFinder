@@ -41,7 +41,7 @@ function initialize(){
 	// 				       'Legislative data &copy; <a href="http://www.gis.leg.mn/">LCC-GIS</a>'
 	// 				})
 
-	getOverlayLayersGeoJson();
+	
 	// StateHouseLayer = L.geoJson();
 	// CongressionalLayer = L.geoJson();
 	// CityBoundaryLayer = L.geoJson();
@@ -69,7 +69,7 @@ function toggleOverlayLayers(el, switchId){
 	console.log(switchId, 'has been toggled');
 	//layerIdMap = {'countyonoffswitch':CountyLayer,'cityonoffswitch': CityLayer,'cononoffswitch': CongressionalLayer, 'ssonoffswitch': StateSenateLayer,'shonoffswitch': StateHouseLayer };
 	// reset additional layers too
-	var switchMap = {"countyonoffswitch": CountyBoundaryLayer, "#cityonoffswitch":CityBoundaryLayer, "#cononoffswitch":CongressionalLayer, "#ssonoffswitch":StateSenateLayer, "#shonoffswitch":StateHouseLayer}
+	var switchMap = {"countyonoffswitch": CountyBoundaryLayer, "cityonoffswitch":CityBoundaryLayer, "cononoffswitch":CongressionalLayer, "ssonoffswitch":StateSenateLayer, "shonoffswitch":StateHouseLayer}
 	console.log(switchMap[switchId]);
 
 	if(el.is(':checked')){
@@ -88,50 +88,6 @@ function toggleOverlayLayers(el, switchId){
 		}
 }
 
-// function mapData(data){	
-// 	//console.log(data);
-   
-// 	//global geojson container object
-// 	geojson = {
-// 		"type": "FeatureCollection",
-// 		"features": []
-// 	};
-
-// 	//split data into features
-// 	var dataArray = data.split(", ;");
-	
-// 	dataArray.pop();    
-	
-// 	//build geojson features
-// 	dataArray.forEach(function(d){
-// 		d = d.split(", "); //split the data up into individual attribute values and the geometry
-        
-// 		//feature object container
-// 		var feature = {
-// 			"type": "Feature",
-// 			"properties": {}, //properties object container
-// 			"geometry": JSON.parse(d[fields.length]) //parse geometry
-// 		};
-
-// 		for (var i=0; i<fields.length; i++){
-// 			feature.properties[fields[i]] = d[i];
-// 		};
-
-// 		geojson.features.push(feature);
-
-// 	});
-
-// 	addMemberData(geojson);
-//     // console.log(geojson);
-    
-// 	//zoom to bounds
-// 	// console.log(mapDistrictsLayer.getBounds().getCenter())
-// 	//USE THIS FOR SEARCH
-// 	//map.fitBounds(mapDistrictsLayer.getBounds());
-// 	//addMarker();
-// 	//map.setView(L.latLng(mapDistrictsLayer.getBounds().getCenter())).setZoom(10);
-
-// };
 
 function submitQuery(){
 	//get the form data
@@ -179,19 +135,20 @@ function identifyDistrict(d){
 		}
 	});
 }
-function getOverlayLayersGeoJson(d){
+//Add County
+function getCountyLayersGeoJson(d){
 
-	$.ajax("php/getOverlayLayers.php", {
+	$.ajax("php/getCtyLayers.php", {
 		 //data: data,
 		success: function(result){			
-			addOverlaylayers(result);
+			addCountylayers(result);
 		}, 
 		error: function(){
 			console.log('error');
 		}
 	});
 }
-function addOverlaylayers(d){
+function addCountylayers(d){
 	var countyStyle = {
 		"fill":0,
     	"color": "#231f20",
@@ -199,9 +156,100 @@ function addOverlaylayers(d){
     	"opacity": 0.65
 	};
 	//console.log(d);
-	CountyBoundaryLayer = L.geoJson(d, {style:countyStyle}).bindLabel('Manny & Olga\'s Pizza');
+	CountyBoundaryLayer = L.geoJson(d, {style:countyStyle});
 }
+//Add State House
+function getHSELayersGeoJson(d){
 
+	$.ajax("php/getHSELayers.php", {
+		 //data: data,
+		success: function(result){			
+			addHSElayers(result);
+		}, 
+		error: function(){
+			console.log('error');
+		}
+	});
+}
+function addHSElayers(d){
+	var countyStyle = {
+		"fill":0,
+    	"color": "#231f20",
+    	"weight": 2,
+    	"opacity": 0.65
+	};
+	//console.log(d);
+	StateHouseLayer = L.geoJson(d, {style:countyStyle});
+}
+//Add Senate
+function getCityLayersGeoJson(d){
+
+	$.ajax("php/getMCDLayers.php", {
+		 //data: data,
+		success: function(result){			
+			addCitylayers(result);
+		}, 
+		error: function(){
+			console.log('error');
+		}
+	});
+}
+function addCitylayers(d){
+	var countyStyle = {
+		"fill":0,
+    	"color": "#231f20",
+    	"weight": 2,
+    	"opacity": 0.65
+	};
+	//console.log(d);
+	CityBoundaryLayer = L.geoJson(d, {style:countyStyle});
+}
+//Add Congress
+function getSenLayersGeoJson(d){
+
+	$.ajax("php/getSENLayers.php", {
+		 //data: data,
+		success: function(result){			
+			addSenlayers(result);
+		}, 
+		error: function(){
+			console.log('error');
+		}
+	});
+}
+function addSenlayers(d){
+	var countyStyle = {
+		"fill":0,
+    	"color": "#231f20",
+    	"weight": 2,
+    	"opacity": 0.65
+	};
+	//console.log(d);
+	StateSenateLayer = L.geoJson(d, {style:countyStyle});
+}
+//Add Municipal
+function getCongLayersGeoJson(d){
+
+	$.ajax("php/getCNGLayers.php", {
+		 //data: data,
+		success: function(result){			
+			addConglayers(result);
+		}, 
+		error: function(){
+			console.log('error');
+		}
+	});
+}
+function addConglayers(d){
+	var countyStyle = {
+		"fill":0,
+    	"color": "#231f20",
+    	"weight": 2,
+    	"opacity": 0.65
+	};
+	//console.log(d);
+	CongressionalLayer = L.geoJson(d, {style:countyStyle});
+}
 //sidebar list data
 function addMemberData(memberData){
 	//console.log(memberData);
@@ -249,7 +297,7 @@ function addMarker(e){
 				map.removeLayer(layer);			
 		}
 	});
-	
+
 	//add marker
 	var newMarker = new L.marker(e.latlng).addTo(map);
 }

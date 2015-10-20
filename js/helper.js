@@ -152,4 +152,11 @@ $( document ).ready(function() {
 
 });//end ready()
 
-
+$(window).load(function(){
+   // code here
+    getCountyLayersGeoJson();
+	getHSELayersGeoJson();
+	getCongLayersGeoJson();
+	getSenLayersGeoJson();
+	getCityLayersGeoJson();
+});

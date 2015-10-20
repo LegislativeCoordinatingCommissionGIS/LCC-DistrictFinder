@@ -18,10 +18,8 @@
 	<script type="text/javascript" src="http://www.gis.leg.mn/css/js/hideshow2.js"></script>
 	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.5/leaflet.css" />
 	<link rel="stylesheet" href="css/plugins/css/font-awesome.min.css" />
-	<link rel="stylesheet" href="css/plugins/leaflet-label.css" />
 	<link rel="stylesheet" href="css/app.css" />
 	<script src="http://cdn.leafletjs.com/leaflet-0.7.5/leaflet.js"></script>
-	<script src="js/plugins/leaflet-label.js"></script>
 	<!--<script src="http://cdn.jsdelivr.net/leaflet.esri/1.0.0/esri-leaflet.js"></script>-->
 
 
