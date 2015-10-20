@@ -160,8 +160,8 @@ function identifyDistrict(d){
 	// console.log(d.latlng);    
 
 	var data = {
-		table: "hse2012",
-		fields: fields,
+		// table: "hse2012",
+		// fields: fields,
 		//geom: d.latlng,
 		lat: d.latlng.lat,
 		lng: d.latlng.lng
@@ -198,13 +198,13 @@ function addOverlaylayers(d){
     	"weight": 2,
     	"opacity": 0.65
 	};
-	console.log(d);
+	//console.log(d);
 	CountyBoundaryLayer = L.geoJson(d, {style:countyStyle});
 }
 
 //sidebar list data
 function addMemberData(memberData){
-	console.log(memberData);
+	//console.log(memberData);
 	// memberData.features[0] = MN House
 	// memberData.features[1] = MN Senate
 	// memberData.features[2] = US House
@@ -287,7 +287,7 @@ function showDistrict(div){
     	"opacity": 0.65
 	};
     console.log(geojson.features[divmap[div]]);
-    mapDistrictsLayer = L.geoJson(parseFloat(geojson.features[divmap[div]]), {
+    mapDistrictsLayer = L.geoJson(geojson.features[divmap[div]], {
 		style:myStyle,
 		onEachFeature: function (feature, layer) {
 			var html = "";

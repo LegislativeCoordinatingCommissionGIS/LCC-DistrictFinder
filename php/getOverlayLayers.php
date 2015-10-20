@@ -52,6 +52,6 @@ while ($row = $rs->fetch(PDO::FETCH_ASSOC)) {
 }
 
 header('Content-type: application/json');
-echo json_encode($geojson);
+echo json_encode($geojson, JSON_NUMERIC_CHECK);
 $conn = NULL;
 ?>
