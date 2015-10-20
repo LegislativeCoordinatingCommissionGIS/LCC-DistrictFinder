@@ -2,7 +2,8 @@ var map, geojson, mapDistrictsLayer,
 	fields = ["district", "name"], 
 	autocomplete = [];
 
-var tileLayer1,tileLayer2;
+//map Layers
+var tileLayer1,tileLayer2, StateHouseLayer, StateSenateLayer, CongressionalLayer, CityBoundaryLayer, CountyBoundaryLayer;
 
 //Set initial basemap with initialize() - called in helper.js
 function initialize(){
@@ -40,6 +41,12 @@ function initialize(){
 	// 				       'Legislative data &copy; <a href="http://www.gis.leg.mn/">LCC-GIS</a>'
 	// 				})
 
+	getOverlayLayersGeoJson();
+	// StateHouseLayer = L.geoJson();
+	// CongressionalLayer = L.geoJson();
+	// CityBoundaryLayer = L.geoJson();
+	// CountyBoundaryLayer = L.geoJson();
+
 	toggleLayers($('#satellitonoffswitch'),tileLayer1,tileLayer2);
     
 	//next: add features to map
@@ -62,65 +69,69 @@ function toggleOverlayLayers(el, switchId){
 	console.log(switchId, 'has been toggled');
 	//layerIdMap = {'countyonoffswitch':CountyLayer,'cityonoffswitch': CityLayer,'cononoffswitch': CongressionalLayer, 'ssonoffswitch': StateSenateLayer,'shonoffswitch': StateHouseLayer };
 	// reset additional layers too
-	
+	var switchMap = {"countyonoffswitch": CountyBoundaryLayer, "#cityonoffswitch":CityBoundaryLayer, "#cononoffswitch":CongressionalLayer, "#ssonoffswitch":StateSenateLayer, "#shonoffswitch":StateHouseLayer}
+	console.log(switchMap[switchId]);
 
 	if(el.is(':checked')){
 			//:checked = true -> leave it ... when I copied the switches I had initial states backwards
 			//Turn ON this layer
+			map.removeLayer(switchMap[switchId]);
 			console.log(el, "is Checked");
 		} else {
 			//:checked = false -> toggle map
 			//Turn OFF this layer
+			switchMap[switchId].addTo(map);
+			
 			console.log(el, "is NOT Checked");
 			//toggleLayers($('#satellitonoffswitch'),tileLayer2,tileLayer1);
 			//$('#satellitonoffswitch').prop('checked', true);
 		}
 }
 
-function mapData(data){	
-	//console.log(data);
+// function mapData(data){	
+// 	//console.log(data);
    
-	//global geojson container object
-	geojson = {
-		"type": "FeatureCollection",
-		"features": []
-	};
+// 	//global geojson container object
+// 	geojson = {
+// 		"type": "FeatureCollection",
+// 		"features": []
+// 	};
 
-	//split data into features
-	var dataArray = data.split(", ;");
+// 	//split data into features
+// 	var dataArray = data.split(", ;");
 	
-	dataArray.pop();    
+// 	dataArray.pop();    
 	
-	//build geojson features
-	dataArray.forEach(function(d){
-		d = d.split(", "); //split the data up into individual attribute values and the geometry
+// 	//build geojson features
+// 	dataArray.forEach(function(d){
+// 		d = d.split(", "); //split the data up into individual attribute values and the geometry
         
-		//feature object container
-		var feature = {
-			"type": "Feature",
-			"properties": {}, //properties object container
-			"geometry": JSON.parse(d[fields.length]) //parse geometry
-		};
+// 		//feature object container
+// 		var feature = {
+// 			"type": "Feature",
+// 			"properties": {}, //properties object container
+// 			"geometry": JSON.parse(d[fields.length]) //parse geometry
+// 		};
 
-		for (var i=0; i<fields.length; i++){
-			feature.properties[fields[i]] = d[i];
-		};
+// 		for (var i=0; i<fields.length; i++){
+// 			feature.properties[fields[i]] = d[i];
+// 		};
 
-		geojson.features.push(feature);
+// 		geojson.features.push(feature);
 
-	});
+// 	});
 
-	addMemberData(geojson);
-    // console.log(geojson);
+// 	addMemberData(geojson);
+//     // console.log(geojson);
     
-	//zoom to bounds
-	// console.log(mapDistrictsLayer.getBounds().getCenter())
-	//USE THIS FOR SEARCH
-	//map.fitBounds(mapDistrictsLayer.getBounds());
-	//addMarker();
-	//map.setView(L.latLng(mapDistrictsLayer.getBounds().getCenter())).setZoom(10);
+// 	//zoom to bounds
+// 	// console.log(mapDistrictsLayer.getBounds().getCenter())
+// 	//USE THIS FOR SEARCH
+// 	//map.fitBounds(mapDistrictsLayer.getBounds());
+// 	//addMarker();
+// 	//map.setView(L.latLng(mapDistrictsLayer.getBounds().getCenter())).setZoom(10);
 
-};
+// };
 
 function submitQuery(){
 	//get the form data
@@ -161,21 +172,43 @@ function identifyDistrict(d){
 	$.ajax("php/getPointData.php", {
 		 data: data,
 		success: function(result){			
-			mapData(result);
+			addMemberData(result);
 		}, 
 		error: function(){
 			console.log('error');
 		}
 	});
 }
+function getOverlayLayersGeoJson(d){
+
+	$.ajax("php/getOverlayLayers.php", {
+		 //data: data,
+		success: function(result){			
+			addOverlaylayers(result);
+		}, 
+		error: function(){
+			console.log('error');
+		}
+	});
+}
+function addOverlaylayers(d){
+	var countyStyle = {
+		"fill":0,
+    	"color": "#231f20",
+    	"weight": 2,
+    	"opacity": 0.65
+	};
+	console.log(d);
+	CountyBoundaryLayer = L.geoJson(d, {style:countyStyle});
+}
 
 //sidebar list data
 function addMemberData(memberData){
-	console.log(memberData.features[0].properties.district);
+	console.log(memberData);
 	// memberData.features[0] = MN House
 	// memberData.features[1] = MN Senate
 	// memberData.features[2] = US House
-
+    geojson = memberData;
 	//also show hyperlinks here
     $('.memberLink').show();
     
@@ -212,9 +245,18 @@ function addMarker(e){
     //remove previous layers 
 	map.eachLayer(function(layer){
 		//Remove old layer
+		//console.log(layer);
+
 		if (typeof layer._url === "undefined" ){ //not the tile layer
-	        //console.log(layer);
-			map.removeLayer(layer);
+			if (typeof layer._layers !== "undefined"){
+				console.log(layer);
+				map.removeLayer(layer);
+			}
+	        
+	        //if(){
+	        	
+	        //}
+			
 		}
 	});
 	//add marker
@@ -232,6 +274,7 @@ function showDistrict(div){
 		//Remove old layer		 
 		if (typeof layer._url === "undefined" ){ //not the tile layer
 			if (typeof layer._icon === "undefined" ){//not the map marker icon
+				console.log(layer);
 				map.removeLayer(layer);
 			}
 		}
@@ -243,8 +286,8 @@ function showDistrict(div){
     	"weight": 2,
     	"opacity": 0.65
 	};
-
-    mapDistrictsLayer = L.geoJson(geojson.features[divmap[div]], {
+    console.log(geojson.features[divmap[div]]);
+    mapDistrictsLayer = L.geoJson(parseFloat(geojson.features[divmap[div]]), {
 		style:myStyle,
 		onEachFeature: function (feature, layer) {
 			var html = "";
