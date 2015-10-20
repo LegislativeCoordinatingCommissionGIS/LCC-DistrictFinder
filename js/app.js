@@ -199,7 +199,7 @@ function addOverlaylayers(d){
     	"opacity": 0.65
 	};
 	//console.log(d);
-	CountyBoundaryLayer = L.geoJson(d, {style:countyStyle});
+	CountyBoundaryLayer = L.geoJson(d, {style:countyStyle}).bindLabel('Manny & Olga\'s Pizza');
 }
 
 //sidebar list data
