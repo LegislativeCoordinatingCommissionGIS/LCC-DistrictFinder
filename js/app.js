@@ -244,21 +244,12 @@ function addMarker(e){
 
     //remove previous layers 
 	map.eachLayer(function(layer){
-		//Remove old layer
-		//console.log(layer);
-
-		if (typeof layer._url === "undefined" ){ //not the tile layer
-			if (typeof layer._layers !== "undefined"){
-				console.log(layer);
-				map.removeLayer(layer);
-			}
-	        
-	        //if(){
-	        	
-	        //}
-			
+		//Remove pushpin makrer
+		if (typeof layer._icon !== "undefined" ){ 
+				map.removeLayer(layer);			
 		}
 	});
+	
 	//add marker
 	var newMarker = new L.marker(e.latlng).addTo(map);
 }
