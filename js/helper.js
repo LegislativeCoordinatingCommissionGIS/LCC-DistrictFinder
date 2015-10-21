@@ -43,12 +43,12 @@ $( document ).ready(function() {
 	//Toggle basemap
 	$('#satellitonoffswitch').click(function(){
 
-		if (map.hasLayer(tileLayer1)){
-			map.removeLayer(tileLayer1);
-			map.addLayer(tileLayer2);
+		if (map.hasLayer(vectorBasemap)){
+			map.removeLayer(vectorBasemap);
+			map.addLayer(streetsBasemap);
 		} else {
-			map.removeLayer(tileLayer2);
-			map.addLayer(tileLayer1);
+			map.removeLayer(streetsBasemap);
+			map.addLayer(vectorBasemap);
 		}
 	});
 
@@ -92,14 +92,21 @@ $( document ).ready(function() {
 			//Remove map layers
 			if (typeof layer._url === "undefined"){
 				map.removeLayer(layer);
-			}
-			//remove sidebar formatting
-			$( ".mnhouse, .mnsenate, .ushouse, .ussenate1, .ussenate2" ).removeClass('active');
-			$('.memberLink').hide();
-			$('#housemember, #senatemember, #ushousemember, #ussenatemember, #ussenatemember2').html('');
-		    $('#housedistrict, #senatedistrict, #ushousedistrict, #ussenatedistrict, #ussenatedistrict2').html('');
-		    $('#housephoto, #senatephoto, #ushousephoto, #ussenatephoto, #ussenatephoto2').removeAttr('src');
+			}			
 		});
+		map.eachLayer(function(layer){
+			//Remove map layers
+			if (layer instanceof L.geoJson){
+				map.removeLayer(layer);
+			}
+					
+		});
+		//remove sidebar formatting
+		$( ".mnhouse, .mnsenate, .ushouse, .ussenate1, .ussenate2" ).removeClass('active');
+		$('.memberLink').hide();
+		$('#housemember, #senatemember, #ushousemember, #ussenatemember, #ussenatemember2').html('');
+		$('#housedistrict, #senatedistrict, #ushousedistrict, #ussenatedistrict, #ussenatedistrict2').html('');
+		$('#housephoto, #senatephoto, #ushousephoto, #ussenatephoto, #ussenatephoto2').removeAttr('src');
 
 		//Toggle basemap when you reset -- LATER SET ALL CHECKBOXES THIS WAY!!!
 		//verbose, should do this cleaner
@@ -107,7 +114,7 @@ $( document ).ready(function() {
 				//:checked = true -> leave it ... when I copied the switches I had initial states backwards
 		} else {
 			//:checked = false -> toggle map
-			toggleLayers($('#satellitonoffswitch'),tileLayer2,tileLayer1);
+			toggleLayers($('#satellitonoffswitch'),streetsBasemap,vectorBasemap);
 			$('#satellitonoffswitch').prop('checked', true);
 		}
 		// reset additional layers too
@@ -180,6 +187,8 @@ $( document ).ready(function() {
 
 $(window).load(function(){
    // code here
+
+   // grabbing data from ./data to save time using the browser cache - alternatively: $.getJSON("php/getGetHSELayers.php", function(data) {...
     //getCountyLayersGeoJson();
     $.getJSON("./data/County2010.json", function(data) {
 		var countyStyle = {
@@ -192,6 +201,7 @@ $(window).load(function(){
   });
 
 	//getHSELayersGeoJson();
+
 	$.getJSON("./data/HSE2012.json", function(data) {
 		var countyStyle = {
 		"fill":0,

@@ -3,7 +3,7 @@ var map, geojson, mapDistrictsLayer,
 	autocomplete = [];
 
 //map Layers
-var tileLayer1,tileLayer2, StateHouseLayer, StateSenateLayer, CongressionalLayer, CityBoundaryLayer, CountyBoundaryLayer;
+var pushPinMarker, vectorBasemap,streetsBasemap, StateHouseLayer, StateSenateLayer, CongressionalLayer, CityBoundaryLayer, CountyBoundaryLayer;
 
 //Set initial basemap with initialize() - called in helper.js
 function initialize(){
@@ -17,7 +17,7 @@ function initialize(){
 
 
     
-	tileLayer1 = L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoiY2NhbnRleSIsImEiOiJjaWVsdDNubmEwMGU3czNtNDRyNjRpdTVqIn0.yFaW4Ty6VE3GHkrDvdbW6g', {
+	vectorBasemap = L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoiY2NhbnRleSIsImEiOiJjaWVsdDNubmEwMGU3czNtNDRyNjRpdTVqIn0.yFaW4Ty6VE3GHkrDvdbW6g', {
 					maxZoom: 18,
 					minZoom: 6,
 					attribution: 'Basemap data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a>, ' +
@@ -25,7 +25,7 @@ function initialize(){
 						'Imagery Â© <a href="http://mapbox.com">Mapbox</a>',
 					id: 'mapbox.streets'
 					}).addTo(map);
-	tileLayer2 = L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoiY2NhbnRleSIsImEiOiJjaWVsdDNubmEwMGU3czNtNDRyNjRpdTVqIn0.yFaW4Ty6VE3GHkrDvdbW6g', {
+	streetsBasemap = L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoiY2NhbnRleSIsImEiOiJjaWVsdDNubmEwMGU3czNtNDRyNjRpdTVqIn0.yFaW4Ty6VE3GHkrDvdbW6g', {
 					maxZoom: 18,
 					minZoom: 6,
 					attribution: 'Basemap data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a>, ' +
@@ -34,7 +34,7 @@ function initialize(){
 					id: 'mapbox.streets-satellite'
 					})
 
-	toggleLayers($('#satellitonoffswitch'),tileLayer1,tileLayer2);
+	toggleLayers($('#satellitonoffswitch'),vectorBasemap,streetsBasemap);
     
 	//next: add features to map
 
@@ -70,7 +70,7 @@ function toggleOverlayLayers(el, switchId){
 			switchMap[switchId].addTo(map);
 			
 			console.log(el, "is NOT Checked");
-			//toggleLayers($('#satellitonoffswitch'),tileLayer2,tileLayer1);
+			//toggleLayers($('#satellitonoffswitch'),streetsBasemap,vectorBasemap);
 			//$('#satellitonoffswitch').prop('checked', true);
 		}
 }
@@ -163,16 +163,17 @@ function addMarker(e){
     $('#housedistrict, #senatedistrict, #ushousedistrict, #ussenatedistrict, #ussenatedistrict2').html('');
     $('#housephoto, #senatephoto, #ushousephoto, #ussenatephoto, #ussenatephoto2').removeAttr('src');
 
-    //remove previous layers 
-	map.eachLayer(function(layer){
-		//Remove pushpin makrer
-		if (typeof layer._icon !== "undefined" ){ 
-				map.removeLayer(layer);			
-		}
-	});
+    //remove old pushpin and previous selected district layers 
+
+	if (typeof pushPinMarker !== "undefined" ){ 
+		map.removeLayer(pushPinMarker);			
+	}
+	if (typeof mapDistrictsLayer !== "undefined" ){ 
+		map.removeLayer(mapDistrictsLayer);			
+	}
 
 	//add marker
-	var newMarker = new L.marker(e.latlng).addTo(map);
+	pushPinMarker = new L.marker(e.latlng).addTo(map);
 }
 
 //Show the district on the map
@@ -181,16 +182,10 @@ function showDistrict(div){
 	divmap = {"mnhouse active":0, "mnsenate active":1, "ushouse active":2, "ussenate1 active":3 , "ussenate2 active":3};
     console.log(divmap[div]);
 
-	//remove preveious layers... will come later i think.. gotto go
-	map.eachLayer(function(layer){
-		//Remove old layer		 
-		if (typeof layer._url === "undefined" ){ //not the tile layer
-			if (typeof layer._icon === "undefined" ){//not the map marker icon
-				console.log(layer);
-				map.removeLayer(layer);
-			}
-		}
-	});    
+	//remove preveious district layers.
+	if (typeof mapDistrictsLayer !== "undefined" ){ 
+		map.removeLayer(mapDistrictsLayer);			
+	}
     
     //polygon overlay styling
 	var myStyle = {
