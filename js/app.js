@@ -132,25 +132,26 @@ function addMemberData(memberData){
     geojson = memberData;
 	//also show hyperlinks here
     $('.memberLink').show();
+
     
     //add memberdata from map selection to member list
-	$('#housemember').html(memberData.features[0].properties.name);
+	$('#housemember').html(memberData.features[0].properties.name + '<span class="party"> ('+memberData.features[0].properties.party+')</span>');
 	$('#housedistrict').html('MN House - ' + memberData.features[0].properties.district);
 	$('#housephoto').attr('src', 'images/House/tn_'+memberData.features[0].properties.district+'.jpg')
 
-	$('#senatemember').html(memberData.features[1].properties.name);
+	$('#senatemember').html(memberData.features[1].properties.name + '<span class="party">  ('+memberData.features[1].properties.party+')</span>');
 	$('#senatedistrict').html('MN Senate - ' + memberData.features[1].properties.district);
 	$('#senatephoto').attr('src', 'images/Senate/'+memberData.features[1].properties.district+'.jpg')
 
-	$('#ushousemember').html(memberData.features[2].properties.name);
+	$('#ushousemember').html(memberData.features[2].properties.name + ' <span class="party"> ('+memberData.features[2].properties.party+')</span>');
 	$('#ushousedistrict').html('U.S. House - ' + memberData.features[2].properties.district);
 	$('#ushousephoto').attr('src', 'images/USHouse/US'+memberData.features[2].properties.district+'.jpg')
 
-	$('#ussenatemember').html('Amy Klobuchar');
+	$('#ussenatemember').html('Amy Klobuchar <span class="party"> (DFL)</span>');
 	$('#ussenatedistrict').html('U.S. Senate' );
 	$('#ussenatephoto').attr('src', 'images/USSenate/USsenate1.jpg')
 
-	$('#ussenatemember2').html('Al Franken');
+	$('#ussenatemember2').html('Al Franken <span class="party"> (DFL)</span>');
 	$('#ussenatedistrict2').html('U.S. Senate');
 	$('#ussenatephoto2').attr('src', 'images/USSenate/USsenate2.jpg')
 }

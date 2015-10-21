@@ -48,6 +48,9 @@
 ul{
 	list-style-type: none;	
 }
+.party{
+    font-weight: normal;
+}
 
 .search,.mnhouse, .mnsenate, .ushouse, .ussenate1, .ussenate2 {
 	height:86px;
