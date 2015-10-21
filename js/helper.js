@@ -88,20 +88,7 @@ $( document ).ready(function() {
 	//map reset
 	$('#map_reset').click(function(){
 		map.setView(L.latLng(46.1706, -93.6678),6);
-		map.eachLayer(function(layer){
-			//Remove map layers
-			if (typeof layer._url === "undefined"){
-				map.removeLayer(layer);
-			}			
-		});
-		map.eachLayer(function(layer){
-			//Remove map layers
-			if (layer instanceof L.geoJson){
-				map.removeLayer(layer);
-			}
-					
-		});
-		//remove sidebar formatting
+		
 		$( ".mnhouse, .mnsenate, .ushouse, .ussenate1, .ussenate2" ).removeClass('active');
 		$('.memberLink').hide();
 		$('#housemember, #senatemember, #ushousemember, #ussenatemember, #ussenatemember2').html('');
@@ -153,6 +140,14 @@ $( document ).ready(function() {
 			toggleOverlayLayers($('#shonoffswitch'), $('#shonoffswitch').attr('id'));
 			$('#shonoffswitch').prop('checked', true);
 		}
+		//Remove all layers except the basemap -- down here because its an asychronous thead apparently
+		map.eachLayer(function(layer){
+			//Remove map layers
+			if (typeof layer._url === "undefined"){
+				map.removeLayer(layer);
+			};	
+
+		});
 	   
 	});
 
