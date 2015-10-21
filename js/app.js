@@ -33,19 +33,6 @@ function initialize(){
 						'Imagery Â© <a href="http://mapbox.com">Mapbox</a>',
 					id: 'mapbox.streets-satellite'
 					})
-	// tileLayer2 = L.esri.tiledMapLayer({
-	// 	            url: 'http://services.arcgisonline.com/arcgis/rest/services/World_Imagery/MapServer', 
-	// 				maxZoom: 18,
-	// 				minZoom: 6,
-	// 				attribution: 'Imagery &copy; <a href="http://www.arcgis.com/home/item.html?id=10df2279f9684e4a9f6a7f08febac2a9">Esri</a>, ' +
-	// 				       'Legislative data &copy; <a href="http://www.gis.leg.mn/">LCC-GIS</a>'
-	// 				})
-
-	
-	// StateHouseLayer = L.geoJson();
-	// CongressionalLayer = L.geoJson();
-	// CityBoundaryLayer = L.geoJson();
-	// CountyBoundaryLayer = L.geoJson();
 
 	toggleLayers($('#satellitonoffswitch'),tileLayer1,tileLayer2);
     
@@ -95,7 +82,7 @@ function submitQuery(){
     // console.log(formdata);
 	//add to data request object
 	var data = {
-		table: "hse2012",
+		table: "hse2012_1",
 		fields: fields
 	};
 	formdata.forEach(function(dataobj){
@@ -116,7 +103,7 @@ function identifyDistrict(d){
 	// console.log(d.latlng);    
 
 	var data = {
-		// table: "hse2012",
+		// table: "hse2012_1",
 		// fields: fields,
 		//geom: d.latlng,
 		lat: d.latlng.lat,
@@ -135,121 +122,7 @@ function identifyDistrict(d){
 		}
 	});
 }
-//Add County
-function getCountyLayersGeoJson(d){
 
-	$.ajax("php/getCtyLayers.php", {
-		 //data: data,
-		success: function(result){			
-			addCountylayers(result);
-		}, 
-		error: function(){
-			console.log('error');
-		}
-	});
-}
-function addCountylayers(d){
-	var countyStyle = {
-		"fill":0,
-    	"color": "#231f20",
-    	"weight": 2,
-    	"opacity": 0.65
-	};
-	//console.log(d);
-	CountyBoundaryLayer = L.geoJson(d, {style:countyStyle});
-}
-//Add State House
-function getHSELayersGeoJson(d){
-
-	$.ajax("php/getHSELayers.php", {
-		 //data: data,
-		success: function(result){			
-			addHSElayers(result);
-		}, 
-		error: function(){
-			console.log('error');
-		}
-	});
-}
-function addHSElayers(d){
-	var countyStyle = {
-		"fill":0,
-    	"color": "#231f20",
-    	"weight": 2,
-    	"opacity": 0.65
-	};
-	//console.log(d);
-	StateHouseLayer = L.geoJson(d, {style:countyStyle});
-}
-//Add Senate
-function getCityLayersGeoJson(d){
-
-	$.ajax("php/getMCDLayers.php", {
-		 //data: data,
-		success: function(result){			
-			addCitylayers(result);
-		}, 
-		error: function(){
-			console.log('error');
-		}
-	});
-}
-function addCitylayers(d){
-	var countyStyle = {
-		"fill":0,
-    	"color": "#231f20",
-    	"weight": 2,
-    	"opacity": 0.65
-	};
-	//console.log(d);
-	CityBoundaryLayer = L.geoJson(d, {style:countyStyle});
-}
-//Add Congress
-function getSenLayersGeoJson(d){
-
-	$.ajax("php/getSENLayers.php", {
-		 //data: data,
-		success: function(result){			
-			addSenlayers(result);
-		}, 
-		error: function(){
-			console.log('error');
-		}
-	});
-}
-function addSenlayers(d){
-	var countyStyle = {
-		"fill":0,
-    	"color": "#231f20",
-    	"weight": 2,
-    	"opacity": 0.65
-	};
-	//console.log(d);
-	StateSenateLayer = L.geoJson(d, {style:countyStyle});
-}
-//Add Municipal
-function getCongLayersGeoJson(d){
-
-	$.ajax("php/getCNGLayers.php", {
-		 //data: data,
-		success: function(result){			
-			addConglayers(result);
-		}, 
-		error: function(){
-			console.log('error');
-		}
-	});
-}
-function addConglayers(d){
-	var countyStyle = {
-		"fill":0,
-    	"color": "#231f20",
-    	"weight": 2,
-    	"opacity": 0.65
-	};
-	//console.log(d);
-	CongressionalLayer = L.geoJson(d, {style:countyStyle});
-}
 //sidebar list data
 function addMemberData(memberData){
 	//console.log(memberData);
