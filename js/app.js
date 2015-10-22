@@ -3,7 +3,7 @@ var map, geojson, mapDistrictsLayer,
 	autocomplete = [];
 
 //map Layers
-var pushPinMarker, vectorBasemap,streetsBasemap, StateHouseLayer, StateSenateLayer, CongressionalLayer, CityBoundaryLayer, CountyBoundaryLayer;
+var pushPinMarker, vectorBasemap,streetsBasemap, StateHouseLayer, StateSenateLayer, CongressionalLayer, CityBoundaryLayer, CountyBoundaryLayer, MinnesotaBoundaryLayer;
 
 //Set initial basemap with initialize() - called in helper.js
 function initialize(){
@@ -180,7 +180,7 @@ function addMarker(e){
 //Show the district on the map
 function showDistrict(div){
 	//div is the class name of the active member
-	divmap = {"mnhouse active":0, "mnsenate active":1, "ushouse active":2, "ussenate1 active":3 , "ussenate2 active":3};
+	divmap = {"mnhouse active":0, "mnsenate active":1, "ushouse active":2};
     console.log(divmap[div]);
 
 	//remove preveious district layers.
@@ -207,7 +207,17 @@ function showDistrict(div){
 	}).addTo(map);
 	//zoom to selection
 	map.fitBounds(mapDistrictsLayer.getBounds())
+}
+function showSenateDistrict(div){
+	//div is the class name of the active member
 
+	//remove preveious district layers.
+	if (typeof mapDistrictsLayer !== "undefined" ){ 
+		map.removeLayer(mapDistrictsLayer);			
+	}
+    
+    mapDistrictsLayer = MinnesotaBoundaryLayer.addTo(map);
 
+	map.fitBounds(mapDistrictsLayer.getBounds())
 }
 

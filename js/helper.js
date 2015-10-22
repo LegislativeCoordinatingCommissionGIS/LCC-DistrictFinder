@@ -19,10 +19,16 @@ $( document ).ready(function() {
     $('.memberLink').hide();
 
 	//Members UI click turn red with 'active' class
-	$( ".mnhouse, .mnsenate, .ushouse, .ussenate1, .ussenate2" ).click(function() {
+	$( ".mnhouse, .mnsenate, .ushouse" ).click(function() {
 	  $(this).addClass('active').siblings().removeClass('active');
 	  //console.log($(this).attr('class'));
 	  showDistrict($(this).attr('class'));
+
+	});
+	$( ".ussenate1, .ussenate2" ).click(function() {
+	  $(this).addClass('active').siblings().removeClass('active');
+	  //console.log($(this).attr('class'));
+	  showSenateDistrict();
 
 	});
 
@@ -228,6 +234,15 @@ $(window).load(function(){
 	};
 		StateSenateLayer = L.geoJson(data, {style:countyStyle});
   });
+	//getCongLayersGeoJson();
+	$.getJSON("./data/Minnesota2015.json", function(data) {
+		var myStyle = {
+    	"color": "#231f20",
+    	"weight": 2,
+    	"opacity": 0.65
+	};
+		MinnesotaBoundaryLayer = L.geoJson(data, {style:myStyle});
+  })
   $('#loading').hide();
 	
 
