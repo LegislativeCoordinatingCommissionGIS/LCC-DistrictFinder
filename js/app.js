@@ -7,6 +7,8 @@ var pushPinMarker, vectorBasemap,streetsBasemap, MinnesotaBoundaryLayer;
 //map overlay layers... called like overlayLayers.CongressionalBoundaryLayer
 var overlayLayers ={};
 
+var geocoder = null;
+
 //Set initial basemap with initialize() - called in helper.js
 function initialize(){
 	$("#map").height('542px');
@@ -16,7 +18,32 @@ function initialize(){
 		center: L.latLng(46.1706, -93.6678),
 		zoom: 6
 	});
-    
+    geocoder = new google.maps.Geocoder;
+
+// Try HTML5 geolocation.
+  // if (navigator.geolocation) {
+  //   navigator.geolocation.getCurrentPosition(function(position) {
+  //     var pos = {
+  //       latlng: {lat:position.coords.latitude,lng:position.coords.longitude},
+  //       lat:position.coords.latitude,
+  //       lng:position.coords.longitude
+  //     };
+
+  //     //infoWindow.setPosition(pos);
+  //     //infoWindow.setContent('Location found.');
+  //     //addMarker(pos);
+	 //  //identifyDistrict(pos);
+	 //  map.setView(L.latLng(pos.lat, pos.lng),13);
+
+  //   }, function() {
+  //     handleLocationError(true, infoWindow, map.getCenter());
+  //   });
+  // } else {
+  //   // Browser doesn't support Geolocation
+  //   handleLocationError(false, infoWindow, map.getCenter());
+  // }
+
+
 	vectorBasemap = L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoiY2NhbnRleSIsImEiOiJjaWVsdDNubmEwMGU3czNtNDRyNjRpdTVqIn0.yFaW4Ty6VE3GHkrDvdbW6g', {
 					maxZoom: 18,
 					minZoom: 6,
@@ -37,6 +64,14 @@ function initialize(){
 	toggleBaseLayers($('#satellitonoffswitch'),vectorBasemap,streetsBasemap);
 
 };
+
+
+// function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+//   infoWindow.setPosition(pos);
+//   infoWindow.setContent(browserHasGeolocation ?
+//                         'Error: The Geolocation service failed.' :
+//                         'Error: Your browser doesn\'t support geolocation.');
+// }
 
 //toggle basemap layers
 function toggleBaseLayers(el, layer1, layer2){
@@ -142,6 +177,30 @@ function submitQuery(){
 	// 	}
 	// })
 };
+function geoCodeAddress(geocoder, resultsMap) {
+  
+  var address = document.getElementById('geocodeAddress').value;
+  console.log(address);
+  geocoder.geocode({'address': address}, function(results, status) {
+    if (status === google.maps.GeocoderStatus.OK) {
+      //console.log(results[0].geometry.location);
+      //resultsMap.setView(L.latLng(results[0].geometry.location.lat(),results[0].geometry.location.lng()),6);
+      var pos = {
+        latlng: {lat:results[0].geometry.location.lat(),lng:results[0].geometry.location.lng()},
+        lat:results[0].geometry.location.lat(),
+        lng:results[0].geometry.location.lng()
+      };
+      console.log(results[0].geometry.location.lat());
+      console.log(results[0].geometry.location.lng());
+      map.setView(L.latLng(results[0].geometry.location.lat(),results[0].geometry.location.lng()),16);
+      addMarker(pos);
+      identifyDistrict(pos);
+    } else {
+      alert('Geocode was not successful for the following reason: ' + status);
+    }
+  });
+}
+
 
 //I will use this for search as well.. the geocoder should return lat long, just pass it through and add marker
 function identifyDistrict(d){
@@ -168,7 +227,7 @@ function addMemberData(memberData){
 	// memberData.features[0] = MN House
 	// memberData.features[1] = MN Senate
 	// memberData.features[2] = US House
-
+    $('#mask').hide();
     geojson = memberData;
 	//also show hyperlinks here
     $('.memberLink').show();

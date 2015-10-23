@@ -6,7 +6,7 @@ $( document ).ready(function() {
     map.on('click', function(e){
     	addMarker(e);
 		identifyDistrict(e);
-		$('#mask').hide();		
+				
 	});
 
     //mobile search form #RWD
@@ -15,7 +15,10 @@ $( document ).ready(function() {
   //   } else {
 		// $('.smallscreen').hide();
   //   }
-
+    $("#searchButton").click(function(){
+    	//ar address = $( this ).val();
+    	geoCodeAddress(geocoder, map);
+    })
     //hide links - format is off until results come back
     $('.memberLink').hide();
 
