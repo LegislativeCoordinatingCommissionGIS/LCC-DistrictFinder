@@ -1,9 +1,11 @@
 var map, geojson, mapDistrictsLayer,
-	fields = ["district", "name"], 
+	fields = ["district", "name"], switchMap ={},
 	autocomplete = [];
 
 //map Layers
-var pushPinMarker, vectorBasemap,streetsBasemap, StateHouseLayer, StateSenateLayer, CongressionalLayer, CityBoundaryLayer, CountyBoundaryLayer, MinnesotaBoundaryLayer;
+var pushPinMarker, vectorBasemap,streetsBasemap, MinnesotaBoundaryLayer;
+//map overlay layers... called like overlayLayers.CongressionalBoundaryLayer
+var overlayLayers ={};
 
 //Set initial basemap with initialize() - called in helper.js
 function initialize(){
@@ -14,8 +16,6 @@ function initialize(){
 		center: L.latLng(46.1706, -93.6678),
 		zoom: 6
 	});
-
-
     
 	vectorBasemap = L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoiY2NhbnRleSIsImEiOiJjaWVsdDNubmEwMGU3czNtNDRyNjRpdTVqIn0.yFaW4Ty6VE3GHkrDvdbW6g', {
 					maxZoom: 18,
@@ -34,15 +34,13 @@ function initialize(){
 					id: 'mapbox.streets-satellite'
 					})
 
-	toggleLayers($('#satellitonoffswitch'),vectorBasemap,streetsBasemap);
-    
-	//next: add features to map
+	toggleBaseLayers($('#satellitonoffswitch'),vectorBasemap,streetsBasemap);
 
 };
 
 //toggle basemap layers
-function toggleLayers(el, layer1, layer2){
-	console.log(el, 'has been toggled');
+function toggleBaseLayers(el, layer1, layer2){
+	//console.log(el, 'has been toggled');
 	if (el.is(':checked')){
 		map.removeLayer(layer2);
 		map.addLayer(layer1);
@@ -52,50 +50,97 @@ function toggleLayers(el, layer1, layer2){
 	}
 }
 
-function toggleOverlayLayers(el, switchId){
-	console.log(switchId, 'has been toggled');
-	//layerIdMap = {'countyonoffswitch':CountyLayer,'cityonoffswitch': CityLayer,'cononoffswitch': CongressionalLayer, 'ssonoffswitch': StateSenateLayer,'shonoffswitch': StateHouseLayer };
-	// reset additional layers too
-	var switchMap = {"countyonoffswitch": CountyBoundaryLayer, "cityonoffswitch":CityBoundaryLayer, "cononoffswitch":CongressionalLayer, "ssonoffswitch":StateSenateLayer, "shonoffswitch":StateHouseLayer}
-	console.log(switchMap[switchId]);
+function getOverlayLayers(el, switchId){
+    $('#loading').show();
+	//getCityLayersGeoJson();
+    switchMap = {"countyonoffswitch": "CountyBoundaryLayer", "cityonoffswitch":"CityBoundaryLayer", "cononoffswitch":"CongressionalLayer", "ssonoffswitch":"StateSenateLayer", "shonoffswitch":"StateHouseLayer"}
+    // console.log(typeof switchMap[switchId]);
+	var dataMap = {"shonoffswitch": "HSE2012" , "ssonoffswitch": "Sen2012", "cononoffswitch":"Cong2012", "cityonoffswitch": "MCD2010", "countyonoffswitch":"County2010", MinnesotaBoundaryLayer:"Minnesota2015"};
+    
+    if(el.is(':checked')){
+    	map.removeLayer(overlayLayers[switchMap[switchId]]);
 
-	if(el.is(':checked')){
-			//:checked = true -> leave it ... when I copied the switches I had initial states backwards
-			//Turn ON this layer
-			map.removeLayer(switchMap[switchId]);
-			console.log(el, "is Checked");
+		$('#loading').hide();
+    } else {
+    	if(typeof overlayLayers[switchMap[switchId]] === 'undefined'){
+			$.getJSON("./data/"+dataMap[switchId]+".json", function(data) {
+				overlayLayers[switchMap[switchId]] = L.geoJson(data, {style:layerStyle(switchId)});						 
+			}).done(function(){
+				//console.log(switchMap[switchId]);
+				overlayLayers[switchMap[switchId]].addTo(map);
+				$('#loading').hide();
+			});
 		} else {
-			//:checked = false -> toggle map
-			//Turn OFF this layer
-			switchMap[switchId].addTo(map);
-			
-			console.log(el, "is NOT Checked");
-			//toggleLayers($('#satellitonoffswitch'),streetsBasemap,vectorBasemap);
-			//$('#satellitonoffswitch').prop('checked', true);
+			console.log('here');
+			overlayLayers[switchMap[switchId]].addTo(map);
+			$('#loading').hide();
 		}
+    }
 }
 
+function layerStyle(switchId){
+	var countyStyle = {
+		"fill":0,
+	     	"color": "#231f20",
+	     	"weight": 4,
+	     	"opacity": 0.65
+	};
+
+	var HSEStyle = {
+		"fill":0,
+	     	"color": "#ff6600",
+	     	"dashArray":"7,7",
+	     	"weight": 2,
+	     	"opacity": 0.65
+	};
+
+	var congressStyle = {
+		"fill":0,
+	     	"color": "#ff3399",
+	     	"weight": 2,
+	     	"opacity": 0.65
+	};
+
+	var senStyle = {
+		"fill":0,
+	     	"color": "#ff6600",
+	     	"weight": 3,
+	     	"opacity": 0.65
+	};
+
+	var cityStyle = {
+		"fill":0,
+		"color": "#231f20",
+		"weight": 1,
+		"pacity": 0.65
+	};	
+
+	var styleMap = {"countyonoffswitch": countyStyle, "cityonoffswitch":cityStyle, "cononoffswitch":congressStyle, "ssonoffswitch":senStyle, "shonoffswitch":HSEStyle}
+
+	return styleMap[switchId];
+
+}
 
 function submitQuery(){
 	//get the form data
-	var formdata = $("#mainsearchform").serializeArray();
-    // console.log(formdata);
-	//add to data request object
-	var data = {
-		table: "hse2012_1",
-		fields: fields
-	};
-	formdata.forEach(function(dataobj){
-		data[dataobj.name] = dataobj.value;
-	});
-    // console.log(formdata);
-	//call the php script
-	$.ajax("php/getSearchData.php", {
-		data: data,
-		success: function(result){
-			mapData(result);
-		}
-	})
+	// var formdata = $("#mainsearchform").serializeArray();
+ //    // console.log(formdata);
+	// //add to data request object
+	// var data = {
+	// 	table: "hse2012_1",
+	// 	fields: fields
+	// };
+	// formdata.forEach(function(dataobj){
+	// 	data[dataobj.name] = dataobj.value;
+	// });
+ //    // console.log(formdata);
+	// //call the php script
+	// $.ajax("php/getSearchData.php", {
+	// 	data: data,
+	// 	success: function(result){
+	// 		mapData(result);
+	// 	}
+	// })
 };
 
 //I will use this for search as well.. the geocoder should return lat long, just pass it through and add marker
@@ -103,15 +148,10 @@ function identifyDistrict(d){
 	// console.log(d.latlng);    
 
 	var data = {
-		// table: "hse2012_1",
-		// fields: fields,
-		//geom: d.latlng,
 		lat: d.latlng.lat,
 		lng: d.latlng.lng
 	};
-
-	//console.log(data);
-
+    $("#loading").show();
 	$.ajax("php/getPointData.php", {
 		 data: data,
 		success: function(result){			
@@ -125,14 +165,13 @@ function identifyDistrict(d){
 
 //sidebar list data
 function addMemberData(memberData){
-	//console.log(memberData);
 	// memberData.features[0] = MN House
 	// memberData.features[1] = MN Senate
 	// memberData.features[2] = US House
+
     geojson = memberData;
 	//also show hyperlinks here
     $('.memberLink').show();
-
     
     //add memberdata from map selection to member list
     $('#housephoto').attr('src', 'images/House/tn_'+memberData.features[0].properties.district+'.jpg');
@@ -154,6 +193,7 @@ function addMemberData(memberData){
 	$('#ussenatephoto2').attr('src', 'images/USSenate/USsenate2.jpg');
 	$('#ussenatemember2').html('Al Franken <span class="party"> (DFL)</span>');
 	$('#ussenatedistrict2').html('U.S. Senate');
+	$("#loading").hide();
 	
 }
 
@@ -166,7 +206,6 @@ function addMarker(e){
     $('#housephoto, #senatephoto, #ushousephoto, #ussenatephoto, #ussenatephoto2').removeAttr('src');
 
     //remove old pushpin and previous selected district layers 
-
 	if (typeof pushPinMarker !== "undefined" ){ 
 		map.removeLayer(pushPinMarker);			
 	}
@@ -174,22 +213,14 @@ function addMarker(e){
 		map.removeLayer(mapDistrictsLayer);			
 	}
 
-	var myStyle = {
-    	"color": "#990033",
-    	"weight": 2,
-    	"opacity": 0.65
-	};
 	//add marker
-	pushPinMarker = new L.marker(e.latlng, function(){
-		draggable:true
-	}).addTo(map);
+	pushPinMarker = new L.marker(e.latlng).addTo(map);
 }
 
 //Show the district on the map
 function showDistrict(div){
 	//div is the class name of the active member
 	divmap = {"mnhouse active":0, "mnsenate active":1, "ushouse active":2};
-    console.log(divmap[div]);
 
 	//remove preveious district layers.
 	if (typeof mapDistrictsLayer !== "undefined" ){ 
@@ -216,8 +247,8 @@ function showDistrict(div){
 	//zoom to selection
 	map.fitBounds(mapDistrictsLayer.getBounds())
 }
+
 function showSenateDistrict(div){
-	//div is the class name of the active member
 
 	//remove preveious district layers.
 	if (typeof mapDistrictsLayer !== "undefined" ){ 
@@ -225,7 +256,6 @@ function showSenateDistrict(div){
 	}
     
     mapDistrictsLayer = MinnesotaBoundaryLayer.addTo(map);
-
 	map.fitBounds(mapDistrictsLayer.getBounds())
 }
 

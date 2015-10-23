@@ -10,11 +10,11 @@ $( document ).ready(function() {
 	});
 
     //mobile search form #RWD
-    if ($(window).width() < 417){
-    	$('.smallscreen').show();
-    } else {
-		$('.smallscreen').hide();
-    }
+  //   if ($(window).width() < 417){
+  //   	$('.smallscreen').show();
+  //   } else {
+		// $('.smallscreen').hide();
+  //   }
 
     //hide links - format is off until results come back
     $('.memberLink').hide();
@@ -22,10 +22,10 @@ $( document ).ready(function() {
 	//Members UI click turn red with 'active' class
 	$( ".mnhouse, .mnsenate, .ushouse" ).click(function() {
 	  $(this).addClass('active').siblings().removeClass('active');
-	  //console.log($(this).attr('class'));
 	  showDistrict($(this).attr('class'));
 
 	});
+	//get static minnesota geojson
 	$( ".ussenate1, .ussenate2" ).click(function() {
 	 	 $(this).addClass('active').siblings().removeClass('active');
 	  	//console.log($(this).attr('class'));
@@ -43,8 +43,7 @@ $( document ).ready(function() {
   			});
   		} else {
   			showSenateDistrict();
-  		}
-	  	
+  		}	  	
 
 	});
 
@@ -74,38 +73,11 @@ $( document ).ready(function() {
 		}
 	});
 
-	$('#countyonoffswitch, #cononoffswitch, #ssonoffswitch, #shonoffswitch').click(function(){
+    //fetch overlay layers
+	$('#countyonoffswitch, #cononoffswitch, #ssonoffswitch, #shonoffswitch, #cityonoffswitch').click(function(){
 		//console.log(typeof($(this).attr('id')));
-        //toggleOverlayLayers($(this).attr('id'));
-        toggleOverlayLayers($(this), $(this).attr('id'));
-
+        getOverlayLayers($(this), $(this).attr('id'));
 	});
-
-    //to improve performance, I am not loading municipal boundaries until called upon by user
-    $('#cityonoffswitch').click(function(){
-    	$('#loading').show();
-		//getCityLayersGeoJson();
-		if(typeof CityBoundaryLayer === 'undefined'){
-			$.getJSON("./data/MCD2010.json", function(data) {
-				var countyStyle = {
-					"fill":0,
-    				"color": "#231f20",
-    				"weight": 1,
-    				"pacity": 0.65
-					};
-					CityBoundaryLayer = L.geoJson(data, {style:countyStyle});		
-			 
-				}).done(function(){
-					$('#loading').hide(); 
-					toggleOverlayLayers($('#cityonoffswitch'), $('#cityonoffswitch').attr('id'));
-				});
-		} else {
-			//console.log('here');
-			toggleOverlayLayers($('#cityonoffswitch'), $('#cityonoffswitch').attr('id'));
-			$('#loading').hide();
-		}
-	});
-
 
 	//map reset
 	$('#map_reset').click(function(){
@@ -123,7 +95,7 @@ $( document ).ready(function() {
 				//:checked = true -> leave it ... when I copied the switches I had initial states backwards
 		} else {
 			//:checked = false -> toggle map
-			toggleLayers($('#satellitonoffswitch'),streetsBasemap,vectorBasemap);
+			toggleBaseLayers($('#satellitonoffswitch'),streetsBasemap,vectorBasemap);
 			$('#satellitonoffswitch').prop('checked', true);
 		}
 		// reset additional layers too
@@ -131,35 +103,30 @@ $( document ).ready(function() {
 				//:checked = true -> leave it ... when I copied the switches I had initial states backwards
 		} else {
 			//:checked = false -> toggle map
-			toggleOverlayLayers($('#countyonoffswitch'), $('#countyonoffswitch').attr('id'));
 			$('#countyonoffswitch').prop('checked', true);
 		}
 		if($('#cityonoffswitch').is(':checked')){
 				//:checked = true -> leave it ... when I copied the switches I had initial states backwards
 		} else {
 			//:checked = false -> toggle map
-			toggleOverlayLayers($('#cityonoffswitch'), $('#cityonoffswitch').attr('id'));
 			$('#cityonoffswitch').prop('checked', true);
 		}
 		if($('#cononoffswitch').is(':checked')){
 				//:checked = true -> leave it ... when I copied the switches I had initial states backwards
 		} else {
 			//:checked = false -> toggle map
-			toggleOverlayLayers($('#cononoffswitch'), $('#cononoffswitch').attr('id'));
 			$('#cononoffswitch').prop('checked', true);
 		}
 		if($('#ssonoffswitch').is(':checked')){
 				//:checked = true -> leave it ... when I copied the switches I had initial states backwards
 		} else {
 			//:checked = false -> toggle map
-			toggleOverlayLayers($('#ssonoffswitch'), $('#ssonoffswitch').attr('id'));
 			$('#ssonoffswitch').prop('checked', true);
 		}
 		if($('#shonoffswitch').is(':checked')){
 				//:checked = true -> leave it ... when I copied the switches I had initial states backwards
 		} else {
 			//:checked = false -> toggle map
-			toggleOverlayLayers($('#shonoffswitch'), $('#shonoffswitch').attr('id'));
 			$('#shonoffswitch').prop('checked', true);
 		}
 		//Remove all layers except the basemap -- down here because its an asychronous thead apparently
@@ -199,61 +166,6 @@ $( document ).ready(function() {
 
     
 
-
+$('#loading').hide();
 });//end ready()
 
-$(window).load(function(){
-   // code here
-
-   // grabbing data from ./data to save time using the browser cache - alternatively: $.getJSON("php/getGetHSELayers.php", function(data) {...
-    //getCountyLayersGeoJson();
-    $.getJSON("./data/County2010.json", function(data) {
-		var countyStyle = {
-		"fill":0,
-    	"color": "#231f20",
-    	"weight": 4,
-    	"opacity": 0.65
-	};
-		CountyBoundaryLayer = L.geoJson(data, {style:countyStyle});
-  });
-
-	//getHSELayersGeoJson();
-
-	$.getJSON("./data/HSE2012.json", function(data) {
-		var countyStyle = {
-		"fill":0,
-    	"color": "#ff6600",
-    	"dashArray":"7,7",
-    	"weight": 2,
-    	"opacity": 0.65
-	};
-		StateHouseLayer = L.geoJson(data, {style:countyStyle});
-  });
-
-	//getCongLayersGeoJson();
-	$.getJSON("./data/Cong2012.json", function(data) {
-		var countyStyle = {
-		"fill":0,
-    	"color": "#ff3399",
-    	"weight": 2,
-    	"opacity": 0.65
-	};
-		CongressionalLayer = L.geoJson(data, {style:countyStyle});
-  });
-	//getSenLayersGeoJson();
-	$.getJSON("./data/Sen2012.json", function(data) {
-		var countyStyle = {
-		"fill":0,
-    	"color": "#ff6600",
-    	"weight": 3,
-    	"opacity": 0.65
-	};
-		StateSenateLayer = L.geoJson(data, {style:countyStyle});
-		$('#loading').hide();
-  });
-
-  //$('#loading').hide();
-	
-
-
-});
