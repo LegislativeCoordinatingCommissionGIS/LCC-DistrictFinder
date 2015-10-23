@@ -135,25 +135,26 @@ function addMemberData(memberData){
 
     
     //add memberdata from map selection to member list
+    $('#housephoto').attr('src', 'images/House/tn_'+memberData.features[0].properties.district+'.jpg');
 	$('#housemember').html(memberData.features[0].properties.name + '<span class="party"> ('+memberData.features[0].properties.party+')</span>');
 	$('#housedistrict').html('MN House - ' + memberData.features[0].properties.district);
-	$('#housephoto').attr('src', 'images/House/tn_'+memberData.features[0].properties.district+'.jpg')
-
+	
+	$('#senatephoto').attr('src', 'images/Senate/'+memberData.features[1].properties.district+'.jpg');
 	$('#senatemember').html(memberData.features[1].properties.name + '<span class="party">  ('+memberData.features[1].properties.party+')</span>');
 	$('#senatedistrict').html('MN Senate - ' + memberData.features[1].properties.district);
-	$('#senatephoto').attr('src', 'images/Senate/'+memberData.features[1].properties.district+'.jpg')
-
+	
+	$('#ushousephoto').attr('src', 'images/USHouse/US'+memberData.features[2].properties.district+'.jpg');
 	$('#ushousemember').html(memberData.features[2].properties.name + ' <span class="party"> ('+memberData.features[2].properties.party+')</span>');
 	$('#ushousedistrict').html('U.S. House - ' + memberData.features[2].properties.district);
-	$('#ushousephoto').attr('src', 'images/USHouse/US'+memberData.features[2].properties.district+'.jpg')
-
+	
+	$('#ussenatephoto').attr('src', 'images/USSenate/USsenate1.jpg');
 	$('#ussenatemember').html('Amy Klobuchar <span class="party"> (DFL)</span>');
 	$('#ussenatedistrict').html('U.S. Senate' );
-	$('#ussenatephoto').attr('src', 'images/USSenate/USsenate1.jpg')
-
+	
+	$('#ussenatephoto2').attr('src', 'images/USSenate/USsenate2.jpg');
 	$('#ussenatemember2').html('Al Franken <span class="party"> (DFL)</span>');
 	$('#ussenatedistrict2').html('U.S. Senate');
-	$('#ussenatephoto2').attr('src', 'images/USSenate/USsenate2.jpg')
+	
 }
 
 function addMarker(e){
@@ -173,8 +174,15 @@ function addMarker(e){
 		map.removeLayer(mapDistrictsLayer);			
 	}
 
+	var myStyle = {
+    	"color": "#990033",
+    	"weight": 2,
+    	"opacity": 0.65
+	};
 	//add marker
-	pushPinMarker = new L.marker(e.latlng).addTo(map);
+	pushPinMarker = new L.marker(e.latlng, function(){
+		draggable:true
+	}).addTo(map);
 }
 
 //Show the district on the map

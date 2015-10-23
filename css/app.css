@@ -25,6 +25,29 @@
 	height:540px;
 	width:29%;
 }
+#mask {
+    position: absolute;
+    height: 84%;
+    top: 90px;
+    width: 99%;
+    z-index: 1001;
+    background-color: #e6e6e6;
+    border-top: 1px solid #a7a5a6;
+    border-right: 1px solid #a7a5a6;
+    border-bottom: 1px solid #a7a5a6;
+    border-left: 3px solid #a7a5a6;
+}
+#mask p{
+    margin-top: 35px;
+    padding:10px;
+}
+#mask ol{
+    font-size: 1.1em;
+}
+#mask img{
+    margin-left:31%;
+    margin-top:160px;
+}
 
 #map{
 	border: 1px solid #a7a5a6;
@@ -122,10 +145,12 @@ li .memberLink:hover{
 }
 
 #map_reset{
+    position:absolute;
+    right:0;
 	font-size: 11px;
+    top:45px;
 	/*position: relative;*/
-	top:44px;
-	text-align: right;
+
 }
 #map_reset .noref,#map_help .noref, #map_disclaimer .noref{
 	 color:#3b3b3b;

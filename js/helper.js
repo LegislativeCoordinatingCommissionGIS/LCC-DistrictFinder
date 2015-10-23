@@ -5,7 +5,8 @@ $( document ).ready(function() {
     //map navigation, this could become as witch
     map.on('click', function(e){
     	addMarker(e);
-		identifyDistrict(e);		
+		identifyDistrict(e);
+		$('#mask').hide();		
 	});
 
     //mobile search form #RWD
@@ -26,9 +27,24 @@ $( document ).ready(function() {
 
 	});
 	$( ".ussenate1, .ussenate2" ).click(function() {
-	  $(this).addClass('active').siblings().removeClass('active');
-	  //console.log($(this).attr('class'));
-	  showSenateDistrict();
+	 	 $(this).addClass('active').siblings().removeClass('active');
+	  	//console.log($(this).attr('class'));
+	  	//getCongLayersGeoJson();
+	  	if(typeof MinnesotaBoundaryLayer === 'undefined'){
+			$.getJSON("./data/Minnesota2015.json", function(data) {
+				var myStyle = {
+    				"color": "#231f20",
+    				"weight": 2,
+    				"opacity": 0.65
+				};
+				MinnesotaBoundaryLayer = L.geoJson(data, {style:myStyle});
+  			}).done(function(){
+  				showSenateDistrict();
+  			});
+  		} else {
+  			showSenateDistrict();
+  		}
+	  	
 
 	});
 
@@ -94,7 +110,7 @@ $( document ).ready(function() {
 	//map reset
 	$('#map_reset').click(function(){
 		map.setView(L.latLng(46.1706, -93.6678),6);
-		
+		$('#mask').show();
 		$( ".mnhouse, .mnsenate, .ushouse, .ussenate1, .ussenate2" ).removeClass('active');
 		$('.memberLink').hide();
 		$('#housemember, #senatemember, #ushousemember, #ussenatemember, #ussenatemember2').html('');
@@ -223,7 +239,7 @@ $(window).load(function(){
     	"opacity": 0.65
 	};
 		CongressionalLayer = L.geoJson(data, {style:countyStyle});
-  })
+  });
 	//getSenLayersGeoJson();
 	$.getJSON("./data/Sen2012.json", function(data) {
 		var countyStyle = {
@@ -233,17 +249,10 @@ $(window).load(function(){
     	"opacity": 0.65
 	};
 		StateSenateLayer = L.geoJson(data, {style:countyStyle});
+		$('#loading').hide();
   });
-	//getCongLayersGeoJson();
-	$.getJSON("./data/Minnesota2015.json", function(data) {
-		var myStyle = {
-    	"color": "#231f20",
-    	"weight": 2,
-    	"opacity": 0.65
-	};
-		MinnesotaBoundaryLayer = L.geoJson(data, {style:myStyle});
-  })
-  $('#loading').hide();
+
+  //$('#loading').hide();
 	
 
 

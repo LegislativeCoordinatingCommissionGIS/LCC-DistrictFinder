@@ -105,6 +105,14 @@
     </div>
 
 	<div id="sidebar">
+	    <div id="mask"> 
+	    	<p><strong>To begin your search: </strong></p>
+	    	<ol>
+	    		<li>Type a complete Minnesota address including city, state, and zip code.</li>
+	    		<li>Single-click on the map to select a search location. Please note the "Map Help" and "Disclaimer" links below the map.
+	    	</ol>
+	    	<!-- <img id="LCClogo" src="images/LCC-GIS.png"/> -->
+	    </div>
 		<div id="officials">
 			<ul >
 				<div class='search'>
