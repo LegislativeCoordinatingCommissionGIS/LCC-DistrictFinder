@@ -121,7 +121,7 @@
 				<div class='search'>
 					<li >
 						<div class='form-group'>
-							<form id='mainsearchform' onsubmit="geoCodeAddress(geocoder, map)">
+							<form id='mainsearchform' >
 				                <label for="geocode">Enter Address, City State, and Zipcode</label>
 				                <input id ="geocodeAddress" type="text" name="geocode"></input><button id="searchButton" class="searchButton">Search</button>
 

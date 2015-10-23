@@ -180,19 +180,18 @@ function submitQuery(){
 function geoCodeAddress(geocoder, resultsMap) {
   
   var address = document.getElementById('geocodeAddress').value;
-  console.log(address);
+  $("#loading").show();
   geocoder.geocode({'address': address}, function(results, status) {
     if (status === google.maps.GeocoderStatus.OK) {
-      //console.log(results[0].geometry.location);
-      //resultsMap.setView(L.latLng(results[0].geometry.location.lat(),results[0].geometry.location.lng()),6);
+
       var pos = {
         latlng: {lat:results[0].geometry.location.lat(),lng:results[0].geometry.location.lng()},
         lat:results[0].geometry.location.lat(),
         lng:results[0].geometry.location.lng()
       };
-      console.log(results[0].geometry.location.lat());
-      console.log(results[0].geometry.location.lng());
-      map.setView(L.latLng(results[0].geometry.location.lat(),results[0].geometry.location.lng()),16);
+      // console.log(pos.lat);
+      // console.log(pos.lng);
+      map.setView(L.latLng(pos.lat,pos.lng),16);
       addMarker(pos);
       identifyDistrict(pos);
     } else {
