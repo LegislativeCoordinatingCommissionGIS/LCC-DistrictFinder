@@ -156,33 +156,14 @@ function layerStyle(switchId){
 
 }
 
-function submitQuery(){
-	//get the form data
-	// var formdata = $("#mainsearchform").serializeArray();
- //    // console.log(formdata);
-	// //add to data request object
-	// var data = {
-	// 	table: "hse2012_1",
-	// 	fields: fields
-	// };
-	// formdata.forEach(function(dataobj){
-	// 	data[dataobj.name] = dataobj.value;
-	// });
- //    // console.log(formdata);
-	// //call the php script
-	// $.ajax("php/getSearchData.php", {
-	// 	data: data,
-	// 	success: function(result){
-	// 		mapData(result);
-	// 	}
-	// })
-};
 function geoCodeAddress(geocoder, resultsMap) {
-  
+
   var address = document.getElementById('geocodeAddress').value;
   $("#loading").show();
   geocoder.geocode({'address': address}, function(results, status) {
     if (status === google.maps.GeocoderStatus.OK) {
+      var precision = results[0].geometry.location_type;
+      var components = results[0].address_components;
 
       var pos = {
         latlng: {lat:results[0].geometry.location.lat(),lng:results[0].geometry.location.lng()},
@@ -194,12 +175,38 @@ function geoCodeAddress(geocoder, resultsMap) {
       map.setView(L.latLng(pos.lat,pos.lng),16);
       addMarker(pos);
       identifyDistrict(pos);
+      geocodeFeedback(precision, components);
     } else {
       alert('Geocode was not successful for the following reason: ' + status);
     }
   });
 }
 
+function geocodeFeedback(precision, components){
+	console.log(precision, 'location, center of ', components[0].types[0]);
+	var message = "";
+	var componentMap = {"street_number": "street", "postal_code": "zip code", "administrative_area_level_1": "state", "locality": "city", "administrative_area_level_2": "county", "route": "route", "intersection": "intersection", "political": "political division", "country": "country","administrative_area_level_3": "minor civil division", "administrative_area_level_4": 'minor civil division', "administrative_area_level_5": "minor civil division", "colloquial_area": "country", "neighborhood": "neighborhood", "premise": "building", "subpremise": "building", "natural_feature": "natural feature", "airport": "airport", "park": "park", "point_of_interest": "point of interest"};
+
+	if (precision == "ROOFTOP"){
+		message = "Address match!";
+		$('#geocodeFeedback').html(message).css('color', 'green');
+		$('#geocodeFeedback').show();
+	} else {
+		message = "Approximate location! Center of " + componentMap[components[0].types[0]];
+		$('#geocodeFeedback').html(message).css('color', 'red');
+		$('#geocodeFeedback').show();
+	}
+	
+}
+//submit search text box - removed button for formatting space
+function keypressInBox(e) {
+    var code = (e.keyCode ? e.keyCode : e.which);
+    if (code == 13) { //Enter keycode                        
+        e.preventDefault();
+        geoCodeAddress(geocoder, map);
+        //$("yourFormId").submit();
+    }
+};
 
 //I will use this for search as well.. the geocoder should return lat long, just pass it through and add marker
 function identifyDistrict(d){
@@ -226,32 +233,37 @@ function addMemberData(memberData){
 	// memberData.features[0] = MN House
 	// memberData.features[1] = MN Senate
 	// memberData.features[2] = US House
-    $('#mask').hide();
-    geojson = memberData;
-	//also show hyperlinks here
-    $('.memberLink').show();
-    
-    //add memberdata from map selection to member list
-    $('#housephoto').attr('src', 'images/House/tn_'+memberData.features[0].properties.district+'.jpg');
-	$('#housemember').html(memberData.features[0].properties.name + '<span class="party"> ('+memberData.features[0].properties.party+')</span>');
-	$('#housedistrict').html('MN House - ' + memberData.features[0].properties.district);
-	
-	$('#senatephoto').attr('src', 'images/Senate/'+memberData.features[1].properties.district+'.jpg');
-	$('#senatemember').html(memberData.features[1].properties.name + '<span class="party">  ('+memberData.features[1].properties.party+')</span>');
-	$('#senatedistrict').html('MN Senate - ' + memberData.features[1].properties.district);
-	
-	$('#ushousephoto').attr('src', 'images/USHouse/US'+memberData.features[2].properties.district+'.jpg');
-	$('#ushousemember').html(memberData.features[2].properties.name + ' <span class="party"> ('+memberData.features[2].properties.party+')</span>');
-	$('#ushousedistrict').html('U.S. House - ' + memberData.features[2].properties.district);
-	
-	$('#ussenatephoto').attr('src', 'images/USSenate/USsenate1.jpg');
-	$('#ussenatemember').html('Amy Klobuchar <span class="party"> (DFL)</span>');
-	$('#ussenatedistrict').html('U.S. Senate' );
-	
-	$('#ussenatephoto2').attr('src', 'images/USSenate/USsenate2.jpg');
-	$('#ussenatemember2').html('Al Franken <span class="party"> (DFL)</span>');
-	$('#ussenatedistrict2').html('U.S. Senate');
-	$("#loading").hide();
+	if (typeof memberData.features[0] !== "undefined"){
+	    $('#mask').hide();
+	    geojson = memberData;
+		//also show hyperlinks here
+	    $('.memberLink').show();
+	    
+	    //add memberdata from map selection to member list
+	    $('#housephoto').attr('src', 'images/House/tn_'+memberData.features[0].properties.district+'.jpg');
+		$('#housemember').html(memberData.features[0].properties.name + '<span class="party"> ('+memberData.features[0].properties.party+')</span>');
+		$('#housedistrict').html('MN House - ' + memberData.features[0].properties.district);
+		
+		$('#senatephoto').attr('src', 'images/Senate/'+memberData.features[1].properties.district+'.jpg');
+		$('#senatemember').html(memberData.features[1].properties.name + '<span class="party">  ('+memberData.features[1].properties.party+')</span>');
+		$('#senatedistrict').html('MN Senate - ' + memberData.features[1].properties.district);
+		
+		$('#ushousephoto').attr('src', 'images/USHouse/US'+memberData.features[2].properties.district+'.jpg');
+		$('#ushousemember').html(memberData.features[2].properties.name + ' <span class="party"> ('+memberData.features[2].properties.party+')</span>');
+		$('#ushousedistrict').html('U.S. House - ' + memberData.features[2].properties.district);
+		
+		$('#ussenatephoto').attr('src', 'images/USSenate/USsenate1.jpg');
+		$('#ussenatemember').html('Amy Klobuchar <span class="party"> (DFL)</span>');
+		$('#ussenatedistrict').html('U.S. Senate' );
+		
+		$('#ussenatephoto2').attr('src', 'images/USSenate/USsenate2.jpg');
+		$('#ussenatemember2').html('Al Franken <span class="party"> (DFL)</span>');
+		$('#ussenatedistrict2').html('U.S. Senate');
+		$("#loading").hide();
+	} else { 
+		$('#mask').show();
+		$('#loading').hide();
+	}
 	
 }
 
@@ -291,7 +303,7 @@ function showDistrict(div){
     	"weight": 2,
     	"opacity": 0.65
 	};
-    console.log(geojson.features[divmap[div]]);
+    //console.log(geojson.features[divmap[div]]);
     mapDistrictsLayer = L.geoJson(geojson.features[divmap[div]], {
 		style:myStyle,
 		onEachFeature: function (feature, layer) {

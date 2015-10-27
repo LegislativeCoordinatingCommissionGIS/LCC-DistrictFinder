@@ -6,6 +6,8 @@ $( document ).ready(function() {
     map.on('click', function(e){
     	addMarker(e);
 		identifyDistrict(e);
+		$('#geocodeFeedback').hide();
+		$("#geocodeAddress").val('');
 				
 	});
 
@@ -15,10 +17,12 @@ $( document ).ready(function() {
   //   } else {
 		// $('.smallscreen').hide();
   //   }
-    $("#searchButton").click(function(){
-    	//ar address = $( this ).val();
-    	geoCodeAddress(geocoder, map);
-    })
+    // $("#searchButton").click(function(event){
+    // 	event.preventDefault();
+    // 	//ar address = $( this ).val();
+    // 	geoCodeAddress(geocoder, map);
+    // });
+    $("#geocodeAddress").bind("keypress", {}, keypressInBox);
     //hide links - format is off until results come back
     $('.memberLink').hide();
 
@@ -86,6 +90,8 @@ $( document ).ready(function() {
 	$('#map_reset').click(function(){
 		map.setView(L.latLng(46.1706, -93.6678),6);
 		$('#mask').show();
+		$('#geocodeFeedback').hide();
+		$("#geocodeAddress").val('');
 		$( ".mnhouse, .mnsenate, .ushouse, .ussenate1, .ussenate2" ).removeClass('active');
 		$('.memberLink').hide();
 		$('#housemember, #senatemember, #ushousemember, #ussenatemember, #ussenatemember2').html('');

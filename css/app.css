@@ -74,6 +74,10 @@ ul{
 .party{
     font-weight: normal;
 }
+#geocodeFeedback{
+    font-size: 12px;
+    text-align: right;
+}
 
 .search,.mnhouse, .mnsenate, .ushouse, .ussenate1, .ussenate2 {
 	height:86px;

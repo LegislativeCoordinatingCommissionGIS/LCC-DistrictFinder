@@ -21,7 +21,7 @@
 	<link rel="stylesheet" href="css/app.css" />
 	<script src="http://cdn.leafletjs.com/leaflet-0.7.5/leaflet.js"></script>
 
-	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCU7Dy7nV2cJ5md6qSnSTeNvFCSbLQkEP0" >
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyChSwvaRkZwn6TkvsyqAmgXhnwei_O0Fmo" >
     </script>
 	<!--<script src="http://cdn.jsdelivr.net/leaflet.esri/1.0.0/esri-leaflet.js"></script>-->
 
@@ -111,7 +111,7 @@
 	    <div id="mask"> 
 	    	<p><strong>To begin your search: </strong></p>
 	    	<ol>
-	    		<li>Type a complete Minnesota address including city, state, and zip code.</li>
+	    		<li>For best results, type a complete Minnesota address including city, state, and zip code.</li>
 	    		<li>Single-click on the map to select a search location. Please note the "Map Help" and "Disclaimer" links below the map.
 	    	</ol>
 	    	<!-- <img id="LCClogo" src="images/LCC-GIS.png"/> -->
@@ -121,9 +121,11 @@
 				<div class='search'>
 					<li >
 						<div class='form-group'>
-							<form id='mainsearchform' >
+							<form id='mainsearchform' onsubmit="geoCodeAddress()">
 				                <label for="geocode">Enter Address, City State, and Zipcode</label>
-				                <input id ="geocodeAddress" type="text" name="geocode"></input><button id="searchButton" class="searchButton">Search</button>
+				                <input id ="geocodeAddress" type="text" name="geocode"></input>
+				                <p id="geocodeFeedback"></p>
+				                <!-- <button id="searchButton" class="searchButton">Search</button> -->
 
 				            </form>
 				        </div>
