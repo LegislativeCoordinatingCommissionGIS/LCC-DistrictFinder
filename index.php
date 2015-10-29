@@ -21,7 +21,7 @@
 	<link rel="stylesheet" href="css/app.css" />
 	<script src="http://cdn.leafletjs.com/leaflet-0.7.5/leaflet.js"></script>
 
-	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyChSwvaRkZwn6TkvsyqAmgXhnwei_O0Fmo" >
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAQIoJxLHAWI1IW4sqtUtD8BrrLHja56ZQ" >
     </script>
 	<!--<script src="http://cdn.jsdelivr.net/leaflet.esri/1.0.0/esri-leaflet.js"></script>-->
 
