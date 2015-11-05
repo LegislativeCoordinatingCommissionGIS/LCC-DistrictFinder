@@ -8,8 +8,27 @@ $( document ).ready(function() {
 		identifyDistrict(e);
 		$('#geocodeFeedback').hide();
 		$("#geocodeAddress").val('');
+
+		slideSidebar()
+
+		// var sidebar = $('#sidebar').css('left');
+		// console.log(sidebar);
+		// if (sidebar == '0px'){
+		// 	console.log('0px');
+		// 	// $('#toggleSidebar').show();
+		// 	// $('#sidebar').css('left', 0);
+		// } else {
+		// 	console.log('NOT 0px');
+		// 	$('#toggleSidebar').show();
+		// 	//$('#sidebar').css('left', '0px');
+		// 	$('#sidebar').animate({ 'left': '0px' }, 500, 'easeOutQuad');
+		// }
 				
 	});
+	$('#return').click(function(e){
+		e.preventDefault();
+		slideSidebar()
+	})
 
     //mobile search form #RWD
   //   if ($(window).width() < 417){

@@ -106,20 +106,8 @@
 			<div id='switchLabel'>Satelite Imagery</div>
     	</div>
     </div>
-
-	<div id="sidebar">
-	    <div id="mask"> 
-	    	<p><strong>To begin your search: </strong></p>
-	    	<ol>
-	    		<li>For best results, type a complete Minnesota address including city, state, and zip code.</li>
-	    		<li>Single-click on the map to select a search location. Please note the "Map Help" and "Disclaimer" links below the map.
-	    	</ol>
-	    	<!-- <img id="LCClogo" src="images/LCC-GIS.png"/> -->
-	    </div>
-		<div id="officials">
-			<ul >
-				<div class='search'>
-					<li >
+ <div class='search'>
+					
 						<div class='form-group'>
 							<form id='mainsearchform' onsubmit="geoCodeAddress()">
 				                <label for="geocode">Enter Address, City State, and Zipcode</label>
@@ -129,59 +117,74 @@
 
 				            </form>
 				        </div>
-			        </li>	
-		        </div> 
+			        	
+		        </div>
+	<div id="sidebar">
+	    <div id="toggleSidebar"><a id='return'>Return to Map</a></div>
+	    <div id="mask"> 
+	    	<p><strong>To begin your search: </strong></p>
+	    	<ol>
+	    		<li>For best results, type a complete Minnesota address including city, state, and zip code.</li>
+	    		<li>Single-click on the map to select a search location. Please note the "Map Help" and "Disclaimer" links below the map.
+	    	</ol>
+	
+	    </div>
+	   
+
+		<div id="officials">
+			
+				 
 		        <div class='mnhouse'>        	
-			        <li >
+			        
 			        	<img id='housephoto' class='mnhouse_img' />
-			        	<ul class="membersublist">
-			        		 <li class="memberLink"><a href="#" target='_blank' ><i class="fa fa-external-link"></i></a>   	
-			        		<li id='housemember' class='lcc_gis_member'></li>
-			        		<li id='housedistrict' class='lcc_gis_memberdistrict'></li>
-			        	</ul>
-			        </li>
+			        	<div class="membersublist">
+			        		 <div class="memberLink"><a href="#" target='_blank' ><i class="fa fa-external-link"></i></a></div>   	
+			        		<div id='housemember' class='lcc_gis_member'></div>
+			        		<div id='housedistrict' class='lcc_gis_memberdistrict'></div>
+			        	</div>
+			        
 			    </div>
 			    <div class='mnsenate'>
-			        <li >
+			        
 			        	<img id='senatephoto' class='mnsenate_img'/>
-			        	<ul class="membersublist">
-			        		<li class="memberLink"><a href="#" target='_blank' ><i class="fa fa-external-link"></i></a>
-			        		<li id='senatemember' class='lcc_gis_member'></li>
-			        		<li id='senatedistrict' class='lcc_gis_memberdistrict'></li>
-			        	</ul>
-			        </li>
+			        	<div class="membersublist">
+			        		<div class="memberLink"><a href="#" target='_blank' ><i class="fa fa-external-link"></i></a></div>
+			        		<div id='senatemember' class='lcc_gis_member'></div>
+			        		<div id='senatedistrict' class='lcc_gis_memberdistrict'></div>
+			        	</div>
+			        
 			    </div>
 			    <div class='ushouse'>
-			        <li >
+			        
 			        	<img id='ushousephoto' class='ushouse_img'  />
-			        	<ul class="membersublist">
-			        		<li class="memberLink"><a href="#" target='_blank' ><i class="fa fa-external-link"></i></a>
-			        		<li id='ushousemember'  class='lcc_gis_member'></li>
-			        		<li id='ushousedistrict' class='lcc_gis_memberdistrict'></li>
-			        	</ul>
-			        </li>
+			        	<div class="membersublist">
+			        		<div class="memberLink"><a href="#" target='_blank' ><i class="fa fa-external-link"></i></a></div>
+			        		<div id='ushousemember'  class='lcc_gis_member'></div>
+			        		<div id='ushousedistrict' class='lcc_gis_memberdistrict'></div>
+			        	</div>
+			        
 			    </div>
 			    <div class='ussenate1'>
-			        <li >
+			        
 			        	<img id='ussenatephoto' class='ussenate1_img' />
-			        	<ul >
-			        		<li class="memberLink"><a href="#" target='_blank' ><i class="fa fa-external-link"></i></a>
-			        		<li id='ussenatemember' class='lcc_gis_member'></li>
-			        		<li id='ussenatedistrict' class='lcc_gis_memberdistrict'></li>
-			        	</ul>
-			        </li>
+			        	<div >
+			        		<div class="memberLink"><a href="#" target='_blank' ><i class="fa fa-external-link"></i></a></div>
+			        		<div id='ussenatemember' class='lcc_gis_member'></div>
+			        		<div id='ussenatedistrict' class='lcc_gis_memberdistrict'></div>
+			        	</div>
+			       
 			    </div>
 			    <div class='ussenate2'>
-			        <li >
+			        
 			        	<img id='ussenatephoto2' class='ussenate2_img' />
-			        	<ul class="membersublist">
-			        		<li class="memberLink"><a href="#" target='_blank' ><i class="fa fa-external-link"></i></a>
-			        		<li id='ussenatemember2' class='lcc_gis_member'></li>
-			        		<li id='ussenatedistrict2' class='lcc_gis_memberdistrict'></li>
-			        	</ul>
-			        </li>
+			        	<div class="membersublist">
+			        		<div class="memberLink"><a href="#" target='_blank' ><i class="fa fa-external-link"></i></a></div>
+			        		<div id='ussenatemember2' class='lcc_gis_member'></div>
+			        		<div id='ussenatedistrict2' class='lcc_gis_memberdistrict'></div>
+			        	</div>
+			        
 			    </div>
-		    </ul>
+		    
 		</div>
 	</div>
     
@@ -191,9 +194,9 @@
 	<div id='map_help'>
 		<a class='noref' id='modal' data-popup-open="popup-1"><i class="fa fa-info-circle"></i> Help</a>
 	</div>
-	<div id='map_search_results_metadata'>
+	<!-- <div id='map_search_results_metadata'>
 		Search Results for Latitude: 44.9374, Longitude: -92.9778
-	</div>
+	</div> -->
 	<div id='map_disclaimer'>
 		<a class='noref' data-popup-open="popup-2">Disclaimer <i class="fa fa-exclamation-triangle"></i> </a>
 	</div>

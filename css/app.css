@@ -1,6 +1,6 @@
 /*override leg css*/
 .leg_PageContent{
-	min-height: 625px;
+	max-height: 625px;
 	font-family: arial;
 	color:#3b3b3b;
 	/*margin:0;*/
@@ -21,15 +21,15 @@
 
 /*application css*/
 #sidebar{
-	position:absolute;
+	position:relative;
 	height:540px;
-	width:29%;
+	width:285px;
 }
 #mask {
     position: absolute;
     height: 84%;
-    top: 90px;
-    width: 99%;
+    top: 0;
+    width: 99.%;
     z-index: 1001;
     background-color: #e6e6e6;
     border-top: 1px solid #a7a5a6;
@@ -50,6 +50,10 @@
 }
 
 #map{
+    /*position:relative;*/
+    /*left:292px;*/
+    width:70%;
+    top:-631px;
 	border: 1px solid #a7a5a6;
 	float: right;
 	z-index: 0;
@@ -78,8 +82,17 @@ ul{
     font-size: 12px;
     text-align: right;
 }
-
-.search,.mnhouse, .mnsenate, .ushouse, .ussenate1, .ussenate2 {
+.search{
+    position:relative;
+    height:86px;
+    background-color: #e6e6e6;
+    border-top: 1px solid #a7a5a6;
+    border-right: 1px solid #a7a5a6;
+    border-bottom: 1px solid #a7a5a6;
+    border-left: 3px solid #a7a5a6;
+    width:282px;
+}
+.mnhouse, .mnsenate, .ushouse, .ussenate1, .ussenate2 {
 	height:86px;
 	background-color: #e6e6e6;
 	border-top: 1px solid #a7a5a6;
@@ -149,10 +162,10 @@ li .memberLink:hover{
 }
 
 #map_reset{
-    position:absolute;
-    right:0;
+    position:relative;
+    text-align: right;
 	font-size: 11px;
-    top:45px;
+    top:16px;
 	/*position: relative;*/
 
 }
@@ -169,14 +182,14 @@ li .memberLink:hover{
 
 #map_help{
 	font-size: 11px;
-	position: absolute;
-	bottom:13px;
+	position: relative;
+	top:-75px;
 	/*top:620px;*/
 	left:30%;
 }
 #map_search_results_metadata{
 	font-size: 11px;
-	position: absolute;
+	position: relative;
 	bottom:0;
 	width:100%;
 	padding-left: 15%;
@@ -187,9 +200,9 @@ li .memberLink:hover{
 
 #map_disclaimer{
 	font-size: 11px;
-	position: absolute;
+	position: relative;
 	/*top:620px;*/
-	bottom:13px;
+	top:-75px;
 	right:0;
 }
 
@@ -423,38 +436,47 @@ li .memberLink:hover{
     	top:24px;
     	width:89%;
     }
+    #toggleSidebar{
+        display:none;
+    }
  
 /*Begin Responsive Web Design*/
 
-@media screen and (min-width: 417px) and (max-width: 500px) {
-    #officials img {
-        display:none;
-        /*max-height: 50px;*/
-    }
-    .lcc_gis_member{
-    	text-align: left;
-    	left:0;
-    	bottom:22px;
-    }
-    .lcc_gis_memberdistrict{
-    	text-align: left;
-    	left:0;
-    	bottom: 22px;
-    }
-    .memberLink{
-    	right:13px;
-    	bottom:42px;
-    }
-    .search label{
-    	font-size: 	11px;
-    }
-    .form-group{
-    	padding:0;
-    }
-    .searchButton{
-    	position:relative;
-    	bottom:4px;
-    	right:-72px;
+/*@media screen and (min-width: 417px) and (max-width: 500px) {*/
+@media screen and (max-width: 500px) {
+  .search{
+    background-color:white;
+    top:-60px;
+    width:100%;
+    border:none;
+    height:50px;
+  }
+  #map{
+    /*position:absolute;*/
+    top:-570px;
+    width:99%;
+  }
+  #triangle-topright{
+    top:81px;
+  }
+  #sidebar{
+    top:-30px;
+    left:-100%;
+    z-index:101;
+    width:100%;
+    transition: all 0.5s ease-in 0s;
+    background-color:white;
+  }
+  #sidebar.animate{
+    left: 0px;
+    transition: all 0.5s ease-out 0s;
+    /*width: 250px;*/
+}
+  #map_layers{
+    top:81px;
+  }
+  #toggleSidebar{
+        display:block;
     }
 }
 /*@media screen and (max-width: 416px) {

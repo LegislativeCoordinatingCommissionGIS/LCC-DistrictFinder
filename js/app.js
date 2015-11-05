@@ -12,7 +12,7 @@ var geocoder = null;
 //Set initial basemap with initialize() - called in helper.js
 function initialize(){
 	$("#map").height('542px');
-	$("#map").width('70%')
+	// $("#map").width('100%')
 
 	map = L.map("map", {
 		center: L.latLng(46.1706, -93.6678),
@@ -241,8 +241,8 @@ function addMemberData(memberData){
 	    
 	    //add memberdata from map selection to member list
 	    $('#housephoto').attr('src', 'images/House/tn_'+memberData.features[0].properties.district+'.jpg');
-		$('#housemember').html(memberData.features[0].properties.name + '<span class="party"> ('+memberData.features[0].properties.party+')</span>');
-		$('#housedistrict').html('MN House - ' + memberData.features[0].properties.district);
+		$('#housemember').html(memberData.features[0].properties.name + '<span class="party"> ('+memberData.features[0].properties.party+')</span>').delay("slow").fadeIn();
+		$('#housedistrict').html('MN House - ' + memberData.features[0].properties.district).delay("slow").fadeIn();
 		
 		$('#senatephoto').attr('src', 'images/Senate/'+memberData.features[1].properties.district+'.jpg');
 		$('#senatemember').html(memberData.features[1].properties.name + '<span class="party">  ('+memberData.features[1].properties.party+')</span>');
@@ -289,6 +289,8 @@ function addMarker(e){
 
 //Show the district on the map
 function showDistrict(div){
+	slideSidebar();
+	//$('#toggleSidebar').show();
 	//div is the class name of the active member
 	divmap = {"mnhouse active":0, "mnsenate active":1, "ushouse active":2};
 
@@ -319,7 +321,8 @@ function showDistrict(div){
 }
 
 function showSenateDistrict(div){
-
+    slideSidebar();
+    //$('#toggleSidebar').show();
 	//remove preveious district layers.
 	if (typeof mapDistrictsLayer !== "undefined" ){ 
 		map.removeLayer(mapDistrictsLayer);			
@@ -327,5 +330,15 @@ function showSenateDistrict(div){
     
     mapDistrictsLayer = MinnesotaBoundaryLayer.addTo(map);
 	map.fitBounds(mapDistrictsLayer.getBounds())
+}
+
+function slideSidebar(){
+	if ($('#sidebar').hasClass('animate')){
+			$('#sidebar').removeClass('animate');
+			$('#sidebar').animate({ 'left': '-100%' }, 500, 'easeOutQuad');
+		} else {
+			$('#sidebar').addClass('animate');
+			$('#sidebar').animate({ 'left': '0px' }, 500, 'easeInQuad');
+		}
 }
 
