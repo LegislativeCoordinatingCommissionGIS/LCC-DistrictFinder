@@ -126,24 +126,26 @@ ul{
 .lcc_gis_member{
 	position:relative;
 	font-weight: bold;
-	bottom: 80px;
+	/*bottom: 80px;*/
 	left:25px;
 	text-align: center;
 }
 .lcc_gis_memberdistrict{
 	position: relative;
 	left: 25px;
-	bottom:75px;
+	/*bottom:75px;*/
 	text-align: center;
 }
 #officials img{
+    position: relative;
 	max-height: 84px;
 	max-width: 65%;
+    top: -39px;
 }
 .memberLink{
 	position: relative;
 	right: 10px;
-	bottom:80px;
+	/*bottom:80px;*/
 	text-align: right;
 }
 li .memberLink:hover{

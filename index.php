@@ -136,52 +136,57 @@
 				 
 		        <div class='mnhouse'>        	
 			        
-			        	<img id='housephoto' class='mnhouse_img' />
+			        	
 			        	<div class="membersublist">
 			        		 <div class="memberLink"><a href="#" target='_blank' ><i class="fa fa-external-link"></i></a></div>   	
 			        		<div id='housemember' class='lcc_gis_member'></div>
 			        		<div id='housedistrict' class='lcc_gis_memberdistrict'></div>
 			        	</div>
+			        	<img id='housephoto' class='mnhouse_img' />
 			        
 			    </div>
 			    <div class='mnsenate'>
 			        
-			        	<img id='senatephoto' class='mnsenate_img'/>
+			        	
 			        	<div class="membersublist">
 			        		<div class="memberLink"><a href="#" target='_blank' ><i class="fa fa-external-link"></i></a></div>
 			        		<div id='senatemember' class='lcc_gis_member'></div>
 			        		<div id='senatedistrict' class='lcc_gis_memberdistrict'></div>
 			        	</div>
+			        	<img id='senatephoto' class='mnsenate_img'/>
 			        
 			    </div>
 			    <div class='ushouse'>
 			        
-			        	<img id='ushousephoto' class='ushouse_img'  />
+			        	
 			        	<div class="membersublist">
 			        		<div class="memberLink"><a href="#" target='_blank' ><i class="fa fa-external-link"></i></a></div>
 			        		<div id='ushousemember'  class='lcc_gis_member'></div>
 			        		<div id='ushousedistrict' class='lcc_gis_memberdistrict'></div>
 			        	</div>
+			        	<img id='ushousephoto' class='ushouse_img'  />
 			        
 			    </div>
 			    <div class='ussenate1'>
 			        
-			        	<img id='ussenatephoto' class='ussenate1_img' />
+			        	
 			        	<div >
 			        		<div class="memberLink"><a href="#" target='_blank' ><i class="fa fa-external-link"></i></a></div>
 			        		<div id='ussenatemember' class='lcc_gis_member'></div>
 			        		<div id='ussenatedistrict' class='lcc_gis_memberdistrict'></div>
 			        	</div>
+			        	<img id='ussenatephoto' class='ussenate1_img' />
 			       
 			    </div>
 			    <div class='ussenate2'>
 			        
-			        	<img id='ussenatephoto2' class='ussenate2_img' />
+			        	
 			        	<div class="membersublist">
 			        		<div class="memberLink"><a href="#" target='_blank' ><i class="fa fa-external-link"></i></a></div>
 			        		<div id='ussenatemember2' class='lcc_gis_member'></div>
 			        		<div id='ussenatedistrict2' class='lcc_gis_memberdistrict'></div>
 			        	</div>
+			        	<img id='ussenatephoto2' class='ussenate2_img' />
 			        
 			    </div>
 		    
