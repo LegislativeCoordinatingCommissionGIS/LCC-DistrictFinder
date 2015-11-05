@@ -428,7 +428,8 @@ li .memberLink:hover{
 
 @media screen and (min-width: 417px) and (max-width: 500px) {
     #officials img {
-        max-height: 50px;
+        display:none;
+        /*max-height: 50px;*/
     }
     .lcc_gis_member{
     	text-align: left;
@@ -456,7 +457,7 @@ li .memberLink:hover{
     	right:-72px;
     }
 }
-@media screen and (max-width: 416px) {
+/*@media screen and (max-width: 416px) {
 	#officials img,.search {
         visibility: hidden;
     }
@@ -517,4 +518,4 @@ li .memberLink:hover{
     .form-group input{
     	width:85%;
     }
-}
+}*/
