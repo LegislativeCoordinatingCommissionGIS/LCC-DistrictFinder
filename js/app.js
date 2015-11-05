@@ -196,6 +196,7 @@ function geocodeFeedback(precision, components){
 		$('#geocodeFeedback').html(message).css('color', 'red');
 		$('#geocodeFeedback').show();
 	}
+	slideSidebar();
 	
 }
 //submit search text box - removed button for formatting space

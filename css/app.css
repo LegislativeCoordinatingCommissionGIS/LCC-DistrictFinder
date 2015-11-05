@@ -68,9 +68,7 @@
 .leaflet-container{
     cursor: crosshair;
 }
-#officials ul{
-	margin-left: 0;
-}
+
 
 ul{
 	list-style-type: none;	
@@ -136,11 +134,19 @@ ul{
 	/*bottom:75px;*/
 	text-align: center;
 }
-#officials img{
+#officials img {
+/*    border-top: 1px solid #a7a5a6;
+    border-bottom: 1px solid #a7a5a6;*/
+    height: 100%;
+    min-height: 87px;
+    max-width: 65%;
+/*    padding: 1px;*/
     position: relative;
-	max-height: 84px;
-	max-width: 65%;
-    top: -39px;
+    top: -56px;
+}
+
+.membersublist{
+    margin-top:15px;
 }
 .memberLink{
 	position: relative;
@@ -167,7 +173,7 @@ li .memberLink:hover{
     position:relative;
     text-align: right;
 	font-size: 11px;
-    top:16px;
+    bottom:8px;
 	/*position: relative;*/
 
 }
@@ -184,10 +190,11 @@ li .memberLink:hover{
 
 #map_help{
 	font-size: 11px;
-	position: relative;
-	top:-75px;
+	position: absolute;
+	bottom:0;
 	/*top:620px;*/
 	left:30%;
+    z-index: 101;
 }
 #map_search_results_metadata{
 	font-size: 11px;
@@ -202,10 +209,10 @@ li .memberLink:hover{
 
 #map_disclaimer{
 	font-size: 11px;
-	position: relative;
-	/*top:620px;*/
-	top:-75px;
+    position: absolute;
+    bottom:0;
 	right:0;
+    z-index: 101;
 }
 
 #triangle-topright{
@@ -455,8 +462,9 @@ li .memberLink:hover{
   }
   #map{
     /*position:absolute;*/
-    top:-570px;
+    top:-638px;
     width:99%;
+    height:500px;
   }
   #triangle-topright{
     top:81px;
@@ -468,17 +476,28 @@ li .memberLink:hover{
     width:100%;
     transition: all 0.5s ease-in 0s;
     background-color:white;
+    height:609px;
   }
   #sidebar.animate{
     left: 0px;
     transition: all 0.5s ease-out 0s;
     /*width: 250px;*/
-}
+  }
   #map_layers{
     top:81px;
   }
   #toggleSidebar{
         display:block;
+    }
+  .popup{
+        width:100%;
+        height: 82%;
+    }
+    #geocodeFeedback{
+        text-align: center;
+    }
+    #map_reset{
+        bottom:-10px;
     }
 }
 /*@media screen and (max-width: 416px) {

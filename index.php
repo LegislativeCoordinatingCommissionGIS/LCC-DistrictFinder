@@ -170,7 +170,7 @@
 			    <div class='ussenate1'>
 			        
 			        	
-			        	<div >
+			        	<div class="membersublist">
 			        		<div class="memberLink"><a href="#" target='_blank' ><i class="fa fa-external-link"></i></a></div>
 			        		<div id='ussenatemember' class='lcc_gis_member'></div>
 			        		<div id='ussenatedistrict' class='lcc_gis_memberdistrict'></div>
