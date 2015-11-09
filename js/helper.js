@@ -9,7 +9,7 @@ $( document ).ready(function() {
 		$('#geocodeFeedback').hide();
 		$("#geocodeAddress").val('');
 
-		slideSidebar()
+		slideSidebar();
 
 		// var sidebar = $('#sidebar').css('left');
 		// console.log(sidebar);
@@ -25,10 +25,18 @@ $( document ).ready(function() {
 		// }
 				
 	});
-	$('#return').click(function(e){
+
+	$('#toggleSidebar').click(function(e){
 		e.preventDefault();
-		slideSidebar()
-	})
+		slideSidebar();
+	});
+
+	$('#pull-out').click(function(e){
+		slideSidebar();
+	});
+	$('#pull-in').click(function(e){
+		slideSidebar();
+	});
 
     //mobile search form #RWD
   //   if ($(window).width() < 417){
@@ -44,7 +52,10 @@ $( document ).ready(function() {
     $("#geocodeAddress").bind("keypress", {}, keypressInBox);
     //hide links - format is off until results come back
     $('.memberLink').hide();
-
+    $('#searchButton').click(function(e){
+    	e.preventDefault();
+    	geoCodeAddress(geocoder, map);
+    })
 	//Members UI click turn red with 'active' class
 	$( ".mnhouse, .mnsenate, .ushouse" ).click(function() {
 	  $(this).addClass('active').siblings().removeClass('active');

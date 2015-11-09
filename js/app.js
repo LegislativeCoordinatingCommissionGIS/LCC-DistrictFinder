@@ -11,7 +11,7 @@ var geocoder = null;
 
 //Set initial basemap with initialize() - called in helper.js
 function initialize(){
-	$("#map").height('542px');
+	$("#map").height('544px');
 	// $("#map").width('100%')
 
 	map = L.map("map", {
@@ -20,28 +20,7 @@ function initialize(){
 	});
     geocoder = new google.maps.Geocoder;
 
-// Try HTML5 geolocation.
-  // if (navigator.geolocation) {
-  //   navigator.geolocation.getCurrentPosition(function(position) {
-  //     var pos = {
-  //       latlng: {lat:position.coords.latitude,lng:position.coords.longitude},
-  //       lat:position.coords.latitude,
-  //       lng:position.coords.longitude
-  //     };
 
-  //     //infoWindow.setPosition(pos);
-  //     //infoWindow.setContent('Location found.');
-  //     //addMarker(pos);
-	 //  //identifyDistrict(pos);
-	 //  map.setView(L.latLng(pos.lat, pos.lng),13);
-
-  //   }, function() {
-  //     handleLocationError(true, infoWindow, map.getCenter());
-  //   });
-  // } else {
-  //   // Browser doesn't support Geolocation
-  //   handleLocationError(false, infoWindow, map.getCenter());
-  // }
 
 
 	vectorBasemap = L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoiY2NhbnRleSIsImEiOiJjaWVsdDNubmEwMGU3czNtNDRyNjRpdTVqIn0.yFaW4Ty6VE3GHkrDvdbW6g', {
@@ -64,14 +43,6 @@ function initialize(){
 	toggleBaseLayers($('#satellitonoffswitch'),vectorBasemap,streetsBasemap);
 
 };
-
-
-// function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-//   infoWindow.setPosition(pos);
-//   infoWindow.setContent(browserHasGeolocation ?
-//                         'Error: The Geolocation service failed.' :
-//                         'Error: Your browser doesn\'t support geolocation.');
-// }
 
 //toggle basemap layers
 function toggleBaseLayers(el, layer1, layer2){
@@ -342,4 +313,35 @@ function slideSidebar(){
 			$('#sidebar').animate({ 'left': '0px' }, 500, 'easeInQuad');
 		}
 }
+
+function zoomToLocation() {
+// Try HTML5 geolocation.
+  // if (navigator.geolocation) {
+  //   navigator.geolocation.getCurrentPosition(function(position) {
+  //     var pos = {
+  //       latlng: {lat:position.coords.latitude,lng:position.coords.longitude},
+  //       lat:position.coords.latitude,
+  //       lng:position.coords.longitude
+  //     };
+
+  //     //infoWindow.setPosition(pos);
+  //     //infoWindow.setContent('Location found.');
+  //     //addMarker(pos);
+	 //  //identifyDistrict(pos);
+	 //  map.setView(L.latLng(pos.lat, pos.lng),13);
+
+  //   }, function() {
+  //     handleLocationError(true, infoWindow, map.getCenter());
+  //   });
+  // } else {
+  //   // Browser doesn't support Geolocation
+  //   handleLocationError(false, infoWindow, map.getCenter());
+  // }
+}
+// function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+//   infoWindow.setPosition(pos);
+//   infoWindow.setContent(browserHasGeolocation ?
+//                         'Error: The Geolocation service failed.' :
+//                         'Error: Your browser doesn\'t support geolocation.');
+// }
 

@@ -48,6 +48,9 @@
     margin-left:31%;
     margin-top:160px;
 }
+#mask li{
+        padding:7px;
+    }
 
 #map{
     /*position:relative;*/
@@ -91,7 +94,7 @@ ul{
     width:282px;
 }
 .mnhouse, .mnsenate, .ushouse, .ussenate1, .ussenate2 {
-	height:86px;
+	height:87px;
 	background-color: #e6e6e6;
 	border-top: 1px solid #a7a5a6;
 	border-right: 1px solid #a7a5a6;
@@ -295,19 +298,9 @@ li .memberLink:hover{
     outline: 0 none;
 }
 .searchButton{
-	position:absolute;
-	right:2%;
-	top:11%;
-	background-color: #606060;
-	border: 1px solid #3b3b3b;
-	border-radius: 3px;
-	padding: 1px;
-	color: white;
+    display:none;
 }
-.searchButton:hover{
-	background-color: #919191;
-	cursor: pointer;
-}
+
 #switchBasemap{
 	position:relative;
 	left:36%;
@@ -448,10 +441,16 @@ li .memberLink:hover{
     #toggleSidebar{
         display:none;
     }
+    /*#pull-out{
+        display:none;
+    }*/
+    #pull-in{
+        display:none;
+    }
+
+
  
 /*Begin Responsive Web Design*/
-
-/*@media screen and (min-width: 417px) and (max-width: 500px) {*/
 @media screen and (max-width: 500px) {
   .search{
     background-color:white;
@@ -460,6 +459,20 @@ li .memberLink:hover{
     border:none;
     height:50px;
   }
+  .form-group input{
+    width:94%;
+  }
+  #searchButton{
+    display:block;
+    position:absolute;
+    top:20px;
+    right:0;
+    padding:6px;
+    background-color: #3b3b3b;
+    color:#e6e6e6;
+    border:none;
+    border-radius:2px;
+}
   #map{
     /*position:absolute;*/
     top:-638px;
@@ -488,6 +501,11 @@ li .memberLink:hover{
   }
   #toggleSidebar{
         display:block;
+        padding:5px;
+        background-color: #3b3b3b;
+        text-align:center;
+        margin:0;
+        color:#e6e6e6;
     }
   .popup{
         width:100%;
@@ -499,66 +517,42 @@ li .memberLink:hover{
     #map_reset{
         bottom:-10px;
     }
+    #pull-out{
+        border-bottom-left-radius: 0;
+        border-top-left-radius: 0;
+        border-bottom-right-radius: 5px;
+        border-top-right-radius: 5px;
+        background-color: #3b3b3b;
+        left: 0;
+        padding: 30px 15px;
+        position: absolute;
+        top: 50%;
+        z-index: 1;
+        color: #8d8d8d;
+    }
+    #pull-in{
+        display:block;
+        position:absolute;
+        right:15px;
+        top: 10px;
+        background-color: #3b3b3b;
+        color:#e6e6e6;
+        padding:7px 10px 7px 7px;
+        border-radius:5px;
+    }
 }
-/*@media screen and (max-width: 416px) {
-	#officials img,.search {
-        visibility: hidden;
-    }
-    .smallscreen{
-    	top:17px;
-    }
-    #sidebar{
-    	top:-15px;
-    }
-    .lcc_gis_member{
-    	bottom:56px;
-    	left:-3px;
-    }
-    .lcc_gis_memberdistrict{
-    	bottom:51px;
-    	left:-3px;
-    }
-    .memberLink{
-    	bottom:65px;
-    }
-    .mnhouse, .mnsenate, .ushouse, .ussenate1, .ussenate2 {
-    	height:104px;
-    }
-    #map_title{
-    	position: relative;
-    	top:-22px;
-    }
-    #map_layers{
-    	top:76px;
-    	height:543px;
-    }
+@media screen and (min-width: 501px) and (max-width: 800px) {
+/*    #mask{
+        background-color:red;        
+    }*/
     #map{
-    	top:15px;
+        /* Firefox */
+        width: -moz-calc(99% - 286px);
+        /* WebKit */
+        width: -webkit-calc(99% - 286px);
+        /* Opera */
+        width: -o-calc(99% - 286px);
+        /* Standard */
+        width: calc(99% - 286px);
     }
-    #triangle-topright{
-    	top:77px;
-    }
-    #map_reset{
-    	position: relative;
-    	top:14px;
-    }
-    .leg_PageContent{
-    	min-height: 640px;
-    }
-    #map_disclaimer, #map_help{
-    	bottom:17px;
-    }
-    #map_search_results_metadata{
-    	bottom:1px;
-    	padding:0;
-    }
-    .smallscreen .searchButton{
-    	position: absolute;
-    	height: 20px;
-    	right:-16px;
-    	top:22px;
-    }
-    .form-group input{
-    	width:85%;
-    }
-}*/
+}

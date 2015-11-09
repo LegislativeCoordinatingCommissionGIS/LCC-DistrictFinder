@@ -31,9 +31,10 @@
 	<div id='map_reset'><a class='noref'>Reset Map <i class="fa fa-refresh"></i></a></div>
     <a ><div id="triangle-topright"><i class="fa fa-map fa-lg"></i></div></a>
     <img id="loading" src="images/loading.gif"/>
+
     <div id="map_layers">
     	<div id="map_layers_content">
-    		<div id="map_layers_toggle"> <a class='noref'>Hide Layers <i class="fa fa-map fa-sm"></i> <i class="fa fa-chevron-right fa-sm"></i></a></div>
+    		<div id="map_layers_toggle"> Hide Layers <i class="fa fa-map fa-sm"></i> <i class="fa fa-chevron-right fa-sm"></i></div>
     		<div id="map_layers_content_title">Layers</div>
     		<div id="map_layers_content_list">
 	    		<div id="shdiv"class="onoffswitch">
@@ -112,20 +113,26 @@
 							<form id='mainsearchform' onsubmit="geoCodeAddress()">
 				                <label for="geocode">Enter Address, City State, and Zipcode</label>
 				                <input id ="geocodeAddress" type="text" name="geocode"></input>
+				                <button id="searchButton" class="searchButton"><i class="fa fa-search"></i></button>
 				                <p id="geocodeFeedback"></p>
-				                <!-- <button id="searchButton" class="searchButton">Search</button> -->
 
 				            </form>
 				        </div>
 			        	
 		        </div>
 	<div id="sidebar">
-	    <div id="toggleSidebar"><a id='return'>Return to Map</a></div>
+	    <div id="toggleSidebar">Go to Map <i class="fa fa-chevron-right"></i></div>
 	    <div id="mask"> 
+	    <div id="pull-in">
+		    <i class="fa fa-chevron-left"> </i>
+	    </div>
 	    	<p><strong>To begin your search: </strong></p>
 	    	<ol>
 	    		<li>For best results, type a complete Minnesota address including city, state, and zip code.</li>
-	    		<li>Single-click on the map to select a search location. Please note the "Map Help" and "Disclaimer" links below the map.
+	    		<li>Single-click or touch the map to select a search location. </li>
+	    		<li>Select an elected official to view the official's district boundary.</li>
+	    		<li>Please note the "Map Help" and "Disclaimer" links below the map.</li>
+
 	    	</ol>
 	
 	    </div>
@@ -204,6 +211,9 @@
 	</div> -->
 	<div id='map_disclaimer'>
 		<a class='noref' data-popup-open="popup-2">Disclaimer <i class="fa fa-exclamation-triangle"></i> </a>
+	</div>
+	<div id="pull-out">
+		<i class="fa fa-chevron-right"> </i>
 	</div>
     <!-- <div class='form-group smallscreen'>
 		<form action="javascript:submitQuery()">
