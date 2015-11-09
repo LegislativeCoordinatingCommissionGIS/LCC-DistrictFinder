@@ -112,6 +112,7 @@
 						<div class='form-group'>
 							<form id='mainsearchform' onsubmit="geoCodeAddress()">
 				                <label for="geocode">Enter Address, City State, and Zipcode</label>
+				                <button id="gpsButton"><i class="fa fa-location-arrow"></i></button>
 				                <input id ="geocodeAddress" type="text" name="geocode"></input>
 				                <button id="searchButton" class="searchButton"><i class="fa fa-search"></i></button>
 				                <p id="geocodeFeedback"></p>

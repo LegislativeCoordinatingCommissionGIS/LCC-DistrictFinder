@@ -38,17 +38,10 @@ $( document ).ready(function() {
 		slideSidebar();
 	});
 
-    //mobile search form #RWD
-  //   if ($(window).width() < 417){
-  //   	$('.smallscreen').show();
-  //   } else {
-		// $('.smallscreen').hide();
-  //   }
-    // $("#searchButton").click(function(event){
-    // 	event.preventDefault();
-    // 	//ar address = $( this ).val();
-    // 	geoCodeAddress(geocoder, map);
-    // });
+    $('#gpsButton').click(function(){
+    	zoomToLocation();
+    });
+
     $("#geocodeAddress").bind("keypress", {}, keypressInBox);
     //hide links - format is off until results come back
     $('.memberLink').hide();
