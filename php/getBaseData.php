@@ -1,11 +1,11 @@
 <?php
 ini_set('display_errors', 1); 
 //database login info
-$host = '10.12.12.215';
-$port = '5432';
-$dbname = 'geoprod';
-$user = 'lee';
-$password = '111222';
+$host = '###';
+$port = '####';
+$dbname = '####';
+$user = '####';
+$password = '####';
 $conn = pg_connect("host=$host port=$port dbname=$dbname user=$user password=$password");
 if (!$conn) {
 	echo "Not connected : " . pg_error();
