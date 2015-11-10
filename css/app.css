@@ -157,9 +157,9 @@ ul{
 	/*bottom:80px;*/
 	text-align: right;
 }
-li .memberLink:hover{
-	/*background-color: red;*/
-}
+/*.memberLink:hover{
+	background-color: red;
+}*/
 
 .search label{
 	font-weight: bold;
@@ -177,6 +177,7 @@ li .memberLink:hover{
     text-align: right;
 	font-size: 11px;
     bottom:8px;
+    z-index: 1001;
 	/*position: relative;*/
 
 }
@@ -187,8 +188,11 @@ li .memberLink:hover{
 	cursor:pointer;
 	color:#346f9a;
 }
-#map_layers_toggle  a{
+#map_layers_toggle{
 	color:#8d8d8d;
+}
+#map_layers_toggle:hover{
+    cursor:pointer;
 }
 
 #map_help{
@@ -450,7 +454,17 @@ li .memberLink:hover{
 #gpsButton{
         display:none;
     }
+    #mnhouselink, #mnsenlink, #ushouselink, #ussenatelink, #ussenate2link{
+        padding: 5px;
+        border-radius: 4px;
 
+        color:#3b3b3b;
+
+    }
+  #mnhouselink:hover, #mnsenlink:hover, #ushouselink:hover, #ussenatelink:hover, #ussenate2link:hover{
+    background-color: #3b3b3b;
+        color:#e6e6e6;
+  }
  
 /*Begin Responsive Web Design*/
 @media screen and (max-width: 500px) {

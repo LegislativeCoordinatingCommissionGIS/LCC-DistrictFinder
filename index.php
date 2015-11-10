@@ -4,6 +4,7 @@
 <head>
 	<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 	<script src="http://code.jquery.com/jquery-migrate-1.2.1.js"></script>
+	<!--<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>-->
 	<!-- load the header -->
 	<?
 	    define('INCLUDEPATH',"views/");
@@ -129,7 +130,7 @@
 	    </div>
 	    	<p><strong>To begin your search: </strong></p>
 	    	<ol>
-	    		<li>For best results, type a complete Minnesota address including city, state, and zip code.</li>
+	    		<li>For best results, enter a complete Minnesota address including city, state, and zip code.</li>
 	    		<li>Single-click or touch the map to select a search location. </li>
 	    		<li>Select an elected official to view the official's district boundary.</li>
 	    		<li>Please note the "Map Help" and "Disclaimer" links below the map.</li>
@@ -146,7 +147,7 @@
 			        
 			        	
 			        	<div class="membersublist">
-			        		 <div class="memberLink"><a href="#" target='_blank' ><i class="fa fa-external-link"></i></a></div>   	
+			        		 <div class="memberLink"><a id="mnhouselink" target='_blank' ><i class="fa fa-external-link"></i></a></div>   	
 			        		<div id='housemember' class='lcc_gis_member'></div>
 			        		<div id='housedistrict' class='lcc_gis_memberdistrict'></div>
 			        	</div>
@@ -157,7 +158,7 @@
 			        
 			        	
 			        	<div class="membersublist">
-			        		<div class="memberLink"><a href="#" target='_blank' ><i class="fa fa-external-link"></i></a></div>
+			        		<div class="memberLink"><a id="mnsenlink" target='_blank' ><i class="fa fa-external-link"></i></a></div>
 			        		<div id='senatemember' class='lcc_gis_member'></div>
 			        		<div id='senatedistrict' class='lcc_gis_memberdistrict'></div>
 			        	</div>
@@ -168,7 +169,7 @@
 			        
 			        	
 			        	<div class="membersublist">
-			        		<div class="memberLink"><a href="#" target='_blank' ><i class="fa fa-external-link"></i></a></div>
+			        		<div class="memberLink"><a  id="ushouselink" target='_blank' ><i class="fa fa-external-link"></i></a></div>
 			        		<div id='ushousemember'  class='lcc_gis_member'></div>
 			        		<div id='ushousedistrict' class='lcc_gis_memberdistrict'></div>
 			        	</div>
@@ -179,7 +180,7 @@
 			        
 			        	
 			        	<div class="membersublist">
-			        		<div class="memberLink"><a href="#" target='_blank' ><i class="fa fa-external-link"></i></a></div>
+			        		<div class="memberLink"><a id="ussenatelink" target='_blank' ><i class="fa fa-external-link"></i></a></div>
 			        		<div id='ussenatemember' class='lcc_gis_member'></div>
 			        		<div id='ussenatedistrict' class='lcc_gis_memberdistrict'></div>
 			        	</div>
@@ -190,7 +191,7 @@
 			        
 			        	
 			        	<div class="membersublist">
-			        		<div class="memberLink"><a href="#" target='_blank' ><i class="fa fa-external-link"></i></a></div>
+			        		<div class="memberLink"><a id="ussenate2link" target='_blank' ><i class="fa fa-external-link"></i></a></div>
 			        		<div id='ussenatemember2' class='lcc_gis_member'></div>
 			        		<div id='ussenatedistrict2' class='lcc_gis_memberdistrict'></div>
 			        	</div>
