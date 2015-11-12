@@ -1,4 +1,2 @@
-php/*
 php/getPointData.php
-php
-*.php
+php/getOverlayLayersAsGeoJSON.php
