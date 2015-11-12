@@ -10,19 +10,6 @@ $( document ).ready(function() {
 		$("#geocodeAddress").val('');
 
 		slideSidebar();
-
-		// var sidebar = $('#sidebar').css('left');
-		// console.log(sidebar);
-		// if (sidebar == '0px'){
-		// 	console.log('0px');
-		// 	// $('#toggleSidebar').show();
-		// 	// $('#sidebar').css('left', 0);
-		// } else {
-		// 	console.log('NOT 0px');
-		// 	$('#toggleSidebar').show();
-		// 	//$('#sidebar').css('left', '0px');
-		// 	$('#sidebar').animate({ 'left': '0px' }, 500, 'easeOutQuad');
-		// }
 				
 	});
 
@@ -38,7 +25,8 @@ $( document ).ready(function() {
 		slideSidebar();
 	});
 
-    $('#gpsButton').click(function(){
+    $('#gpsButton').click(function(e){
+    	e.preventDefault();
     	zoomToLocation();
     });
 
