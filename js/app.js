@@ -147,6 +147,7 @@ function geoCodeAddress(geocoder, resultsMap) {
       geocodeFeedback(precision, components);
     } else {
       alert('Geocode was not successful for the following reason: ' + status);
+      $('#loading').hide();
     }
   });
 }
@@ -337,8 +338,6 @@ function zoomToGPSLocation() {
 	  identifyDistrict(pos);
 	  map.setView(L.latLng(pos.lat, pos.lng),13);
 
-    }, function() {
-      handleLocationError(true, infoWindow, map.getCenter());
     });
   } else {
     // Browser doesn't support Geolocation
@@ -346,9 +345,8 @@ function zoomToGPSLocation() {
   }
 }
 function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-  infoWindow.setPosition(pos);
-  infoWindow.setContent(browserHasGeolocation ?
-                        'Error: The Geolocation service failed.' :
-                        'Error: Your browser doesn\'t support geolocation.');
+ alert('Geocode was not successful - Your browser does not support Geolocation');
+      $('#loading').hide();
+
 }
 
