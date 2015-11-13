@@ -277,7 +277,7 @@ function showDistrict(div){
     
     //polygon overlay styling
 	var myStyle = {
-    	"color": "#231f20",
+    	"color": "#991a36",
     	"weight": 2,
     	"opacity": 0.65
 	};
