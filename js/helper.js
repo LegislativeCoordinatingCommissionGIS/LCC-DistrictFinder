@@ -8,9 +8,7 @@ $( document ).ready(function() {
 		identifyDistrict(e);
 		$('#geocodeFeedback').hide();
 		$("#geocodeAddress").val('');
-
-		slideSidebar();
-				
+		slideSidebar();				
 	});
 
 	$('#toggleSidebar').click(function(e){

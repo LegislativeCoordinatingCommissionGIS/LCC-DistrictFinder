@@ -14,9 +14,9 @@
 	<script src="js/app.js"></script>
 	<script src="js/helper.js"></script>
 	<!-- Bring over the core js from top.inc -->
-	<script type="text/javascript" src="http://www.gis.leg.mn/css/leg_core_20.js"></script>
-	<script type="text/javascript"  src="http://www.gis.leg.mn/css/leg_mobile_20.js"></script>
-	<script type="text/javascript" src="http://www.gis.leg.mn/css/js/hideshow2.js"></script>
+	<script type="text/javascript" src="../../css/leg_core_20.js"></script>
+	<script type="text/javascript"  src="../../css/leg_mobile_20.js"></script>
+	<script type="text/javascript" src="../../css/js/hideshow2.js"></script>
 	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.5/leaflet.css" />
 	<link rel="stylesheet" href="css/plugins/css/font-awesome.min.css" />
 	<link rel="stylesheet" href="css/app.css" />
