@@ -2,7 +2,7 @@ $( document ).ready(function() {
 	//kickoff map logic
     initialize();
 
-    //map navigation, this could become as witch
+    //map navigation
     map.on('click', function(e){
     	addMarker(e);
 		identifyDistrict(e);
@@ -11,37 +11,47 @@ $( document ).ready(function() {
 		slideSidebar();				
 	});
 
+    // on small screens
 	$('#toggleSidebar').click(function(e){
 		e.preventDefault();
 		slideSidebar();
 	});
-
+    
+    // on small screens
 	$('#pull-out').click(function(e){
 		slideSidebar();
 	});
+
+	// on small screens
 	$('#pull-in').click(function(e){
 		slideSidebar();
 	});
 
+    // on small screens allow geolocation
     $('#gpsButton').click(function(e){
     	e.preventDefault();
-    	zoomToLocation();
+    	zoomToGPSLocation();
     });
 
+    // enter key event
     $("#geocodeAddress").bind("keypress", {}, keypressInBox);
-    //hide links - format is off until results come back
-    $('.memberLink').hide();
+    
+    // both key and enter fire geoCodeAddress
     $('#searchButton').click(function(e){
     	e.preventDefault();
     	geoCodeAddress(geocoder, map);
     })
-	//Members UI click turn red with 'active' class
+	
+	// hide links - format is off until results come back
+    $('.memberLink').hide();
+
+	// Members UI click turn red with 'active' class
 	$( ".mnhouse, .mnsenate, .ushouse" ).click(function() {
 	  $(this).addClass('active').siblings().removeClass('active');
 	  showDistrict($(this).attr('class'));
-
 	});
-	//get static minnesota geojson
+
+	//get static minnesota geojson (faster than php)
 	$( ".ussenate1, .ussenate2" ).click(function() {
 	 	 $(this).addClass('active').siblings().removeClass('active');
 	  	//console.log($(this).attr('class'));
@@ -154,10 +164,8 @@ $( document ).ready(function() {
 				map.removeLayer(layer);
 			};	
 
-		});
-	   
+		});	   
 	});
-
 
 	//----- OPEN Modal
     $('[data-popup-open]').on('click', function(e)  {
@@ -180,10 +188,9 @@ $( document ).ready(function() {
     	$('.fa-map').css('color', '#346f9a'); 
     }).on('mouseleave', function(){
     	$('.fa-map').css('color', '#8d8d8d');
-    });
+    });    
 
-    
+	$('#loading').hide();
 
-$('#loading').hide();
 });//end ready()
 

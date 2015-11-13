@@ -20,9 +20,6 @@ function initialize(){
 	});
     geocoder = new google.maps.Geocoder;
 
-
-
-
 	vectorBasemap = L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoiY2NhbnRleSIsImEiOiJjaWVsdDNubmEwMGU3czNtNDRyNjRpdTVqIn0.yFaW4Ty6VE3GHkrDvdbW6g', {
 					maxZoom: 18,
 					minZoom: 6,
@@ -56,6 +53,7 @@ function toggleBaseLayers(el, layer1, layer2){
 	}
 }
 
+//fetch the overlay layers from data folder (faster than postgres call and saves data to local cache)
 function getOverlayLayers(el, switchId){
     $('#loading').show();
 	//getCityLayersGeoJson();
@@ -84,6 +82,7 @@ function getOverlayLayers(el, switchId){
     }
 }
 
+// overlay layer styling
 function layerStyle(switchId){
 	var countyStyle = {
 		"fill":0,
@@ -124,8 +123,8 @@ function layerStyle(switchId){
 	var styleMap = {"countyonoffswitch": countyStyle, "cityonoffswitch":cityStyle, "cononoffswitch":congressStyle, "ssonoffswitch":senStyle, "shonoffswitch":HSEStyle}
 
 	return styleMap[switchId];
-
 }
+
 
 function geoCodeAddress(geocoder, resultsMap) {
 
@@ -135,7 +134,6 @@ function geoCodeAddress(geocoder, resultsMap) {
     if (status === google.maps.GeocoderStatus.OK) {
       var precision = results[0].geometry.location_type;
       var components = results[0].address_components;
-
       var pos = {
         latlng: {lat:results[0].geometry.location.lat(),lng:results[0].geometry.location.lng()},
         lat:results[0].geometry.location.lat(),
@@ -170,6 +168,7 @@ function geocodeFeedback(precision, components){
 	slideSidebar();
 	
 }
+
 //submit search text box - removed button for formatting space
 function keypressInBox(e) {
     var code = (e.keyCode ? e.keyCode : e.which);
@@ -180,10 +179,9 @@ function keypressInBox(e) {
     }
 };
 
-//I will use this for search as well.. the geocoder should return lat long, just pass it through and add marker
+//fetch location data from postgres on mouseclick/geocode submition
 function identifyDistrict(d){
-	// console.log(d.latlng);    
-
+	// console.log(d.latlng); 
 	var data = {
 		lat: d.latlng.lat,
 		lng: d.latlng.lng
@@ -200,7 +198,7 @@ function identifyDistrict(d){
 	});
 }
 
-//sidebar list data
+//sidebar member data
 function addMemberData(memberData){
 	// memberData.features[0] = MN House
 	// memberData.features[1] = MN Senate
@@ -260,7 +258,6 @@ function addMarker(e){
 	if (typeof mapDistrictsLayer !== "undefined" ){ 
 		map.removeLayer(mapDistrictsLayer);			
 	}
-
 	//add marker
 	pushPinMarker = new L.marker(e.latlng).addTo(map);
 }
@@ -295,7 +292,7 @@ function showDistrict(div){
 	    }
 	}).addTo(map);
 	//zoom to selection
-	map.fitBounds(mapDistrictsLayer.getBounds())
+	map.fitBounds(mapDistrictsLayer.getBounds());
 }
 
 function showSenateDistrict(div){
@@ -307,7 +304,7 @@ function showSenateDistrict(div){
 	}
     
     mapDistrictsLayer = MinnesotaBoundaryLayer.addTo(map);
-	map.fitBounds(mapDistrictsLayer.getBounds())
+	map.fitBounds(mapDistrictsLayer.getBounds());
 }
 
 function slideSidebar(){
@@ -324,7 +321,7 @@ function slideSidebar(){
 		    } catch(err){}} // Firebug throws a typeerror here - it doesn't break the app, 'easeInQuad' needs jQuery UI, but it forces the animation in desktop app... just ignore
 }
 
-function zoomToLocation() {
+function zoomToGPSLocation() {
 // Try HTML5 geolocation.
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(function(position) {
