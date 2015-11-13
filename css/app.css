@@ -15,6 +15,10 @@
 	border-radius:3px;
 } 
 
+.leg_PageContent ul, .leg_PageContent ol {
+    margin-left: 2em;
+}
+
 /*application css*/
 #sidebar{
 	position:relative;
