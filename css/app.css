@@ -290,7 +290,14 @@ ul{
 	height:23px;
 	border-radius: 4px;
 	color: #3b3b3b;
-	width:100%;
+	        /* Firefox */
+        width: -moz-calc(99% - 21px);
+        /* WebKit */
+        width: -webkit-calc(99% - 21px);
+        /* Opera */
+        width: -o-calc(99% - 21px);
+        /* Standard */
+        width: calc(99% - 21px);
 /*	border-color: #66afe9;
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(102, 175, 233, 0.6);
     outline: 0 none;*/
@@ -302,7 +309,15 @@ ul{
     outline: 0 none;
 }
 .searchButton{
-    display:none;
+    display:block;
+    position:absolute;
+    top:20px;
+    right:2px;
+    padding:4px;
+    background-color: #3b3b3b;
+    color:#e6e6e6;
+    border:none;
+    border-radius:2px;
 }
 
 #switchBasemap{
