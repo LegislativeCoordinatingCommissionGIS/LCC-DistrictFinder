@@ -287,7 +287,9 @@ function showDistrict(div){
 		onEachFeature: function (feature, layer) {
 			var html = "";
 			for (prop in feature.properties){
-				html += prop+": "+feature.properties[prop]+"<br>";
+				if (prop != 'memid'){
+				  html += prop+": "+feature.properties[prop]+"<br>";
+				} else {}
 			};
 	        layer.bindPopup(html);
 	    }
