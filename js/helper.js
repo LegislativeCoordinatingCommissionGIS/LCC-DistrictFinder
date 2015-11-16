@@ -192,7 +192,7 @@ $( document ).ready(function() {
 
 	$('#loading').hide();
 
-	console.log("Welcome to the 'Who Represents Me?' legislative district finder application, developed by the MN State Legislative Coordinating Commission. The application's mostly responsive (RWD), open-source code can be found at 'https://github.com/Ccantey/LCC-DistrictFinder'.")
+	console.log("Welcome to the 'Who Represents Me?' legislative district finder application, developed by the MN State Legislative Coordinating Commission. The application's responsive web design(RWD), open-source code can be found at 'https://github.com/Ccantey/LCC-DistrictFinder'.")
 
 });//end ready()
 
