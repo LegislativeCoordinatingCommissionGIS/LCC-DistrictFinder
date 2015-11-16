@@ -185,9 +185,9 @@ $( document ).ready(function() {
 
     //attach a hover method to layers ribbon
     $('#triangle-topright').on('mouseenter', function(){
-    	$('.fa-map').css('color', '#346f9a'); 
+    	$('.fa-map').css('color', '#8d8d8d'); 
     }).on('mouseleave', function(){
-    	$('.fa-map').css('color', '#8d8d8d');
+    	$('.fa-map').css('color', '#e6e6e6');
     });    
 
 	$('#loading').hide();

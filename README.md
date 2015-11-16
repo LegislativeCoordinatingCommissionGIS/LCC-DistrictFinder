@@ -3,7 +3,7 @@
 
 The **Who Represents Me?** application is a completely open-source full-stack, responsive (RWD) application, built with PostGIS, Leaflet, and a little TLC.
 
-See it in the wild at ... 
+See it in the wild at [gis.leg.mn](#)
 
 ### What's included?
 - Code
@@ -13,6 +13,14 @@ See it in the wild at ...
   - MN Senate Districts
   - MN Municipal Boundaries
   - MN Counties
+  - MN House, Senate, Congressional images
+
+### What does it do?
+- Geocodes addresses (Google JavaScript API authentication token required)
+- Zooms to location on cellphones (application optimized using RWD)
+- Point and click on the map, or use the search bar to retrieve legislative data
+- Click on a legislative member to retrieve members district boundary or website
+- Add House/Senate overlay layers to geo-explore Minnesota's representative districts
 
 The code relies on a connection to an instance of [PostGreSQL/PostGIS](http://www.postgresql.org/), a free and open-source spatial database. But for testing, connections can be made to the GeoJSON included in the data folder.
 

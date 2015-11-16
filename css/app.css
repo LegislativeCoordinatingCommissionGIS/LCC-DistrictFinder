@@ -178,11 +178,12 @@ ul{
 }
 
 #map_layers_toggle{
-	color:#8d8d8d;
+	color:#e6e6e6;
 }
 
 #map_layers_toggle:hover{
     cursor:pointer;
+    color:#8d8d8d;
 }
 
 #map_help{
@@ -264,7 +265,7 @@ ul{
 }
 
 #triangle-topright .fa-map{
-	color:#8d8d8d;
+	color:#e6e6e6;
 	position: absolute;
 	right:23px;
 	bottom:67px;
@@ -310,6 +311,10 @@ ul{
     border:none;
     border-radius:2px;
     cursor:pointer;
+}
+
+.searchButton:hover{
+    color:#8d8d8d;
 }
 
 #switchBasemap{
