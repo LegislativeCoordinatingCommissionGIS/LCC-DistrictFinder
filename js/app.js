@@ -211,6 +211,7 @@ function addMemberData(memberData){
 	    $('.memberLink').show();
 	    
 	    //add memberdata from map selection to member list
+	    //ALTERNATIVE SOLUTION! Use house/senate image server: http://www.house.leg.state.mn.us/hinfo/memberimgls89/ -- but then you have issue of large image sizes, slow performance
 	    $('#housephoto').attr('src', 'images/House/tn_'+memberData.features[0].properties.district+'.jpg');
 		$('#housemember').html(memberData.features[0].properties.name + '<span class="party"> ('+memberData.features[0].properties.party+')</span>').delay("slow").fadeIn();
 		$('#housedistrict').html('MN House - ' + memberData.features[0].properties.district).delay("slow").fadeIn();
