@@ -407,11 +407,11 @@ ul{
     height:100%;*/
     display:none;
     position:absolute	;
-    bottom:32px;
+    bottom:20px;
     right:1px;
     background:rgba(0,0,0,0.75);
     /*add map position size*/
-    height: 544px;
+    height: 545px;
     width:70%;
 
 }
