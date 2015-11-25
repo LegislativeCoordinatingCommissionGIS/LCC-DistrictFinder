@@ -18,6 +18,9 @@
 .leg_PageContent ul, .leg_PageContent ol {
     margin-left: 2em;
 }
+.leg_PageContent a:focus{
+    background-color: #eee !important;
+}
 
 /*application css*/
 #sidebar{
