@@ -162,7 +162,7 @@
 			        		<div id='senatemember' class='lcc_gis_member'></div>
 			        		<div id='senatedistrict' class='lcc_gis_memberdistrict'></div>
 			        	</div>
-			        	<img id='senatephoto' class='mnsenate_img'/>
+			        	<img id='senatephoto' class='mnsenate_img' src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" />
 			        
 			    </div>
 			    <div class='ushouse'>
@@ -173,7 +173,7 @@
 			        		<div id='ushousemember'  class='lcc_gis_member'></div>
 			        		<div id='ushousedistrict' class='lcc_gis_memberdistrict'></div>
 			        	</div>
-			        	<img id='ushousephoto' class='ushouse_img'  />
+			        	<img id='ushousephoto' class='ushouse_img' src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="  />
 			        
 			    </div>
 			    <div class='ussenate1'>
@@ -184,7 +184,7 @@
 			        		<div id='ussenatemember' class='lcc_gis_member'></div>
 			        		<div id='ussenatedistrict' class='lcc_gis_memberdistrict'></div>
 			        	</div>
-			        	<img id='ussenatephoto' class='ussenate1_img' />
+			        	<img id='ussenatephoto' class='ussenate1_img' src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="  />
 			       
 			    </div>
 			    <div class='ussenate2'>
@@ -195,7 +195,7 @@
 			        		<div id='ussenatemember2' class='lcc_gis_member'></div>
 			        		<div id='ussenatedistrict2' class='lcc_gis_memberdistrict'></div>
 			        	</div>
-			        	<img id='ussenatephoto2' class='ussenate2_img' />
+			        	<img id='ussenatephoto2' class='ussenate2_img' src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="  />
 			        
 			    </div>
 		    

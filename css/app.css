@@ -141,7 +141,8 @@ ul{
     min-height: 87px;
     max-width: 65%;
     position: relative;
-    top: -56px;
+    top: -55px;
+    border:none;
 }
 
 .membersublist{

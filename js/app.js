@@ -266,6 +266,7 @@ function addMarker(e){
 //Show the district on the map
 function showDistrict(div){
 	slideSidebar();
+	$("#loading").show();
 	//$('#toggleSidebar').show();
 	//div is the class name of the active member
 	divmap = {"mnhouse active":0, "mnsenate active":1, "ushouse active":2};
@@ -296,10 +297,12 @@ function showDistrict(div){
 	}).addTo(map);
 	//zoom to selection
 	map.fitBounds(mapDistrictsLayer.getBounds());
+	$("#loading").hide();
 }
 
 function showSenateDistrict(div){
-    slideSidebar();
+	slideSidebar();
+    $("#loading").show();
     //$('#toggleSidebar').show();
 	//remove preveious district layers.
 	if (typeof mapDistrictsLayer !== "undefined" ){ 
@@ -308,6 +311,7 @@ function showSenateDistrict(div){
     
     mapDistrictsLayer = MinnesotaBoundaryLayer.addTo(map);
 	map.fitBounds(mapDistrictsLayer.getBounds());
+	$("#loading").hide();
 }
 
 function slideSidebar(){
