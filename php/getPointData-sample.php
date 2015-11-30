@@ -9,7 +9,7 @@ $long = $_GET['lng'];
 
 //Here is the complex SQL to return all legislators:
 //will have to do some phanagling to return appropriately formated data.
-$sql = "(SELECT district, name, memid, party, the_geom AS geojson FROM hse2012_1 WHERE
+$sql = "(SELECT district, name, memid, party, ST_AsGeoJSON(ST_Transform((the_geom),4326),6) AS geojson FROM hse2012_1 WHERE
      ST_Intersects (
          hse2012_1.the_geom, ST_Transform(ST_SetSRID(ST_Point( $long, $lat),4326), 26915)
      )
@@ -17,7 +17,7 @@ $sql = "(SELECT district, name, memid, party, the_geom AS geojson FROM hse2012_1
 
  UNION ALL
 
- (SELECT district, name, memid, party, the_geom  FROM sen2012 WHERE
+ (SELECT district, name, memid, party, ST_AsGeoJSON(ST_Transform((the_geom),4326),6)  FROM sen2012 WHERE
      ST_Intersects (
          sen2012.the_geom, ST_Transform(ST_SetSRID(ST_Point( $long, $lat),4326), 26915)
      )
@@ -25,7 +25,7 @@ $sql = "(SELECT district, name, memid, party, the_geom AS geojson FROM hse2012_1
 
  UNION ALL
 
-(SELECT district, name, plan, party, the_geom FROM cng2012 WHERE
+(SELECT district, name, plan, party, ST_AsGeoJSON(ST_Transform((the_geom),4326),6) FROM cng2012 WHERE
      ST_Intersects (
          cng2012.the_geom, ST_Transform(ST_SetSRID(ST_Point( $long, $lat),4326), 26915)
      )
