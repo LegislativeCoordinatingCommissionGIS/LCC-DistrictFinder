@@ -5,10 +5,12 @@ $( document ).ready(function() {
     //map navigation
     map.on('click', function(e){
     	addMarker(e);
+        $('#housephoto, #senatephoto, #ushousephoto, #ussenatephoto, #ussenatephoto2').attr('src',"data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=").attr('width',0).attr('height',0);;
 		identifyDistrict(e);
 		$('#geocodeFeedback').hide();
 		$("#geocodeAddress").val('');
-		slideSidebar();				
+		slideSidebar();
+
 	});
 
     // on small screens
@@ -115,7 +117,8 @@ $( document ).ready(function() {
 		$('.memberLink').hide();
 		$('#housemember, #senatemember, #ushousemember, #ussenatemember, #ussenatemember2').html('');
 		$('#housedistrict, #senatedistrict, #ushousedistrict, #ussenatedistrict, #ussenatedistrict2').html('');
-		$('#housephoto, #senatephoto, #ushousephoto, #ussenatephoto, #ussenatephoto2').removeAttr('src');
+		        $('#housephoto, #senatephoto, #ushousephoto, #ussenatephoto, #ussenatephoto2').attr('src',"data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=").attr('width',0).attr('height',0);;
+
 
 		//Toggle basemap when you reset -- LATER SET ALL CHECKBOXES THIS WAY!!!
 		//verbose, should do this cleaner
