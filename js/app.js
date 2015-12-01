@@ -72,18 +72,24 @@ function getOverlayLayers(el, switchId){
 				overlayLayers[switchMap[switchId]] = L.geoJson(data, {
 					style:layerStyle(switchId),
 					onEachFeature: function(feature, layer){
-						// console.log(feature.properties.name);
-						// console.log(layer.getBounds().getCenter());
+						console.log(feature.properties);
+						if (typeof feature.properties.district !== "undefined"){
+						var label = L.divIcon({ 
+    						iconSize: new L.Point(layer.getBounds().getCenter()), 
+    						html: feature.properties.district, 
+    						className: switchMap[switchId]
+						});						 
+						labelarray.push(L.marker(layer.getBounds().getCenter(), {icon: label}).addTo(map));
+						overlayLayerLabels[switchMap[switchId]] = labelarray;
+					} else {
 						var label = L.divIcon({ 
     						iconSize: new L.Point(layer.getBounds().getCenter()), 
     						html: feature.properties.name, 
     						className: switchMap[switchId]
-						});
-
-
-						 
+						});						 
 						labelarray.push(L.marker(layer.getBounds().getCenter(), {icon: label}).addTo(map));
 						overlayLayerLabels[switchMap[switchId]] = labelarray;
+					}
 						
 						//console.log
 
