@@ -66,6 +66,7 @@ function getOverlayLayers(el, switchId){
         removeLabels(switchMap[switchId]);
 		$('#loading').hide();
     } else {
+    	$('.leaflet-marker-icon.'+switchMap[switchId]).show();
     	if(typeof overlayLayers[switchMap[switchId]] === 'undefined'){
 			$.getJSON("./data/"+dataMap[switchId]+".json", function(data) {
 				overlayLayers[switchMap[switchId]] = L.geoJson(data, {
@@ -73,7 +74,6 @@ function getOverlayLayers(el, switchId){
 					onEachFeature: function(feature, layer){
 						// console.log(feature.properties.name);
 						// console.log(layer.getBounds().getCenter());
-						
 						var label = L.divIcon({ 
     						iconSize: new L.Point(layer.getBounds().getCenter()), 
     						html: feature.properties.name, 
@@ -84,6 +84,8 @@ function getOverlayLayers(el, switchId){
 						 
 						labelarray.push(L.marker(layer.getBounds().getCenter(), {icon: label}).addTo(map));
 						overlayLayerLabels[switchMap[switchId]] = labelarray;
+						
+						//console.log
 
 
 					}
@@ -102,7 +104,7 @@ function getOverlayLayers(el, switchId){
 				$('#loading').hide();
 			});
 		} else {
-			console.log('here');
+
 			overlayLayers[switchMap[switchId]].addTo(map);
 			$('#loading').hide();
 		}
@@ -153,15 +155,19 @@ function layerStyle(switchId){
 }
 
 function removeLabels(layer){
-    console.log(overlayLayerLabels[layer]);
-    for (layerID in overlayLayerLabels[layer]){
-    	if (typeof overlayLayerLabels[layer][layerID] !== 'null'){
-    		map.removeLayer(overlayLayerLabels[layer][layerID]);
-    }
-    	// if (labelarray[layers].layer == layer){
-    	// 	console.log(labelarray[layers].layer);
-    	// }
-    }
+    //console.log(overlayLayerLabels[layer]);
+    $('.leaflet-marker-icon.'+layer).hide();
+    // for (layerID in overlayLayerLabels[layer]){
+    // 	if (typeof overlayLayerLabels[layer] !== 'undefined')
+    // 	console.log(overlayLayerLabels[layer][layerID]);
+    // 	map.removeLayer(overlayLayerLabels[layer][layerID]);
+    //     console.log(overlayLayerLabels[layer][layerID]);
+    // 	//overlayLayerLabels[layer] = [];
+
+    // 	// if (labelarray[layers].layer == layer){
+    // 	// 	console.log(labelarray[layers].layer);
+    // 	// }
+    // }
 
 }
 

@@ -28,8 +28,19 @@
     background-color: transparent;
     border:none;
 }
+.leaflet-marker-icon.StateHouseLayer{
+    color:#ff6600;
+}
+.leaflet-marker-icon.StateSenateLayer{
+    color:#ff6600;
+    font-weight: bold;
+    font-size: 1.25em;
+}
 .leaflet-marker-icon.CountyBoundaryLayer{
-    color:red;
+    color:#231f20;
+}
+.leaflet-marker-icon.CongressionalLayer{
+    color: #ff3399;
 }
 #sidebar{
 	position:relative;
