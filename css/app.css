@@ -23,6 +23,14 @@
 }
 
 /*application css*/
+
+.leaflet-div-icon{
+    background-color: transparent;
+    border:none;
+}
+.leaflet-marker-icon.CountyBoundaryLayer{
+    color:red;
+}
 #sidebar{
 	position:relative;
 	height:540px;

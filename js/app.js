@@ -1,6 +1,6 @@
-var map, geojson, mapDistrictsLayer,
+var map, geojson, mapDistrictsLayer, overlayLayerLabels ={},
 	fields = ["district", "name"], switchMap ={},
-	autocomplete = [];
+	labelarray = [];
 
 //map Layers
 var pushPinMarker, vectorBasemap,streetsBasemap, MinnesotaBoundaryLayer;
@@ -63,14 +63,41 @@ function getOverlayLayers(el, switchId){
     
     if(el.is(':checked')){
     	map.removeLayer(overlayLayers[switchMap[switchId]]);
-
+        removeLabels(switchMap[switchId]);
 		$('#loading').hide();
     } else {
     	if(typeof overlayLayers[switchMap[switchId]] === 'undefined'){
 			$.getJSON("./data/"+dataMap[switchId]+".json", function(data) {
-				overlayLayers[switchMap[switchId]] = L.geoJson(data, {style:layerStyle(switchId)});						 
+				overlayLayers[switchMap[switchId]] = L.geoJson(data, {
+					style:layerStyle(switchId),
+					onEachFeature: function(feature, layer){
+						// console.log(feature.properties.name);
+						// console.log(layer.getBounds().getCenter());
+						
+						var label = L.divIcon({ 
+    						iconSize: new L.Point(layer.getBounds().getCenter()), 
+    						html: feature.properties.name, 
+    						className: switchMap[switchId]
+						});
+
+
+						 
+						labelarray.push(L.marker(layer.getBounds().getCenter(), {icon: label}).addTo(map));
+						overlayLayerLabels[switchMap[switchId]] = labelarray;
+
+
+					}
+
+				});	
+
+				// data.features.forEach(function(features){
+				// 	//var bounds = L.latLng()
+				// 	console.log(features.getBounds());
+				// })
+
 			}).done(function(){
 				//console.log(switchMap[switchId]);
+
 				overlayLayers[switchMap[switchId]].addTo(map);
 				$('#loading').hide();
 			});
@@ -125,6 +152,18 @@ function layerStyle(switchId){
 	return styleMap[switchId];
 }
 
+function removeLabels(layer){
+    console.log(overlayLayerLabels[layer]);
+    for (layerID in overlayLayerLabels[layer]){
+    	if (typeof overlayLayerLabels[layer][layerID] !== 'null'){
+    		map.removeLayer(overlayLayerLabels[layer][layerID]);
+    }
+    	// if (labelarray[layers].layer == layer){
+    	// 	console.log(labelarray[layers].layer);
+    	// }
+    }
+
+}
 
 function geoCodeAddress(geocoder, resultsMap) {
 
