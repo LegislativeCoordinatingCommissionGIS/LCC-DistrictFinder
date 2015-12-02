@@ -67,6 +67,7 @@ function getOverlayLayers(el, switchId){
 		$('#loading').hide();
     } else {
     	$('.leaflet-marker-icon.'+switchMap[switchId]).show();
+    	
     	if(typeof overlayLayers[switchMap[switchId]] === 'undefined'){
 			$.getJSON("./data/"+dataMap[switchId]+".json", function(data) {
 				overlayLayers[switchMap[switchId]] = L.geoJson(data, {
@@ -87,6 +88,7 @@ function getOverlayLayers(el, switchId){
 							labelarray.push(L.marker(L.latLng(polycenter), {icon: label}).addTo(map));
 							overlayLayerLabels[switchMap[switchId]] = labelarray;
 					     } 
+					     // city labels - ignore, way too many
 					     if (typeof feature.properties.mcd_name !== "undefined"){
 					     	//console.log(feature.properties.mcd_name)
 					     }
@@ -100,23 +102,13 @@ function getOverlayLayers(el, switchId){
 							var polycenter = getCentroid(layer.feature.geometry.coordinates[0][0]);
 							labelarray.push(L.marker(L.latLng(polycenter), {icon: label}).addTo(map));
 							overlayLayerLabels[switchMap[switchId]] = labelarray;
-					}
-						
-						//console.log
-
-
+						}
 					}
 
 				});	
 
-				// data.features.forEach(function(features){
-				// 	//var bounds = L.latLng()
-				// 	console.log(features.getBounds());
-				// })
-
 			}).done(function(){
 				//console.log(switchMap[switchId]);
-
 				overlayLayers[switchMap[switchId]].addTo(map);
 				$('#loading').hide();
 			});
@@ -171,27 +163,27 @@ function layerStyle(switchId){
 	return styleMap[switchId];
 }
 
-//Get mathematical centroid *within* polygon
+//Get mathematical centroid *within* polygon - better solution than L.getBounds().getCenter()
 function getCentroid(arr) {
-	//console.log(arr);
-	    var twoTimesSignedArea = 0;
-	    var cxTimes6SignedArea = 0;
-	    var cyTimes6SignedArea = 0;
 
-	    var length = arr.length
-	    // console.log(length);
-	    var x = function (i) { return arr[i % length][0] };
-	    var y = function (i) { return arr[i % length][1] };
+    var twoTimesSignedArea = 0;
+    var cxTimes6SignedArea = 0;
+    var cyTimes6SignedArea = 0;
 
-	    for ( var i = 0; i < arr.length; i++) {
-	        var twoSA = x(i)*y(i+1) - x(i+1)*y(i);
-	        twoTimesSignedArea += twoSA;
-	        cxTimes6SignedArea += (x(i) + x(i+1)) * twoSA;
-	        cyTimes6SignedArea += (y(i) + y(i+1)) * twoSA;
-	    }
-	    var sixSignedArea = 3 * twoTimesSignedArea;
-	    
-	    return [ cyTimes6SignedArea / sixSignedArea, cxTimes6SignedArea / sixSignedArea];        
+    var length = arr.length
+    // console.log(length);
+    var x = function (i) { return arr[i % length][0] };
+    var y = function (i) { return arr[i % length][1] };
+
+    for ( var i = 0; i < arr.length; i++) {
+        var twoSA = x(i)*y(i+1) - x(i+1)*y(i);
+        twoTimesSignedArea += twoSA;
+        cxTimes6SignedArea += (x(i) + x(i+1)) * twoSA;
+        cyTimes6SignedArea += (y(i) + y(i+1)) * twoSA;
+    }
+    var sixSignedArea = 3 * twoTimesSignedArea;
+    
+    return [ cyTimes6SignedArea / sixSignedArea, cxTimes6SignedArea / sixSignedArea];        
 }
 
 
@@ -245,7 +237,6 @@ function keypressInBox(e) {
     if (code == 13) { //Enter keycode                        
         e.preventDefault();
         geoCodeAddress(geocoder, map);
-        //$("yourFormId").submit();
     }
 };
 

@@ -164,7 +164,13 @@ $( document ).ready(function() {
 		map.eachLayer(function(layer){
 			//Remove map layers
 			if (typeof layer._url === "undefined"){
-				map.removeLayer(layer);
+				if (typeof layer._icon !== 'undefined'){
+					//just hide labels rather than remove - pain in the ass otherwise
+					$('.leaflet-marker-icon.StateHouseLayer, .leaflet-marker-icon.StateSenateLayer, .leaflet-marker-icon.CountyBoundaryLayer, .leaflet-marker-icon.CongressionalLayer').hide();
+				} else {
+					map.removeLayer(layer);
+				}
+				
 			};	
 
 		});	   
