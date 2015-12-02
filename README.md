@@ -16,11 +16,16 @@ See it in the wild at [http://gis.leg.mn](http://gis.leg.mn/OpenLayers/LCC-Distr
   - MN House, Senate, Congressional images
 
 ### What does it do?
-- Geocodes addresses (Google JavaScript API authentication token required)
-- Zooms to location on cellphones (application optimized using RWD)
-- Point and click on the map, or use the search bar to retrieve legislative data
-- Click on a legislative member to retrieve members district boundary or website
-- Add House/Senate overlay layers to geo-explore Minnesota's representative districts
+- Fun geodev tools
+  - Geocodes addresses (Google JavaScript API authentication token required)
+  - Zooms to location on cellphones (application optimized using RWD)
+- Creates [Leaflet labels](https://github.com/Ccantey/LCC-DistrictFinder/blob/master/js/app.js#L84-L91)! 
+  - Not natively supported by leaflet
+  - Places divIcon at [polygon centroid](https://github.com/Ccantey/LCC-DistrictFinder/blob/master/js/app.js#L169-L189), rather than .getBounds().getCenter() which is insuffient for irregular polys
+- Basic UI/UX
+  - Point and click on the map, or use the search bar to retrieve legislative data
+  - Click on a legislative member to retrieve members district boundary or website
+  - Add House/Senate overlay layers to geo-explore Minnesota's representative districts
 
 The code relies on a connection to an instance of [PostGreSQL/PostGIS](http://www.postgresql.org/), a free and open-source spatial database. But for testing, connections can be made to the GeoJSON included in the data folder.
 
