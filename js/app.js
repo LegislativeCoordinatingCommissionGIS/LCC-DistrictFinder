@@ -63,7 +63,7 @@ function getOverlayLayers(el, switchId){
     
     if(el.is(':checked')){
     	map.removeLayer(overlayLayers[switchMap[switchId]]);
-        removeLabels(switchMap[switchId]);
+        $('.leaflet-marker-icon.'+switchMap[switchId]).hide();
 		$('#loading').hide();
     } else {
     	$('.leaflet-marker-icon.'+switchMap[switchId]).show();
@@ -74,21 +74,33 @@ function getOverlayLayers(el, switchId){
 					onEachFeature: function(feature, layer){
 						console.log(feature.properties);
 						if (typeof feature.properties.district !== "undefined"){
-						var label = L.divIcon({ 
-    						iconSize: new L.Point(layer.getBounds().getCenter()), 
-    						html: feature.properties.district, 
-    						className: switchMap[switchId]
-						});						 
-						labelarray.push(L.marker(layer.getBounds().getCenter(), {icon: label}).addTo(map));
-						overlayLayerLabels[switchMap[switchId]] = labelarray;
-					} else {
-						var label = L.divIcon({ 
-    						iconSize: new L.Point(layer.getBounds().getCenter()), 
-    						html: feature.properties.name, 
-    						className: switchMap[switchId]
-						});						 
-						labelarray.push(L.marker(layer.getBounds().getCenter(), {icon: label}).addTo(map));
-						overlayLayerLabels[switchMap[switchId]] = labelarray;
+							var label = L.divIcon({ 
+	    						iconSize: new L.Point(layer.getBounds().getCenter()), 
+	    						html: feature.properties.district, 
+	    						className: switchMap[switchId]
+							});						 
+							labelarray.push(L.marker(layer.getBounds().getCenter(), {icon: label}).addTo(map));
+							overlayLayerLabels[switchMap[switchId]] = labelarray;
+					     } 
+					     if (typeof feature.properties.mcd_name !== "undefined"){
+					     	console.log(feature.properties.mcd_name)
+							// var label = L.divIcon({ 
+	    		// 				iconSize: new L.Point(layer.getBounds().getCenter()), 
+	    		// 				html: feature.properties.district, 
+	    		// 				className: switchMap[switchId]
+							// });						 
+							// labelarray.push(L.marker(layer.getBounds().getCenter(), {icon: label}).addTo(map));
+							// overlayLayerLabels[switchMap[switchId]] = labelarray;
+					     }
+
+					     else {
+							var label = L.divIcon({ 
+	    						iconSize: new L.Point(layer.getBounds().getCenter()), 
+	    						html: feature.properties.name, 
+	    						className: switchMap[switchId]
+							});						 
+							labelarray.push(L.marker(layer.getBounds().getCenter(), {icon: label}).addTo(map));
+							overlayLayerLabels[switchMap[switchId]] = labelarray;
 					}
 						
 						//console.log
@@ -160,22 +172,22 @@ function layerStyle(switchId){
 	return styleMap[switchId];
 }
 
-function removeLabels(layer){
-    //console.log(overlayLayerLabels[layer]);
-    $('.leaflet-marker-icon.'+layer).hide();
-    // for (layerID in overlayLayerLabels[layer]){
-    // 	if (typeof overlayLayerLabels[layer] !== 'undefined')
-    // 	console.log(overlayLayerLabels[layer][layerID]);
-    // 	map.removeLayer(overlayLayerLabels[layer][layerID]);
-    //     console.log(overlayLayerLabels[layer][layerID]);
-    // 	//overlayLayerLabels[layer] = [];
+// function removeLabels(layer){
+//     //console.log(overlayLayerLabels[layer]);
+//     $('.leaflet-marker-icon.'+layer).hide();
+//     // for (layerID in overlayLayerLabels[layer]){
+//     // 	if (typeof overlayLayerLabels[layer] !== 'undefined')
+//     // 	console.log(overlayLayerLabels[layer][layerID]);
+//     // 	map.removeLayer(overlayLayerLabels[layer][layerID]);
+//     //     console.log(overlayLayerLabels[layer][layerID]);
+//     // 	//overlayLayerLabels[layer] = [];
 
-    // 	// if (labelarray[layers].layer == layer){
-    // 	// 	console.log(labelarray[layers].layer);
-    // 	// }
-    // }
+//     // 	// if (labelarray[layers].layer == layer){
+//     // 	// 	console.log(labelarray[layers].layer);
+//     // 	// }
+//     // }
 
-}
+// }
 
 function geoCodeAddress(geocoder, resultsMap) {
 
