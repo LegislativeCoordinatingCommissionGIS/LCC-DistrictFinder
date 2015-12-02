@@ -72,34 +72,33 @@ function getOverlayLayers(el, switchId){
 				overlayLayers[switchMap[switchId]] = L.geoJson(data, {
 					style:layerStyle(switchId),
 					onEachFeature: function(feature, layer){
-						console.log(feature.properties);
-						if (typeof feature.properties.district !== "undefined"){
-							var label = L.divIcon({ 
-	    						iconSize: new L.Point(layer.getBounds().getCenter()), 
-	    						html: feature.properties.district, 
-	    						className: switchMap[switchId]
-							});						 
-							labelarray.push(L.marker(layer.getBounds().getCenter(), {icon: label}).addTo(map));
-							overlayLayerLabels[switchMap[switchId]] = labelarray;
-					     } 
-					     if (typeof feature.properties.mcd_name !== "undefined"){
-					     	console.log(feature.properties.mcd_name)
-							// var label = L.divIcon({ 
-	    		// 				iconSize: new L.Point(layer.getBounds().getCenter()), 
-	    		// 				html: feature.properties.district, 
-	    		// 				className: switchMap[switchId]
-							// });						 
-							// labelarray.push(L.marker(layer.getBounds().getCenter(), {icon: label}).addTo(map));
-							// overlayLayerLabels[switchMap[switchId]] = labelarray;
-					     }
+						//console.log(layer.feature.geometry.coordinates);
 
-					     else {
+						//text county labels
+						if (typeof feature.properties.district === "undefined"){
 							var label = L.divIcon({ 
 	    						iconSize: new L.Point(layer.getBounds().getCenter()), 
 	    						html: feature.properties.name, 
 	    						className: switchMap[switchId]
 							});						 
-							labelarray.push(L.marker(layer.getBounds().getCenter(), {icon: label}).addTo(map));
+							var polycenter = getCentroid(layer.feature.geometry.coordinates[0][0]);
+							// offset lat/lng because anchor of text will become centroid
+							polycenter = [polycenter[0]+0.03, polycenter[1]-0.15];    
+							labelarray.push(L.marker(L.latLng(polycenter), {icon: label}).addTo(map));
+							overlayLayerLabels[switchMap[switchId]] = labelarray;
+					     } 
+					     if (typeof feature.properties.mcd_name !== "undefined"){
+					     	//console.log(feature.properties.mcd_name)
+					     }
+                         //numerical district labels
+					     if (typeof feature.properties.district !== "undefined") {
+							var label = L.divIcon({ 
+	    						iconSize: new L.Point(layer.getBounds().getCenter()), 
+	    						html: feature.properties.district, 
+	    						className: switchMap[switchId]
+							});						
+							var polycenter = getCentroid(layer.feature.geometry.coordinates[0][0]);
+							labelarray.push(L.marker(L.latLng(polycenter), {icon: label}).addTo(map));
 							overlayLayerLabels[switchMap[switchId]] = labelarray;
 					}
 						
@@ -172,22 +171,29 @@ function layerStyle(switchId){
 	return styleMap[switchId];
 }
 
-// function removeLabels(layer){
-//     //console.log(overlayLayerLabels[layer]);
-//     $('.leaflet-marker-icon.'+layer).hide();
-//     // for (layerID in overlayLayerLabels[layer]){
-//     // 	if (typeof overlayLayerLabels[layer] !== 'undefined')
-//     // 	console.log(overlayLayerLabels[layer][layerID]);
-//     // 	map.removeLayer(overlayLayerLabels[layer][layerID]);
-//     //     console.log(overlayLayerLabels[layer][layerID]);
-//     // 	//overlayLayerLabels[layer] = [];
+//Get mathematical centroid *within* polygon
+function getCentroid(arr) {
+	//console.log(arr);
+	    var twoTimesSignedArea = 0;
+	    var cxTimes6SignedArea = 0;
+	    var cyTimes6SignedArea = 0;
 
-//     // 	// if (labelarray[layers].layer == layer){
-//     // 	// 	console.log(labelarray[layers].layer);
-//     // 	// }
-//     // }
+	    var length = arr.length
+	    // console.log(length);
+	    var x = function (i) { return arr[i % length][0] };
+	    var y = function (i) { return arr[i % length][1] };
 
-// }
+	    for ( var i = 0; i < arr.length; i++) {
+	        var twoSA = x(i)*y(i+1) - x(i+1)*y(i);
+	        twoTimesSignedArea += twoSA;
+	        cxTimes6SignedArea += (x(i) + x(i+1)) * twoSA;
+	        cyTimes6SignedArea += (y(i) + y(i+1)) * twoSA;
+	    }
+	    var sixSignedArea = 3 * twoTimesSignedArea;
+	    
+	    return [ cyTimes6SignedArea / sixSignedArea, cxTimes6SignedArea / sixSignedArea];        
+}
+
 
 function geoCodeAddress(geocoder, resultsMap) {
 

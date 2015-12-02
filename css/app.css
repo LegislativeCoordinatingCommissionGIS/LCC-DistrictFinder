@@ -39,9 +39,11 @@
 .leaflet-marker-icon.CountyBoundaryLayer{
     color:#231f20;
     font-weight:bold;
+    line-height: 1em;
 }
 .leaflet-marker-icon.CongressionalLayer{
     color: #ff3399;
+    font-weight:bold;
 }
 #sidebar{
 	position:relative;
