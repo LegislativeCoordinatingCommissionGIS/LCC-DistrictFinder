@@ -40,15 +40,26 @@
     color:#231f20;
     font-weight:bold;
     line-height: 1em;
+    margin-left:-20px;
 }
 .leaflet-marker-icon.CongressionalLayer{
     color: #ff3399;
     font-weight:bold;
 }
+
 #sidebar{
 	position:relative;
 	height:540px;
 	width:285px;
+}
+.notice {
+    color: #8d8d8d;
+    font-size: 12px;
+    font-style: italic;
+    margin-bottom: 0;
+    margin-top: 90px;
+    position: absolute;
+    text-align: center;
 }
 #mask {
     position: absolute;
@@ -285,7 +296,7 @@ ul{
 #map_layers_basemap_title{
 	position:relative;
 	left:23%;
-	top:100px;
+	top:135px;
 	font-size: 15px;
 	font-weight: bold;
 }
@@ -360,7 +371,7 @@ ul{
 
 #switchLabel{
 	position:relative;
-	top: 110px;
+	top: 130px;
 	left:77px;
 }
 
@@ -371,7 +382,7 @@ ul{
 	top:-15px;
 }
 #satellitediv{
-	top:125px;
+	top:145px;
     left:25px;
 }
 .onoffswitch {
@@ -571,6 +582,7 @@ ul{
   #map_layers{
     top:90px;
   }
+
   #toggleSidebar{
         display:block;
         padding:5px;

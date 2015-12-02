@@ -12,6 +12,51 @@ $( document ).ready(function() {
 		slideSidebar();
 
 	});
+	// map.on('layeradd', function(){
+	// 	scale = map.getZoom()
+	// 	if (scale < 7){
+	// 		$('.leaflet-marker-icon.StateHouseLayer, .leaflet-marker-icon.StateSenateLayer, .leaflet-marker-icon.CountyBoundaryLayer').hide();
+	// 	}
+	// 	console.log(map.getZoom())
+	// })
+	// map.on('zoomend', function(){
+	// 	scale = map.getZoom()
+	// 	if (scale == 6){
+	// 		$('.leaflet-marker-icon.StateHouseLayer, .leaflet-marker-icon.StateSenateLayer, .leaflet-marker-icon.CountyBoundaryLayer').hide();
+
+	// 	} else{
+	// 		$('.leaflet-marker-icon.StateHouseLayer, .leaflet-marker-icon.StateSenateLayer, .leaflet-marker-icon.CountyBoundaryLayer').show();
+
+	// 	}
+	// })
+ 	// var currentScale =map.getZoom();
+  //   if(currentScale > 2300){
+  //       $("#DimLabels").prop('indeterminate', true).change();
+  //       $("#DimLabels").prop('disabled', true).change();
+  //       $("#DimLabels").parent().css("color", "#777");
+  //   }else{
+  //       $("#DimLabels").prop('indeterminate', false).change();
+  //       $("#DimLabels").prop('disabled', false).change();
+  //       $("#DimLabels").parent().css("color", "#FFF");
+  //   }
+  //   if(currentScale > 4800){
+  //       $("#AddLabels,#PidLabels").prop('indeterminate', true).change();
+  //       $("#AddLabels,#PidLabels").prop('disabled', true).change();
+  //       $("#AddLabels,#PidLabels").parent().css("color", "#777");
+  //   }else{
+  //       $("#AddLabels,#PidLabels").prop('indeterminate', false).change();
+  //       $("#AddLabels,#PidLabels").prop('disabled', false).change();
+  //       $("#AddLabels,#PidLabels").parent().css("color", "#FFF");
+  //   }
+  //   if (currentScale > 9600){
+  //       $("#Contours, #Adraw").prop('indeterminate', true).change();
+  //       $("#Contours, #Adraw").prop('disabled', true).change();
+  //       $("#Contours, #Adraw").parent().css("color", "#777")    
+  //   }else{
+  //       $("#Contours, #Adraw").prop('indeterminate', false).change();
+  //       $("#Contours, #Adraw").prop('disabled', false).change();
+  //       $("#Contours, #Adraw").parent().css("color", "#FFF")        
+  //   }           
 
     // on small screens
 	$('#toggleSidebar').click(function(e){
@@ -165,9 +210,17 @@ $( document ).ready(function() {
 			//Remove map layers
 			if (typeof layer._url === "undefined"){
 				if (typeof layer._icon !== 'undefined'){
+					console.log(layer);
 					//just hide labels rather than remove - pain in the ass otherwise
 					$('.leaflet-marker-icon.StateHouseLayer, .leaflet-marker-icon.StateSenateLayer, .leaflet-marker-icon.CountyBoundaryLayer, .leaflet-marker-icon.CongressionalLayer').hide();
-				} else {
+				} 
+				if (typeof layer._shadow !== 'undefined'){
+					console.log(layer);
+					//remove place marker
+					map.removeLayer(pushPinMarker)
+				} 
+
+				else {
 					map.removeLayer(layer);
 				}
 				

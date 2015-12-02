@@ -67,33 +67,20 @@ function getOverlayLayers(el, switchId){
 		$('#loading').hide();
     } else {
     	$('.leaflet-marker-icon.'+switchMap[switchId]).show();
-    	
+
     	if(typeof overlayLayers[switchMap[switchId]] === 'undefined'){
 			$.getJSON("./data/"+dataMap[switchId]+".json", function(data) {
 				overlayLayers[switchMap[switchId]] = L.geoJson(data, {
 					style:layerStyle(switchId),
 					onEachFeature: function(feature, layer){
-						//console.log(layer.feature.geometry.coordinates);
+						//console.log(featuer.properties);
 
-						//text county labels
-						if (typeof feature.properties.district === "undefined"){
-							var label = L.divIcon({ 
-	    						iconSize: new L.Point(layer.getBounds().getCenter()), 
-	    						html: feature.properties.name, 
-	    						className: switchMap[switchId]
-							});						 
-							var polycenter = getCentroid(layer.feature.geometry.coordinates[0][0]);
-							// offset lat/lng because anchor of text will become centroid
-							polycenter = [polycenter[0]+0.03, polycenter[1]-0.15];    
-							labelarray.push(L.marker(L.latLng(polycenter), {icon: label}).addTo(map));
-							overlayLayerLabels[switchMap[switchId]] = labelarray;
-					     } 
-					     // city labels - ignore, way too many
-					     if (typeof feature.properties.mcd_name !== "undefined"){
-					     	//console.log(feature.properties.mcd_name)
+                        // city labels - ignore, way too many
+					     if (typeof feature.properties.mcd_name != "undefined"){
+					     	//pass
 					     }
-                         //numerical district labels
-					     if (typeof feature.properties.district !== "undefined") {
+					     //numerical district labels
+					     else if (typeof feature.properties.district !== "undefined" ) {
 							var label = L.divIcon({ 
 	    						iconSize: new L.Point(layer.getBounds().getCenter()), 
 	    						html: feature.properties.district, 
@@ -103,6 +90,21 @@ function getOverlayLayers(el, switchId){
 							labelarray.push(L.marker(L.latLng(polycenter), {icon: label}).addTo(map));
 							overlayLayerLabels[switchMap[switchId]] = labelarray;
 						}
+						//text county labels
+						else {
+							var label = L.divIcon({ 
+	    						iconSize: new L.Point(layer.getBounds().getCenter()), 
+	    						html: feature.properties.name, 
+	    						className: switchMap[switchId]
+							});						 
+							var polycenter = getCentroid(layer.feature.geometry.coordinates[0][0]);
+							// offset lat/lng because anchor of text will become centroid
+							polycenter = [polycenter[0], polycenter[1]];    
+							labelarray.push(L.marker(L.latLng(polycenter), {icon: label}).addTo(map));
+							overlayLayerLabels[switchMap[switchId]] = labelarray;
+					     } 
+					     
+                         
 					}
 
 				});	

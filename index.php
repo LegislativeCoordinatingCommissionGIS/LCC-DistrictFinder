@@ -92,6 +92,7 @@
                 <div class='layersswitchLabel'>County Boundaries</div>
 			</div>
 			
+			<div class="notice"> Large datasets such as the Municipal Boundaries layer may load slowly</div>
 
 
     		<div id="map_layers_basemap_title">Basemap Layers</div>
@@ -133,6 +134,7 @@
 	    		<li>For best results, enter a complete Minnesota address including city, state, and zip code.</li>
 	    		<li>Single-click or touch the map to select a search location. </li>
 	    		<li>Select an elected official to view the official's district boundary.</li>
+	    		<li>Select the link icon <i class="fa fa-external-link"></i>  to view the members webpage.</li>
 	    		<li>Please note the "Map Help" and "Disclaimer" links below the map.</li>
 
 	    	</ol>
