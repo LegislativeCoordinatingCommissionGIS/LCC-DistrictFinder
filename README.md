@@ -14,6 +14,7 @@ See it in the wild at [http://gis.leg.mn](http://gis.leg.mn/OpenLayers/LCC-Distr
   - MN Municipal Boundaries
   - MN Counties
   - MN House, Senate, Congressional images
+  - mapserver.map WMS configuration file
 
 ### What does it do?
 - Fun geodev tools

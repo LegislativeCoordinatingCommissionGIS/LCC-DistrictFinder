@@ -106,7 +106,7 @@ $( document ).ready(function() {
 	  	if(typeof MinnesotaBoundaryLayer === 'undefined'){
 			$.getJSON("./data/Minnesota2015.json", function(data) {
 				var myStyle = {
-    				"color": "#231f20",
+    				"color": "#991a36",
     				"weight": 2,
     				"opacity": 0.65
 				};
