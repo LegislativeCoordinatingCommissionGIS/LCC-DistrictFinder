@@ -207,25 +207,10 @@ $( document ).ready(function() {
 		}
 		//Remove all layers except the basemap -- down here because its an asychronous thead apparently
 		map.eachLayer(function(layer){
-			//Remove map layers
-			if (typeof layer._url === "undefined"){
-				if (typeof layer._icon !== 'undefined'){
-					console.log(layer);
-					//just hide labels rather than remove - pain in the ass otherwise
-					$('.leaflet-marker-icon.StateHouseLayer, .leaflet-marker-icon.StateSenateLayer, .leaflet-marker-icon.CountyBoundaryLayer, .leaflet-marker-icon.CongressionalLayer').hide();
-				} 
-				if (typeof layer._shadow !== 'undefined'){
-					console.log(layer);
-					//remove place marker
-					map.removeLayer(pushPinMarker)
-				} 
-
-				else {
-					map.removeLayer(layer);
-				}
-				
+			//Remove map layers except mapbox
+			if (typeof layer._url === "undefined" || typeof layer.defaultWmsParams !== "undefined"){
+				map.removeLayer(layer);				
 			};	
-
 		});	   
 	});
 

@@ -19,9 +19,9 @@ See it in the wild at [http://gis.leg.mn](http://gis.leg.mn/OpenLayers/LCC-Distr
 - Fun geodev tools
   - Geocodes addresses (Google JavaScript API authentication token required)
   - Zooms to location on cellphones (application optimized using RWD)
-- Creates [Leaflet labels](https://github.com/Ccantey/LCC-DistrictFinder/blob/master/js/app.js#L84-L91)! 
-  - Not natively supported by leaflet
-  - Places divIcon at [polygon centroid](https://github.com/Ccantey/LCC-DistrictFinder/blob/master/js/app.js#L169-L189), rather than .getBounds().getCenter() which is insuffient for irregular polys
+- Consumes [MapServer WMS](http://mapserver.org/index.html)
+  - Free and open source map service publishing
+  - Much faster rendering than vectors
 - Basic UI/UX
   - Point and click on the map, or use the search bar to retrieve legislative data
   - Click on a legislative member to retrieve members district boundary or website

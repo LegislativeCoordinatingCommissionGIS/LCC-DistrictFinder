@@ -92,7 +92,7 @@
                 <div class='layersswitchLabel'>County Boundaries</div>
 			</div>
 			
-			<div class="notice"> Large datasets such as the Municipal Boundaries layer may load slowly</div>
+			
 
 
     		<div id="map_layers_basemap_title">Basemap Layers</div>
@@ -232,11 +232,12 @@
 	    <div class="popup-inner">
 	        <h2>Help Section</h2>
 	        <ul style="list-style-type:disc">
-        		<li>Use the zoom control (+ -) in upper left or use your mouse wheel to zoom-in and zoom-out of the map. </li>
+        		<li> Use the zoom control (+ -) in upper left or use your mouse wheel to zoom-in and zoom-out of the map. </li>
         		<li> Click and drag the map to pan around the map. </li>
         		<li> Click the map icon in upper right to view available layers. </li>
         		<li> Click on individual switches to turn on/off layers. </li>
         		<li> Click once on the map to find representatives</li>
+        		<li> Select the link icon <i class="fa fa-external-link"></i>  to view the members webpage.</li>
 
 	        </ul>
 	        <p><a data-popup-close="popup-1" href="#">Close Help</a></p>
