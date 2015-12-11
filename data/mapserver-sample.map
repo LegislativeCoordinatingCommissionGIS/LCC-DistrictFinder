@@ -56,7 +56,7 @@ END
         OUTLINECOLOR 255 133 51
         WIDTH 1
       END   
-      TEXT ('H.R.+' + '[district]')   
+      #TEXT ('H.R.+' + '[district]')   
       LABEL
         TYPE TRUETYPE
         SIZE 9
@@ -98,7 +98,7 @@ END
         OUTLINECOLOR 255 102 0
         WIDTH 3
       END   
-      TEXT ('Sen.+' + '[district]')   
+      #TEXT ('Sen.+' + '[district]')   
       LABEL
         TYPE TRUETYPE
         SIZE 10
@@ -140,7 +140,7 @@ END
         OUTLINECOLOR 255 51 153
         WIDTH 3
       END   
-      TEXT ('Cong.+' + '[district]')   
+      #TEXT ('Cong.+' + '[district]')   
       LABEL
         TYPE TRUETYPE
         SIZE 10
