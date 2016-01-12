@@ -1,5 +1,5 @@
 ## Minnesota Legislative Coordinating Commission
-### Legislative district mapping applciation
+### Legislative district mapping application User Interface
 
 The **Who Represents Me?** application is a completely open-source full-stack, responsive (RWD) application, built with PostGIS, Leaflet, and a little TLC.
 
