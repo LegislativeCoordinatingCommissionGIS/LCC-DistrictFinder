@@ -11,24 +11,7 @@ $( document ).ready(function() {
 		$("#geocodeAddress").val('');
 		slideSidebar();
 
-	});
-	// map.on('layeradd', function(){
-	// 	scale = map.getZoom()
-	// 	if (scale < 7){
-	// 		$('.leaflet-marker-icon.StateHouseLayer, .leaflet-marker-icon.StateSenateLayer, .leaflet-marker-icon.CountyBoundaryLayer').hide();
-	// 	}
-	// 	console.log(map.getZoom())
-	// })
-	// map.on('zoomend', function(){
-	// 	scale = map.getZoom()
-	// 	if (scale == 6){
-	// 		$('.leaflet-marker-icon.StateHouseLayer, .leaflet-marker-icon.StateSenateLayer, .leaflet-marker-icon.CountyBoundaryLayer').hide();
-
-	// 	} else{
-	// 		$('.leaflet-marker-icon.StateHouseLayer, .leaflet-marker-icon.StateSenateLayer, .leaflet-marker-icon.CountyBoundaryLayer').show();
-
-	// 	}
-         
+	});     
 
     // on small screens
 	$('#toggleSidebar').click(function(e){
@@ -134,8 +117,8 @@ $( document ).ready(function() {
 		$('.memberLink').hide();
 		$('#housemember, #senatemember, #ushousemember, #ussenatemember, #ussenatemember2').html('');
 		$('#housedistrict, #senatedistrict, #ushousedistrict, #ussenatedistrict, #ussenatedistrict2').html('');
-		        $('#housephoto, #senatephoto, #ushousephoto, #ussenatephoto, #ussenatephoto2').attr('src',"data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=").attr('width',0).attr('height',0);;
-
+		$('#housephoto, #senatephoto, #ushousephoto, #ussenatephoto, #ussenatephoto2').attr('src',"data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=").attr('width',0).attr('height',0);;
+        
 
 		//Toggle basemap when you reset -- LATER SET ALL CHECKBOXES THIS WAY!!!
 		//verbose, should do this cleaner
@@ -144,39 +127,10 @@ $( document ).ready(function() {
 		} else {
 			//:checked = false -> toggle map
 			toggleBaseLayers($('#satellitonoffswitch'),streetsBasemap,vectorBasemap);
-			$('#satellitonoffswitch').prop('checked', true);
+			//$('#satellitonoffswitch').prop('checked', true);
 		}
-		// reset additional layers too
-		if($('#countyonoffswitch').is(':checked')){
-				//:checked = true -> leave it ... when I copied the switches I had initial states backwards
-		} else {
-			//:checked = false -> toggle map
-			$('#countyonoffswitch').prop('checked', true);
-		}
-		if($('#cityonoffswitch').is(':checked')){
-				//:checked = true -> leave it ... when I copied the switches I had initial states backwards
-		} else {
-			//:checked = false -> toggle map
-			$('#cityonoffswitch').prop('checked', true);
-		}
-		if($('#cononoffswitch').is(':checked')){
-				//:checked = true -> leave it ... when I copied the switches I had initial states backwards
-		} else {
-			//:checked = false -> toggle map
-			$('#cononoffswitch').prop('checked', true);
-		}
-		if($('#ssonoffswitch').is(':checked')){
-				//:checked = true -> leave it ... when I copied the switches I had initial states backwards
-		} else {
-			//:checked = false -> toggle map
-			$('#ssonoffswitch').prop('checked', true);
-		}
-		if($('#shonoffswitch').is(':checked')){
-				//:checked = true -> leave it ... when I copied the switches I had initial states backwards
-		} else {
-			//:checked = false -> toggle map
-			$('#shonoffswitch').prop('checked', true);
-		}
+		//toggle all layer switches
+		toggleLayerSwitches();
 		//Remove all layers except the basemap -- down here because its an asychronous thead apparently
 		map.eachLayer(function(layer){
 			//Remove map layers except mapbox

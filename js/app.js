@@ -314,3 +314,13 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 
 }
 
+function toggleLayerSwitches (){
+    var inputs = $(".onoffswitch-checkbox");
+    for (var i = 0, il = inputs.length; i < il; i++) {
+    	var inputsID = '#'+ inputs[i].id;
+        if($(inputsID).not(':checked')){
+        	$(inputsID).prop('checked', true);
+        }         
+    }	
+}
+
