@@ -177,7 +177,7 @@ function addMemberData(memberData){
 		$('#senatephoto').attr('src', 'images/Senate/'+memberData.features[1].properties.district+'.jpg').attr('width','auto').attr('height','auto');
 		$('#senatemember').html(memberData.features[1].properties.name + '<span class="party">  ('+memberData.features[1].properties.party+')</span>');
 		$('#senatedistrict').html('MN Senate - ' + memberData.features[1].properties.district);
-		$('#mnsenlink').attr('href', 'http://www.house.leg.state.mn.us/members/members.asp?id='+ memberData.features[1].properties.memid);
+		$('#mnsenlink').attr('href', 'http://www.senate.leg.state.mn.us/members/member_bio.php?leg_id='+ memberData.features[1].properties.memid);
 		
 		$('#ushousephoto').attr('src', 'images/USHouse/US'+memberData.features[2].properties.district+'.jpg').attr('width','auto').attr('height','auto');
 		$('#ushousemember').html(memberData.features[2].properties.name + ' <span class="party"> ('+memberData.features[2].properties.party+')</span>');
