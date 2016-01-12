@@ -1,12 +1,13 @@
-var map, geojson, mapDistrictsLayer, overlayLayerLabels ={},
-	fields = ["district", "name"], switchMap ={},
-	labelarray = [];
+//global variables
+var map, geojson, switchMap ={};
 
 //map Layers
-var pushPinMarker, vectorBasemap,streetsBasemap, MinnesotaBoundaryLayer;
+var pushPinMarker, vectorBasemap, streetsBasemap, MinnesotaBoundaryLayer;
+
 //map overlay layers... called like overlayLayers.CongressionalBoundaryLayer
 var overlayLayers ={};
 
+//google geocoder
 var geocoder = null;
 
 //Set initial basemap with initialize() - called in helper.js
@@ -28,6 +29,7 @@ function initialize(){
 						'Imagery Â© <a href="http://mapbox.com">Mapbox</a>',
 					id: 'mapbox.streets'
 					}).addTo(map);
+
 	streetsBasemap = L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoiY2NhbnRleSIsImEiOiJjaWVsdDNubmEwMGU3czNtNDRyNjRpdTVqIn0.yFaW4Ty6VE3GHkrDvdbW6g', {
 					maxZoom: 18,
 					minZoom: 6,
@@ -39,7 +41,6 @@ function initialize(){
 					})
 
 	toggleBaseLayers($('#satellitonoffswitch'),vectorBasemap,streetsBasemap);
-
 };
 
 //toggle basemap layers
@@ -86,7 +87,6 @@ function getOverlayLayers(el, switchId){
 }
 
 function geoCodeAddress(geocoder, resultsMap) {
-
   var address = document.getElementById('geocodeAddress').value;
   $("#loading").show();
   geocoder.geocode({'address': address}, function(results, status) {
@@ -112,7 +112,7 @@ function geoCodeAddress(geocoder, resultsMap) {
 }
 
 function geocodeFeedback(precision, components){
-	console.log(precision, 'location, center of ', components[0].types[0]);
+	//console.log(precision, 'location, center of ', components[0].types[0]);
 	var message = "";
 	var componentMap = {"street_number": "street", "postal_code": "zip code", "administrative_area_level_1": "state", "locality": "city", "administrative_area_level_2": "county", "route": "route", "intersection": "intersection", "political": "political division", "country": "country","administrative_area_level_3": "minor civil division", "administrative_area_level_4": 'minor civil division', "administrative_area_level_5": "minor civil division", "colloquial_area": "country", "neighborhood": "neighborhood", "premise": "building", "subpremise": "building", "natural_feature": "natural feature", "airport": "airport", "park": "park", "point_of_interest": "point of interest"};
 
@@ -198,13 +198,12 @@ function addMemberData(memberData){
 	} else { 
 		$('#mask').show();
 		$('#loading').hide();
-	}
-	
+	}	
 }
 
 function addMarker(e){
 	//remove sidebar formatting
-	$( ".mnhouse, .mnsenate, .ushouse, .ussenate1, .ussenate2" ).removeClass('active');
+	$(".mnhouse, .mnsenate, .ushouse, .ussenate1, .ussenate2" ).removeClass('active');
 	$('.memberLink').hide();
 	$('#housemember, #senatemember, #ushousemember, #ussenatemember, #ussenatemember2').html('');
     $('#housedistrict, #senatedistrict, #ushousedistrict, #ussenatedistrict, #ussenatedistrict2').html('');
@@ -225,7 +224,7 @@ function addMarker(e){
 function showDistrict(div){
 	slideSidebar();
 	$("#loading").show();
-	//$('#toggleSidebar').show();
+
 	//div is the class name of the active member
 	divmap = {"mnhouse active":0, "mnsenate active":1, "ushouse active":2};
 
@@ -261,7 +260,7 @@ function showDistrict(div){
 function showSenateDistrict(div){
 	slideSidebar();
     $("#loading").show();
-    //$('#toggleSidebar').show();
+
 	//remove preveious district layers.
 	if (typeof mapDistrictsLayer !== "undefined" ){ 
 		map.removeLayer(mapDistrictsLayer);			
@@ -296,8 +295,6 @@ function zoomToGPSLocation() {
         lng:position.coords.longitude
       };
 
-      //infoWindow.setPosition(pos);
-      //infoWindow.setContent('Location found.');
       addMarker(pos);
 	  identifyDistrict(pos);
 	  map.setView(L.latLng(pos.lat, pos.lng),13);

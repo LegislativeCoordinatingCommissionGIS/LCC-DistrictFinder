@@ -10,7 +10,6 @@ $( document ).ready(function() {
 		$('#geocodeFeedback').hide();
 		$("#geocodeAddress").val('');
 		slideSidebar();
-
 	});     
 
     // on small screens
@@ -91,7 +90,6 @@ $( document ).ready(function() {
 	
 	//Toggle basemap
 	$('#satellitonoffswitch').click(function(){
-
 		if (map.hasLayer(vectorBasemap)){
 			map.removeLayer(vectorBasemap);
 			map.addLayer(streetsBasemap);
@@ -113,15 +111,14 @@ $( document ).ready(function() {
 		$('#mask').show();
 		$('#geocodeFeedback').hide();
 		$("#geocodeAddress").val('');
-		$( ".mnhouse, .mnsenate, .ushouse, .ussenate1, .ussenate2" ).removeClass('active');
+		$(".mnhouse, .mnsenate, .ushouse, .ussenate1, .ussenate2" ).removeClass('active');
 		$('.memberLink').hide();
 		$('#housemember, #senatemember, #ushousemember, #ussenatemember, #ussenatemember2').html('');
 		$('#housedistrict, #senatedistrict, #ushousedistrict, #ussenatedistrict, #ussenatedistrict2').html('');
 		$('#housephoto, #senatephoto, #ushousephoto, #ussenatephoto, #ussenatephoto2').attr('src',"data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=").attr('width',0).attr('height',0);;
         
 
-		//Toggle basemap when you reset -- LATER SET ALL CHECKBOXES THIS WAY!!!
-		//verbose, should do this cleaner
+		//Toggle basemap when you reset 
 		if($('#satellitonoffswitch').is(':checked')){
 				//:checked = true -> leave it ... when I copied the switches I had initial states backwards
 		} else {
@@ -143,16 +140,14 @@ $( document ).ready(function() {
 	//----- OPEN Modal
     $('[data-popup-open]').on('click', function(e)  {
         var targeted_popup_class = $(this).attr('data-popup-open');
-        $('[data-popup="' + targeted_popup_class + '"]').fadeIn(350);
- 
+        $('[data-popup="' + targeted_popup_class + '"]').fadeIn(350); 
         e.preventDefault();
     });
  
     //----- CLOSE Modal
     $('[data-popup-close]').on('click', function(e)  {
         var targeted_popup_class = $(this).attr('data-popup-close');
-        $('[data-popup="' + targeted_popup_class + '"]').fadeOut(350);
- 
+        $('[data-popup="' + targeted_popup_class + '"]').fadeOut(350); 
         e.preventDefault();
     });
 
