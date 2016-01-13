@@ -81,7 +81,7 @@
 }
 #mask p{
     margin-top: 35px;
-    padding:10px;
+    padding:0 10px;
 }
 #mask ol{
     font-size: 1.1em;
@@ -162,18 +162,24 @@ ul{
 }
 
 .lcc_gis_member{
+    overflow:hidden;
+    width:200px;
+    white-space: nowrap;
+    /*text-overflow:ellipsis;*/
     position:relative;
     font-weight: bold;
     /*bottom: 80px;*/
-    left:25px;
-    text-align: center;
+    left:80px;
+    top:5px;
+    text-align: left;
     z-index: 101;
 }
 
 .lcc_gis_memberdistrict{
     position: relative;
-    left: 25px;
-    text-align: center;
+    left: 80px;
+    top:10px;
+    text-align: left;
 }
 #officials img {
     height: 100%;

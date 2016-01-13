@@ -14,9 +14,9 @@
 	<script src="js/app.js"></script>
 	<script src="js/helper.js"></script>
 	<!-- Bring over the core js from top.inc -->
-	<script type="text/javascript" src="http://www.gis.leg.mn/css/leg_core_20.js"></script>
-	<script type="text/javascript"  src="http://www.gis.leg.mn/css/leg_mobile_20.js"></script>
-	<script type="text/javascript" src="http://www.gis.leg.mn/css/js/hideshow2.js"></script>
+	<script type="text/javascript" src="../../css/leg_core_20.js"></script>
+	<script type="text/javascript"  src="../../css/leg_mobile_20.js"></script>
+	<script type="text/javascript" src="../../css/js/hideshow2.js"></script>
 	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.5/leaflet.css" />
 	<link rel="stylesheet" href="css/plugins/css/font-awesome.min.css" />
 	<link rel="stylesheet" href="css/app.css" />
@@ -133,8 +133,8 @@
 	    	<ol>
 	    		<li>For best results, enter a complete Minnesota address including city, state, and zip code.</li>
 	    		<li>Single-click or touch the map to select a search location. </li>
-	    		<li>Select an elected official to view the official's district boundary.</li>
-	    		<li>Select <span class='contact'>Contact <i class="fa fa-external-link"></i></span> on member results to view the members webpage.</li>
+	    		<li>Select an elected official to view the official's web page/contact information.</li>
+	    		<li>Select <span class='contact'>Show District <i class="fa fa-external-link"></i></span> on member results to view the member's district boundary on the map.</li>
 	    		<li>Please note <span style="color:#5c728b; font-size:11px; padding:5px;"><i class="fa fa-info-circle"></i> Help</span> and <span style="color:#5c728b; font-size:11px; padding:5px;" class='noref' >Disclaimer <i class="fa fa-exclamation-triangle"></i> </span> below the map and <span style="color:#5c728b; font-size:11px; padding:5px;"><i class="fa fa-refresh"></i> Reset Map</span> above the map.</li>
 
 	    	</ol>
@@ -149,7 +149,7 @@
 			        
 			        	
 			        	<div class="membersublist">
-			        		 <div class="memberLink"><a id="mnhouselink" target='_blank' >Contact <i class="fa fa-external-link"></i></a></div>   	
+			        		 <div class="memberLink"><span id="mnhouselink">Show District <i class="fa fa-external-link-square"></i></span></div>   	
 			        		<div id='housemember' class='lcc_gis_member'></div>
 			        		<div id='housedistrict' class='lcc_gis_memberdistrict'></div>
 			        	</div>
@@ -160,7 +160,7 @@
 			        
 			        	
 			        	<div class="membersublist">
-			        		<div class="memberLink"><a id="mnsenlink" target='_blank' >Contact <i class="fa fa-external-link"></i></a></div>
+			        		<div class="memberLink"><span id="mnsenlink">Show District <i class="fa fa-external-link-square"></i></span></div>
 			        		<div id='senatemember' class='lcc_gis_member'></div>
 			        		<div id='senatedistrict' class='lcc_gis_memberdistrict'></div>
 			        	</div>
@@ -171,7 +171,7 @@
 			        
 			        	
 			        	<div class="membersublist">
-			        		<div class="memberLink"><a  id="ushouselink" target='_blank' >Contact <i class="fa fa-external-link"></i></a></div>
+			        		<div class="memberLink"><span id="ushouselink">Show District <i class="fa fa-external-link-square"></i></span></div>
 			        		<div id='ushousemember'  class='lcc_gis_member'></div>
 			        		<div id='ushousedistrict' class='lcc_gis_memberdistrict'></div>
 			        	</div>
@@ -182,7 +182,7 @@
 			        
 			        	
 			        	<div class="membersublist">
-			        		<div class="memberLink"><a id="ussenatelink" target='_blank' >Contact <i class="fa fa-external-link"></i></a></div>
+			        		<div class="memberLink"><span id="ussenatelink">Show District <i class="fa fa-external-link-square"></i></span></div>
 			        		<div id='ussenatemember' class='lcc_gis_member'></div>
 			        		<div id='ussenatedistrict' class='lcc_gis_memberdistrict'></div>
 			        	</div>
@@ -193,7 +193,7 @@
 			        
 			        	
 			        	<div class="membersublist">
-			        		<div class="memberLink"><a id="ussenate2link" target='_blank' >Contact <i class="fa fa-external-link"></i></a></div>
+			        		<div class="memberLink"><span id="ussenate2link" >Show District <i class="fa fa-external-link-square"></i></span></div>
 			        		<div id='ussenatemember2' class='lcc_gis_member'></div>
 			        		<div id='ussenatedistrict2' class='lcc_gis_memberdistrict'></div>
 			        	</div>
@@ -236,8 +236,8 @@
         		<li> Click and drag the map to pan around the map. </li>
         		<li> Click the map icon in upper right to view available layers. </li>
         		<li> Click on individual switches to turn on/off layers. </li>
-        		<li> Click once on the map to find representatives</li>
-        		<li> Select <span class='contact'>Contact <i class="fa fa-external-link"></i></span> on member results to view the members webpage.</li>
+        		<li> Click once on the map to open the member's webpage</li>
+        		<li> Select <span class='contact'>Show District <i class="fa fa-external-link"></i></span> to view the member's district boundary.</li>
 
 	        </ul>
 	        <p><a data-popup-close="popup-1" href="#">Close Help</a></p>

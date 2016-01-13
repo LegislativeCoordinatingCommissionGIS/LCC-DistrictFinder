@@ -172,28 +172,28 @@ function addMemberData(memberData){
 	    $('#housephoto').attr('src', 'images/House/tn_'+memberData.features[0].properties.district+'.jpg').attr('width','auto').attr('height','auto');
 		$('#housemember').html(memberData.features[0].properties.name + '<span class="party"> ('+memberData.features[0].properties.party+')</span>').delay("slow").fadeIn();
 		$('#housedistrict').html('MN House - ' + memberData.features[0].properties.district).delay("slow").fadeIn();
-		$('#mnhouselink').attr('href', 'http://www.house.leg.state.mn.us/members/members.asp?id='+ memberData.features[0].properties.memid);
+		$('.mnhouse').attr('data-webid', 'http://www.house.leg.state.mn.us/members/members.asp?id='+ memberData.features[0].properties.memid);
 		
 		$('#senatephoto').attr('src', 'images/Senate/'+memberData.features[1].properties.district+'.jpg').attr('width','auto').attr('height','auto');
 		$('#senatemember').html(memberData.features[1].properties.name + '<span class="party">  ('+memberData.features[1].properties.party+')</span>');
 		$('#senatedistrict').html('MN Senate - ' + memberData.features[1].properties.district);
-		$('#mnsenlink').attr('href', 'http://www.senate.leg.state.mn.us/members/member_bio.php?leg_id='+ memberData.features[1].properties.memid);
+		$('.mnsenate').attr('data-webid', 'http://www.senate.leg.state.mn.us/members/member_bio.php?leg_id='+ memberData.features[1].properties.memid);
 		
 		$('#ushousephoto').attr('src', 'images/USHouse/US'+memberData.features[2].properties.district+'.jpg').attr('width','auto').attr('height','auto');
 		$('#ushousemember').html(memberData.features[2].properties.name + ' <span class="party"> ('+memberData.features[2].properties.party+')</span>');
 		$('#ushousedistrict').html('U.S. House - ' + memberData.features[2].properties.district);
 		var lastname = memberData.features[2].properties.name.split(" ")[1];
-		$('#ushouselink').attr('href', 'http://'+ lastname +'.house.gov/');
+		$('.ushouse').attr('data-webid', 'http://'+ lastname +'.house.gov/');
 		
 		$('#ussenatephoto').attr('src', 'images/USSenate/USsenate1.jpg').attr('width','auto').attr('height','auto');
 		$('#ussenatemember').html('Amy Klobuchar <span class="party"> (DFL)</span>');
 		$('#ussenatedistrict').html('U.S. Senate' );
-		$('#ussenatelink').attr('href', 'http://www.klobuchar.senate.gov/');
+		$('.ussenate1').attr('data-webid', 'http://www.klobuchar.senate.gov/');
 		
 		$('#ussenatephoto2').attr('src', 'images/USSenate/USsenate2.jpg').attr('width','auto').attr('height','auto');
 		$('#ussenatemember2').html('Al Franken <span class="party"> (DFL)</span>');
 		$('#ussenatedistrict2').html('U.S. Senate');
-		$('#ussenate2link').attr('href', 'http://www.franken.senate.gov/');
+		$('.ussenate2').attr('data-webid', 'http://www.franken.senate.gov/');
 		$("#loading").hide();
 	} else { 
 		$('#mask').show();

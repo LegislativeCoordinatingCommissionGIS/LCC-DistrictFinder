@@ -46,32 +46,45 @@ $( document ).ready(function() {
 	// hide links - format is off until results come back
     $('.memberLink').hide();
 
+    $( ".mnhouse, .mnsenate, .ushouse, .ussenate1, .ussenate2" ).click(function(e) {
+        var link = '';
+        link = $(this).attr('data-webid');
+    	//console.log($(this).data('webid'))
+    	window.open(link)
+    });
+
 	// Members UI click turn red with 'active' class
-	$( ".mnhouse, .mnsenate, .ushouse" ).click(function() {
-	  $(this).addClass('active').siblings().removeClass('active');
-	  showDistrict($(this).attr('class'));
-	});
-
-	//get static minnesota geojson (faster than php)
-	$( ".ussenate1, .ussenate2" ).click(function() {
-	 	 $(this).addClass('active').siblings().removeClass('active');
-	  	//console.log($(this).attr('class'));
-	  	//getCongLayersGeoJson();
-	  	if(typeof MinnesotaBoundaryLayer === 'undefined'){
-			$.getJSON("./data/Minnesota2015.json", function(data) {
-				var myStyle = {
-    				"color": "#991a36",
-    				"weight": 2,
-    				"opacity": 0.65
-				};
-				MinnesotaBoundaryLayer = L.geoJson(data, {style:myStyle});
-  			}).done(function(){
-  				showSenateDistrict();
-  			});
-  		} else {
-  			showSenateDistrict();
-  		}	  	
-
+	$( ".memberLink" ).click(function(e) {
+		e.stopPropagation();
+		var mom = $(this).parent();
+		var grandma = mom.parent();
+		var child = $(this).children();
+		//console.log(mom);
+		//console.log(grandma);
+		//console.log(child);
+        grandma.addClass('active').siblings().removeClass('active');
+        //get static minnesota geojson (faster than php)
+		if (child.is('#ussenatelink') || child.is('#ussenate2link')){
+			//console.log(child);
+		  	if(typeof MinnesotaBoundaryLayer === 'undefined'){
+					$.getJSON("./data/Minnesota2015.json", function(data) {
+						var myStyle = {
+		    				"color": "#991a36",
+		    				"weight": 2,
+		    				"opacity": 0.65
+						};
+						MinnesotaBoundaryLayer = L.geoJson(data, {style:myStyle});
+		  			}).done(function(){
+		  				
+		  				showSenateDistrict();
+		  			});
+		  		} else {
+		  			showSenateDistrict();
+		  		}	
+		} else {
+	        showDistrict(grandma.attr('class'));
+	    }
+	    
 	});
 
 	//Open layers tab
