@@ -277,14 +277,12 @@ function slideSidebar(){
 			$('#sidebar').removeClass('animate');
 			try{
 			   $('#sidebar').animate({ 'left': '-100%' }, 500, 'easeOutQuad');
-			   $('#housedistrict, #senatedistrict, #ushousedistrict, #ussenatedistrict, #ussenatedistrict2').css('left',0);
 			}
 			catch(err){}
 		} else {
 			try{
 			    $('#sidebar').addClass('animate');
 			    $('#sidebar').animate({ 'left': '0px' }, 500, 'easeInQuad');
-			    $('#housedistrict, #senatedistrict, #ushousedistrict, #ussenatedistrict, #ussenatedistrict2').css('left','80px');
 		    } catch(err){}} // Firebug throws a typeerror here - it doesn't break the app, 'easeInQuad' needs jQuery UI, but it forces the animation in desktop app... just ignore
 }
 
