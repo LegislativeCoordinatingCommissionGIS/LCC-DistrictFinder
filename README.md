@@ -3,7 +3,7 @@
 
 The **Who Represents Me?** application is a completely open-source full-stack, responsive (RWD) application, built with PostGIS, Leaflet, and a little TLC.
 
-See it in the wild at [http://gis.leg.mn](http://www.gis.leg.mn/OpenLayers/districts/)
+See it in the wild at [http://gis.leg.mn/OpenLayers/districts](http://www.gis.leg.mn/OpenLayers/districts/)
 
 ### What's included?
 - Code
